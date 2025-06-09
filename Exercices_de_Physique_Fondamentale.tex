@@ -1,0 +1,2843 @@
+\documentclass[a4paper,10pt]{report}
+
+% Encodage et langue
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{slashed}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,physics,enumitem}
+
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{siunitx}
+
+% Mathématiques et formatage
+\usepackage{amsmath, amssymb, amsfonts, siunitx, booktabs}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{slashed}
+
+% Mathématiques et formatage
+\usepackage{amsmath, amssymb, amsfonts, siunitx, booktabs}
+\usepackage{geometry}
+\geometry{left=3cm,right=2cm,top=2cm,bottom=2cm}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0em}
+
+% Graphiques
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows, decorations.pathreplacing}
+\usetikzlibrary{arrows.meta, calc}
+\usepackage{tikz-3dplot}
+
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pgfplotstable}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[version=4]{mhchem}
+
+
+% Hyperliens
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+
+\usepackage{etoolbox}
+\pretocmd{\chapter}{\clearpage\null\thispagestyle{empty}\clearpage}{}{}
+
+
+\usepackage{libertinus}
+
+% Listings pour afficher du code source
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset{
+	language=Python,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	commentstyle=\color{green},
+	stringstyle=\color{red},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	breaklines=true,
+	frame=single,
+	captionpos=b,
+	showstringspaces=false,
+	extendedchars=true
+}
+\newcommand{\diff}[1]{\frac{\dd}{\dd #1}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ddS}[1]{\text{d}S(#1)}
+\newcommand{\Om}{\Omega}
+\newcommand{\Omeps}{\Omega_\varepsilon}
+\geometry{left=3cm,right=2cm,top=2.5cm,bottom=2cm}
+
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0em}
+
+% Applique le style fancy à toutes les pages, y compris celles de chapitre
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+% Supprime le style "plain" en début de chapitre
+	\fancyhead[L]{\leftmark}
+	\fancyhead[R]{\rightmark}
+	\fancyfoot[C]{\thepage}
+
+\linespread{1.05}
+
+
+\title{Exercices de Physique Fondamentale \\ \small (niveau L3-M1)}
+\author{Ryan Artero \\Adresse eMail : \href{mailto:ryanartero2005@gmail.com}{ryanartero2005@gmail.com}}
+\date{Version du \today}
+
+\begin{document}
+	\maketitle
+	 \newpage
+	\tableofcontents
+	\newpage
+	\chapter*{Résumé}
+	\addcontentsline{toc}{chapter}{Résumé}
+	\vspace{-1em}
+	\begin{quotation}
+	Ce document rassemble une sélection d'exercices originaux de physique fondamentale, construits dans une perspective transversale et progressive, allant de la Licence 3 au Master 1. Chaque exercice est accompagné d’un corrigé détaillé (lorsqu’il est disponible), et se place dans un contexte historique, théorique ou applicatif rigoureux. Les thématiques abordées incluent la relativité restreinte, la mécanique quantique, la physique statistique, l'électrodynamique, ainsi que des incursions en physique mathématique. Une classification par niveau est proposée pour guider le lecteur dans sa progression.
+	\end{quotation}
+	
+	\chapter*{Abstract}
+	\addcontentsline{toc}{chapter}{Abstract}
+	\vspace{-1em}
+	\begin{quotation}
+	This document offers a selection of original problems in fundamental physics, designed with a transversal and progressive approach, ranging from undergraduate (L3) to graduate level (M1). Each problem is accompanied by a detailed solution (when available), and is framed in a rigorous historical, theoretical, or applied context. Covered topics include special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics. A suggested reading path by academic level is provided to help students navigate the collection.
+	\end{quotation}
+	
+	\chapter{Introduction}
+	Ce document est une compilation d'exercices de Physique Fondamentale que j’ai conçus avec passion, dans l’esprit d’un cours de fin de Licence 3 / Master 1, et plus. L’objectif est double : proposer des problèmes rigoureux, inspirants, faisant appel à la beauté formelle et conceptuelle de la physique, et offrir une base solide pour les étudiants souhaitant approfondir les grandes théories classiques et modernes. Je souhaite partager ma passion pour la physique qui sort du cadre imposé en cours, utilisant des notions transverses aux différents domaines de la physique.
+	
+	Chaque exercice mobilise des notions précises (indiquées entre parenthèses, comme \textbf{(RR)} pour Relativité Restreinte, \textbf{(MQ)} pour Mécanique Quantique, etc.), et est accompagné, progressivement, d'une correction détaillée, qui est accessible en cliquant sur la parenthèse "(Correction)". Les exercices sont notés avec des étoiles (c.f. \ref{subsec:notations}), vous êtes libre de faire l'exercice qui vous intrigue le plus.
+	
+	 Étant en première année de Master 1 de Physique Fondamentale à la Sorbonne, (campus Pierre et Marie Curie), je souhaite que cette fiche soit vivante : les corrections seront complétées régulièrement. Enfin, dans la partie correction, en cliquant sur les titres d'exercice (que ce soit en entête ou au début de la correction), vous pouvez retourner sur l'exercice en question.
+	
+	J’espère qu’en lisant et en travaillant ces exercices, vous y trouverez autant de plaisir que j’en ai eu à les écrire.
+
+		\chapter{Informations}\label{section:info}
+	\section{Notations}\label{subsec:notations}
+	\begin{enumerate}
+		\item Les quantités vectorielles sont notées en gras, sauf l'opérateur $\nabla$, qui ne sera jamais noté en gras. Les quantités 4-vectorielles (en relativité) seront noté avec une lettre grecque soit en exposant si covariant, et en indice si contravariant. \\
+		\textbf{Exemple :} $\mathbf{v}$ pour la vitesse, $\nabla p$ pour le gradient de pression (qui est vectoriel !) et $x^\mu$ pour la position dans l'espace temps en covariant. 
+		A contrario, en Mécanique Quantique, on notera les vecteurs avec des ket et les opérateurs en gras.
+			\textbf{Exemple :} $\ket \psi$ pour un vecteur $\psi$ et $\textbf{H}$ pour l'Hamiltonien.
+		\item La notation $\text{d}$ désigne l'opérateur différentiel.
+		\item L'écriture $\partial_u$ signifie implicitement $\frac{\partial}{\partial u}$ si $u$ est une variable, et $\partial_\mu = \frac{\partial}{\partial x^\mu}, \partial^\mu = \frac{\partial}{\partial x_\mu}$ en relativité.
+		\item $\nabla = \begin{bmatrix}
+			\frac{\partial}{\partial x}  \\
+			\frac{\partial}{\partial y} \\
+			\frac{\partial}{\partial z} \\
+		\end{bmatrix}$ en coordonnées cartésiennes,
+		est un opérateur qui défini proprement le gradient, divergence et rotationnel. En effet, $\nabla f$ désigne le gradient de $f$, $\nabla \cdot \textbf{F}$ désigne la divergence de $\textbf{F}$, et $\nabla \times \textbf{F}$ désigne le rotationnel de $\textbf{F}$.
+		L'opérateur $\partial_\mu\partial^\mu = \square$ désigne l'Alembertien, invariant sous transformations de Lorentz. 
+		\item La notation $\dot{x}$ désigne une dérivée par rapport au temps $t$ c'est à dire $\dot{x} = \frac{\text{d}x}{\text{d}t}$. Dans un exercice de relativité, la notation privilégiée sera $\dot x^\mu = \frac{\text{d}x^\mu}{\text{d}\tau}$, $\tau$ le temps propre et $\textbf{v}=\frac{\text{d}\textbf{x}}{\text{d}t}$.
+		\item La notation $f'$ désigne la dérivée par rapport à la variable $x$ soit, $f' = \frac {\text{d}f}{\text{d}x}$
+		\item La notation $[A]$ désigne l'unité de la grandeur $A$.
+		\item La notation $\mathbb{R}, \mathbb{C}, \mathbb{N}$ désigne respectivement les ensembles des nombres réels, complexes et naturels.
+		\item La métrique de la relativité restreinte utilisée sera $g_{\mu\nu} = (-,+,+,+)$. Par ailleurs, on rappelle que $a^\mu b_\mu = g_{\mu \nu} a^\mu b^\nu = g^{\mu \nu} a_\mu b_\nu$.
+		\item Les étoiles évaluent le niveau de difficulté des exercices. Cela va de 1 : \faStar \space à 5 étoiles :  \faStar\faStar\faStar\faStar\faStar.
+		\\ Les critères d'évaluation de difficulté sont liés à la longueur de l'exercice, sa difficulté technique et mathématique et du niveau nécessaire (L3, M1, M2) pour être à l'aise avec les notions utilisées.
+		\item La croix $^\dag$ signifie que l'exercice est soit tiré, soit inspiré d'un exercice déjà existant. Une note de bas de page est également présente dans ce cas.
+		\item La notation $\triangle$ indique que la correction de l'exercice est en cours de rédaction.
+	\end{enumerate}
+	
+	\section{Constantes fondamentales}\label{subsec:constantes}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{llc}
+			\toprule
+			\textbf{Constante} & \textbf{Valeur exacte} & \textbf{Unités} \\
+			\midrule
+			Constante de Planck & $h = 6.62607015 \times 10^{-34}$ & $\si{J.s}$ \\
+			Constante de Dirac & $\hbar = \frac{h}{2\pi} = 1.054571817 \times 10^{-34}$ & $\si{J.s}$ \\
+			Vitesse de la lumière & $c = 299792458$ & $\si{m.s^{-1}}$ \\
+			Charge élémentaire & $e = 1.602176634 \times 10^{-19}$ & $\si{C}$ \\
+			Masse de l'électron & $m_e = 9.1093837015 \times 10^{-31}$ & $\si{kg}$ \\
+			Masse du proton & $m_p = 1.67262192369 \times 10^{-27}$ & $\si{kg}$ \\
+			Masse du neutron & $m_n = 1.675 \times 10^{-27}$ & $\si{kg}$ \\
+			Permittivité du vide & $\varepsilon_0 = 8.854187817 \times 10^{-12}$ & $\si{F.m^{-1}}$ \\
+			Perméabilité du vide & $\mu_0 = 4\pi \times 10^{-7}$ & $\si{N.A^{-2}}$ \\
+			Constante gravitationnelle & $G = 6.67430 \times 10^{-11}$ & $\si{m^3.kg^{-1}.s^{-2}}$ \\
+			Constante de Boltzmann & $k_B = 1.380649 \times 10^{-23}$ & $\si{J.K^{-1}}$ \\
+			Nombre d'Avogadro & $N_A = 6.02214076 \times 10^{23}$ & $\si{mol^{-1}}$ \\
+			Constante des gaz parfaits & $R = 8.314462618$ & $\si{J.mol^{-1}.K^{-1}}$ \\
+			Température de référence (0°C) & $T_0 = 273.15$ & $\si{K}$ \\
+			\bottomrule
+		\end{tabular}
+		\caption{Constantes fondamentales de la physique avec leurs valeurs exactes.}
+		\label{table:constantes}
+	\end{table}
+	\section{Formulaire}\label{subsec:formulaire}
+	\subsection{Équations de Maxwell}\label{subsubsec:maxwell}
+	\begin{align*}
+		\nabla \cdot \mathbf{E} &= \frac{\rho}{\varepsilon_0} \quad & \text{(Loi de Gauss)} \\
+		\nabla \cdot \mathbf{B} &= 0 \quad & \text{(Absence de monopôles magnétiques)} \\
+		\nabla \times \mathbf{E} &= - \frac{\partial \mathbf{B}}{\partial t} \quad & \text{(Loi de Faraday)} \\
+		\nabla \times \mathbf{B} &= \mu_0 \mathbf{J} + \mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t} \quad & \text{(Loi d'Ampère-Maxwell)}\\
+		\nabla \times \textbf{A} &= \textbf{B} \text{ et } -\partial_t \textbf{A} - \nabla \varphi = \textbf{E} \quad & \text{(Lien potentiel vecteur et champ EM)}\\
+			P &= \frac{q^2 a^2}{6\pi \varepsilon_0 c^3}
+		\label{formule:larmor} \quad & \text{(Puissance de Larmor)}
+	\end{align*}
+	
+	
+	\subsection{Relativité restreinte}\label{subsubsec:relativite}
+	\begin{align*}
+		E &= \gamma mc^2 = \sqrt{p^2c^2+m^2c^4}\quad & \text{(Énergie relativiste)} \\
+		\gamma &= \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}} \quad & \text{(Facteur de Lorentz)} \\
+		x' &= \gamma (x - vt) \quad & \text{(Transformation de Lorentz)} \\
+		t' &= \gamma \left(t - \frac{vx}{c^2}\right) \quad & \text{(Transformation du temps)}\\
+		\beta &= \frac v c\\
+		\textbf{p} &= \gamma m \textbf{v} \quad & \text{(Vecteur impulsion relativiste)}\\
+		\textbf{p} &= \hbar \textbf{k} \quad & \text{(Vecteur impulsion du photon)}
+	\end{align*}
+
+	\subsection{Mécanique quantique}\label{subsubsec:quantique}
+	\begin{align*}
+		\textbf{P} &= -i \hbar \nabla \quad & \text{(Opérateur quantité de mouvement)} \\
+		i \hbar \frac{\partial}{\partial t} \ket \psi &= \textbf{H}\ket \psi \quad & \text{(Équation de Schrödinger)}\\
+		[\textbf{X}_i, \textbf{P}_j] &= i\hbar\delta_{ij}\quad & \text{(Transformations Canoniques)}\\
+		\textbf{X} &= \sqrt {\frac{\hbar}{2m\omega}}(\textbf{a}+\textbf{a}^\dagger) \text{ et } \textbf{P} = i\sqrt {\frac{\hbar m\omega}{2}}(\textbf{a}^\dagger-\textbf{a}) \quad & \text{(Opérateur Annihilation et création)}\\
+		[\textbf{a}, \textbf{a}^\dagger] &= \textbf{1} = \textbf{Id}\quad &\text{(Commutateur)}\\
+		\textbf{H}&= \hbar \omega \Bigl(\textbf{N}+\frac 1 2\Bigr) \quad &\text{(Hamiltonien oscillateur harmonique)}\\
+		\textbf{N} &= \textbf{a}^\dagger \textbf{a} \text{ et }\textbf{N}\ket n = n\ket n, n \in \mathbb{N} \quad &\text{(Opérateur N)}\\
+		\textbf{L}_i&= \varepsilon_{ijk}\textbf{X}_j \textbf{P}_k \quad &\text{(Moment cinétique en notation Einstein)}\\
+		[\textbf{J}_i, \textbf{J}_j]&= i\times \varepsilon_{ijk}\textbf{J}_k\quad &\text{(Algèbre du moment cinétique)}\\
+		\end{align*}
+	
+
+	\subsection{Physique statistique}\label{subsubsec:statistique}
+	En ensemble canonique,
+	\begin{align*}
+		\beta &= \frac 1 {k_B T} \quad & \text{(Énergie de température)}\\
+		Z &= \sum_n e^{-\beta E_n} \quad & \text{(Fonction de partition)} \\
+		\langle E \rangle &= \frac{\sum_n E_n e^{-\beta E_n}}{Z} = -\partial_\beta \ln Z \quad & \text{(Énergie moyenne)} 
+		\end{align*}
+	
+	\subsection{Mécanique analytique}\label{subsubsec:analytique}
+	\begin{align*}
+		\mathcal L &= T - V \quad & \text{(Lagrangien)} \\
+		\frac{\text{d}}{\text{d}t} \frac{\partial \mathcal L}{\partial \dot{q}} - \frac{\partial \mathcal L}{\partial q} &= 0 \quad & \text{(Équations de Lagrange)}
+	\end{align*}
+	\subsection{Physique subatomique}\label{subsubsec:subatomique}
+	\begin{align*}
+		\text{d}\Omega &= \sin\theta \text{d}\theta \text{d}\varphi\quad & \text{(Angle solide infinitésimal)}\\
+	\end{align*}
+		Où $\Omega \in [0, 4\pi]$ car, par définition $\Omega = \frac {S}{R^2}\text{ où } S = 4\pi R^2 \text{ surface d'une sphère de rayon } R$.
+		\subsection{Opérateurs en coordonnées curvilignes}\label{subsubsec:operateurs}
+	\textbf{Coordonnées cylindriques :}
+	\begin{align*}
+		\nabla f &= \frac{\partial f}{\partial r} \mathbf{e}_r + \frac{1}{r} \frac{\partial f}{\partial \theta} \mathbf{e}_\theta + \frac{\partial f}{\partial z} \mathbf{e}_z \\
+		\nabla \cdot \mathbf{A} &= \frac{1}{r} \frac{\partial}{\partial r} (r A_r) + \frac{1}{r} \frac{\partial A_\theta}{\partial \theta} + \frac{\partial A_z}{\partial z} \\
+		\nabla \times \mathbf{A} &= \left( \frac{1}{r} \frac{\partial A_z}{\partial \theta} - \frac{\partial A_\theta}{\partial z} \right) \mathbf{e}_r \\
+		&\quad + \left( \frac{\partial A_r}{\partial z} - \frac{\partial A_z}{\partial r} \right) \mathbf{e}_\theta \\
+		&\quad + \left( \frac{1}{r} \frac{\partial (r A_\theta)}{\partial r} - \frac{1}{r} \frac{\partial A_r}{\partial \theta} \right) \mathbf{e}_z
+	\end{align*}
+	
+	\textbf{Coordonnées sphériques :}
+	\begin{align*}
+		\nabla f &= \frac{\partial f}{\partial r} \mathbf{e}_r + \frac{1}{r} \frac{\partial f}{\partial \theta} \mathbf{e}_\theta + \frac{1}{r \sin\theta} \frac{\partial f}{\partial \phi} \mathbf{e}_\phi \\
+		\nabla \cdot \mathbf{A} &= \frac{1}{r^2} \frac{\partial}{\partial r} (r^2 A_r) + \frac{1}{r \sin\theta} \frac{\partial}{\partial \theta} (\sin\theta A_\theta) + \frac{1}{r \sin\theta} \frac{\partial A_\phi}{\partial \phi} \\
+		\nabla \times \mathbf{A} &= \frac{1}{r \sin\theta} \left( \frac{\partial}{\partial \theta} (A_\phi \sin\theta) - \frac{\partial A_\theta}{\partial \phi} \right) \mathbf{e}_r \\
+		&\quad + \frac{1}{r} \left( \frac{1}{\sin\theta} \frac{\partial A_r}{\partial \phi} - \frac{\partial}{\partial r} (r A_\phi) \right) \mathbf{e}_\theta \\
+		&\quad + \frac{1}{r} \left( \frac{\partial}{\partial r} (r A_\theta) - \frac{\partial A_r}{\partial \theta} \right) \mathbf{e}_\phi
+	\end{align*}
+	
+	\subsection{Identités trigonométriques}\label{subsubsec:trigo}
+	\[
+	\sin^2(\theta) + \cos^2(\theta) = 1, \quad
+	1 + \tan^2(\theta) = \frac{1}{\cos^2(\theta)}.
+	\]
+	
+	\subsection*{Formules d'addition}
+	\[
+	\sin(a \pm b) = \sin(a)\cos(b) \pm \cos(a)\sin(b),
+	\]
+	\[
+	\cos(a \pm b) = \cos(a)\cos(b) \mp \sin(a)\sin(b).
+	\]
+	
+	\subsection*{Formules de duplication}
+	\[
+	\sin(2\theta) = 2\sin(\theta)\cos(\theta),
+	\]
+	\[
+	\cos(2\theta) = \cos^2(\theta) - \sin^2(\theta) = 2\cos^2(\theta) - 1 = 1 - 2\sin^2(\theta).
+	\]
+
+	Ces formules sont très utiles pour les changements de variables en intégration.
+	
+	\subsection*{Expression de \( \sin(x) \), \( \cos(x) \) et \( \tan(x) \) en fonction de \( t = \tan\left(\frac{x}{2}\right) \)}
+	\[
+	\sin(x) = \frac{2t}{1 + t^2}, \quad
+	\cos(x) = \frac{1 - t^2}{1 + t^2}, \quad
+	\tan(x) = \frac{2t}{1 - t^2}.
+	\]
+	
+	\subsection*{Changement de variable \( t = \tan\left(\frac{x}{2}\right) \)}
+	Ce changement de variable est souvent utilisé pour simplifier les intégrales trigonométriques. On a également :
+	\[
+	\text dx = \frac{2}{1 + t^2} \, \text dt.
+	\]
+	\section{Légende des notations thématiques}
+	
+	\begin{itemize}
+		\item \textbf{(RR)} : Relativité Restreinte
+		\item \textbf{(MQ)} : Mécanique Quantique
+		\item \textbf{(EM)} : Électromagnétisme
+		\item \textbf{(MA)} : Mécanique Analytique
+		\item \textbf{(PS)} : Physique Statistique
+		\item \textbf{(FS)} : Physique Subatomique
+	\end{itemize}
+	 \section{Parcours suggéré en fonction du niveau}
+Pour aider les lecteurs à naviguer dans cette collection dense d'exercices, voici quelques suggestions de parcours selon votre niveau et vos objectifs. Bien entendu, chaque étudiant reste libre d'explorer les problèmes qui l’inspirent.
+	\begin{center}
+		\begin{tabular}{|c|p{10cm}|}
+			\hline
+			\textbf{Niveau} & \textbf{Exercices recommandés} \\
+			\hline
+			Début Licence 3 &
+			3.1 – Problème à deux corps \newline
+			3.2 – Section efficace de Rutherford \newline
+			3.4 – Machine à champ magnétique pulsé \newline
+			3.13 - Instabilité électrodynamique de l'atome classique \\
+			\hline
+			Fin de Licence 3 / Début Master 1 &
+			3.3 – Effet Cherenkov \newline
+			3.5 – Métrique sur une sphère \newline
+			3.6 – Rayonnement du corps noir \newline
+			3.10 – Atome d'hydrogène et équation radiale
+			\newline
+			3.12 – Potentiel de Pöschl–Teller  \\
+			\hline
+			Master 1 avancé &
+			3.7 – Minimisation du potentiel gravitationnel \newline
+			3.8 – Particule chargée relativiste \newline
+			3.9 – Hydrodynamique relativiste \newline
+			3.11 – Vers un formalisme relativiste \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\newpage
+	
+	\chapter{Exercices}\label{section:exercices}
+
+	Ce recueil d’exercices a été conçu avec l’ambition de dépasser la simple pratique mécanique des méthodes. Chaque énoncé vise à faire émerger une certaine forme d’élégance mathématique ou de profondeur physique — un regard attentif y découvrira, derrière les équations et les techniques, une cohérence subtile, parfois même une beauté formelle.
+	Certains exercices sont exigeants, tant par leur longueur que par leur structure : ils s’inspirent parfois de sujets de concours ou de situations physiques réalistes, et peuvent nécessiter plusieurs heures de réflexion. Leur objectif n’est pas seulement de renforcer les compétences techniques, mais de faire ressentir, à travers la résolution progressive, l’unité profonde entre la rigueur mathématique et la réalité physique qu’elle décrit.
+	Ce chapitre est évolutif : de nouveaux problèmes y seront ajoutés régulièrement, dans le même esprit d’élégance, de clarté, et de profondeur.
+\\ 
+	\section[Problème à deux corps et quantification de l'atome de Bohr]{Problème à deux corps et quantification de l'atome de Bohr$^\dag$ (\hyperref[subsubsec:analytique]{MA})\space \faStar\faStar\faStar}
+	\footnote{$^\dag$ Inspiré de Claude Aslangul, \textit{Mécanique Quantique 1}, Chapitre 7.}
+	\label{subsec:2corps}
+	(\hyperref[subsec:correction2corps]{Correction})
+\\
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}[scale=2]
+		
+		% Noyau : on le dessine comme un petit cercle rouge
+		\fill[red] (0,0) circle (0.1) node[below left] {Noyau};
+		
+		% Dessin de l'orbite : cercle (trace en pointillé)
+		\draw[dashed, thick] (0,0) circle (1);
+		
+		% Positionnez l'électron sur l'orbite
+		\fill[blue] (1,0) circle (0.05) node[right] {$e^-$};
+		
+		% Optionnel : dessiner une flèche le long de l'orbite pour suggérer le mouvement
+		\draw[->, very thick, rounded corners] (0.7,0.7) arc (45:20:1);
+		
+		% Indiquer la longueur du rayon de l'orbite
+		\draw[<->, very thick] (0,0.1) -- (1,0.1) node[midway, fill=white] {$r_1$};
+		
+	\end{tikzpicture}
+	\caption{Schéma de l'atome de Bohr.}
+	\label{fig:Bohr}
+\end{figure}
+
+Considérons un système de deux particules de masses \( m_1 \) et \( m_2 \) interagissant via un potentiel central \( V(r) = -\frac C r = -\frac {\vartheta^2}r\)\footnote{On notera $\vartheta^2 = \frac {e^2}{4\pi\varepsilon_0}$.}, où \( r \) est la distance entre les deux particules et $C$ est une constante réelle.
+	\textit{Ici on utilise le potentiel coulombien, mais on pourrait très bien utiliser un potentiel gravitationnel}.  
+	On essaiera ici d'étudier en détail les états liés de l'atome d'hydrogène d'après l'ancienne théorie des quanta et d'obtenir en particulier l'énergie associée à une trajectoire donnée de l'électron de masse $m_1$ autour du noyau de masse $m_2$.
+
+	\subsection{Centre de masse}
+	On désigne $\textbf{r}_1, \textbf{r}_2$ les rayons vecteurs de l'électron et du noyaux par rapport à un repère quelconque, et $\textbf{v}_1, \textbf{v}_2$ les vitesses correspondantes. 
+	\begin{enumerate}
+		\item Écrire le lagrangien $\mathcal{L}(\textbf{r}_1, \textbf{r}_2,\textbf{v}_1, \textbf{v}_2)$.
+		\item On introduit $\textbf{R}$ le rayon vecteur du centre de masse et $\textbf{r} = \textbf{r}_1 - \textbf{r}_2$. Montrer que le Lagrangien peut s'exprimer sous la forme suivante :
+		$$\mathcal{L}(\textbf{r}_1, \textbf{r}_2,\textbf{v}_1, \textbf{v}_2) = \mathcal{L}_G(\textbf{V}) + \mathcal{L}_r(\textbf{r}, \textbf{v})$$
+		\item Expliquer pourquoi le moment cinétique total du centre de masse $G, \textbf{J}$, est une constante du mouvement. En tirer une conclusion sur la trajectoire.
+	\end{enumerate}
+	Dans la suite, on examine exclusivement le mouvement interne par $\mathcal{L}_r$ en coordonnées polaires $(r, \theta)$ dans le plan perpendiculaire à $\textbf{J}$.
+	\subsection{Intégration des équations du mouvement}
+\begin{enumerate}
+	\item Écrire l'hamiltonien $\mathcal{H}$ du mouvement interne et écrire les équation d'Hamilton.
+	Retrouver la conservation du mouvement cinétique et interpréter l'équation où ne figurent que $\textbf{r}, \dot{\mathbf{r}}$.
+	\item Déterminer la relation entre $r, \theta$, c'est à dire, de trouver la trajectoire. Pour cela, éliminer le temps des équations obtenus précédemment en posant $u = \frac 1 r$, et montrer que, $$\frac{\text{d}^2u}{\text{d}\theta^2} + u =K, \text{ } K = \frac {\mu \vartheta^2}{J^2}$$
+	\item En déduire finalement que la trajectoire est une conique, dont l'équation peut toujours être mise sous la forme,
+	\begin{equation*}
+		r(\theta) = \frac p {1+\varepsilon \cos \theta}
+	\end{equation*}
+	Donner l'expression de $p$ paramètre de la conique et de $\varepsilon$, l'excentricité. Vérifier que la valeur de $\varepsilon$ par rapport à 1 conditionne la nature de l'état correspondant (lié ou non lié).
+\end{enumerate}
+	\subsection{Quantification de Bohr}
+	Dans cette partie, ne considérant que les états liés ($E <0$), on applique les règles de Bohr afin de faire le tri parmi toutes les trajectoires classiquement envisageables. Ces règles portent sur les variables d'actions $J_\theta, J_r$ et s'écrivent,
+	 \begin{align*}
+J_\theta &:= \oint p_\theta \text{d}\theta = n_\theta h\\
+J_r &:= \oint p_r \text{d}r = n_r h\\
+n_\theta, n_r &\in \mathbb{Z}
+	 \end{align*}
+	 
+	 \begin{enumerate}
+	 	\item Trouver les valeurs possibles du moment cinétique $J$ en conséquence de la quantification de $J_\theta$. Préciser les valeurs possible de l'entier $n_\theta$ correspondant.
+	 	\item Quantifier $J_r$ et en déduire la relation etre $\varepsilon$ et les entiers $n_r, n_\theta$\footnote{A première vu, on pourrait dire que $J_r =0$, il faudra forcer une intégration par partie.}.
+	 	On donne,
+	 	$$\int_0^{2\pi} \frac 1 {1 + \varepsilon \cos\theta} \dd\theta = \frac{2\pi}{\sqrt{1-\varepsilon^2}}$$
+	 	\item En déduire que l'énergie $E$ est quantifiée, avec $n \in \mathbb{N}^*$ dépendant de $n_\theta, n_r$ et que,
+	 	$$E_n = - \frac{\mu \vartheta^4}{2n^2\hbar^2}$$
+	 	
+	 \end{enumerate}
+\newpage
+	\section[Section efficace de Rutherford]{Section efficace de Rutherford$^\dag$ (\hyperref[subsubsec:subatomique]{FS})\space \faStar\faStar}\footnote{$^\dag$ Inspiré de Claude Aslangul, \textit{Mécanique Quantique 1}, Chapitre 3.}\label{subsec:Rutherford}
+	(\hyperref[subsec:correctionRutherford]{Correction})\\\\
+On se place dans le même cas que l'exercice précédent avec deux particules, dont une est immobile, interagissant avec un potentiel de la forme $V(r) = \frac {C} r$. En effet, ici $C = \frac {Qq}{4\pi\varepsilon_0}, Q = Ze, q = 2e$.
+On va utiliser quelques résultats de l'exercice précédent. Il est donc préférable de l'avoir fait en amont. 
+\subsection{Déviation d'une particule chargée par un noyau d'atome}
+On se place dans le repère polaire $(r, \varphi)$ perpendiculairement au moment cinétique, puisque le mouvement est plan. La particule $\alpha$ arrive avec une vitesse initiale $\textbf{v}_0$. On se place dans le cas $\lim_{t \to -\infty} \varphi(t) = \pi$.
+\begin{enumerate}
+	\item Déterminer la composante non nulle de $\textbf{J}$ en fonction de $r, \varphi$. Déterminer cette même composante en fonction de $b, v_0$, $b$ paramètre d'impact.
+	\item Écrire l'équation du mouvement.
+	 Décomposer $\textbf{v} = \dot{\textbf{r}}$ en un vecteur parallèlement à l'axe polaire et un autre perpendiculaire à l'axe polaire. En déduire que,
+	$$m\dot{v}_{\perp} = \frac C {r^2}\sin\varphi$$
+	\item On veut faire apparaître l'angle de déviation $\theta$.
+	En intégrant l'équation, en déduire que,
+	$$v_0\sin\theta = \frac C {mbv_0}(\cos\theta + 1)$$
+	\item En utilisant  \hyperref[subsubsec:trigo]{quelques formules trigonométriques}, en déduire que,
+	$$\tan\frac \theta 2 = \frac  C {2E_0b}$$
+	Où $E_0 = \frac 1 2 m v_0^2$. 
+\end{enumerate}
+\subsection{Section efficace de Rutherford}
+\begin{enumerate}
+	\item Rappeler la formule de la section efficace différentielle $\frac {\dd \sigma}{\dd \Omega}$.
+	\item En déduire que, $$\frac {\text{d}\sigma}{\text{d}\Omega} = \frac {C^2}{16E_0^2\sin^4\frac \theta 2}$$
+	\item En déduire ce modèle n'est pas valable pour les petits angles de déviation.
+	\item Expliquer pourquoi cette expérience démontre l'existence des noyaux d'atome.
+\end{enumerate}
+\newpage
+	\section[Effet Cherenkov]{Effet Cherenkov$^\dag$ (\hyperref[subsubsec:relativite]{RR}, \hyperref[subsubsec:subatomique]{FS})\space \faStar\faStar\faStar}\footnote{$^\dag$ Inspiré de Claude Aslangul, \textit{Mécanique Quantique 1}, Chapitre 5.}\label{subsec:Cherenkov}
+	(\hyperref[subsec:correctionCherenkov]{Correction})
+\\L'effet Cherenkov se produit lorsqu'une particule chargée traverse un milieu diélectrique à une vitesse \( v \) supérieure à la vitesse de la lumière dans ce milieu \( c/n \), où \( n \) est l'indice de réfraction du milieu.
+		
+	\begin{center}
+		\begin{tikzpicture}
+			
+			% Avant la collision
+			\node at (-3,2) {Avant la collision};
+			\draw[thick, ->] (-3,1.5) -- (3,1.5) node[right] {$\vec{p}$};
+			\filldraw[red] (-1,1.5) circle (0.1) node[above] {$q$};
+			
+			% Séparation
+			\draw[dashed] (-3,0) -- (3,0);
+			
+			% Après la collision
+			\node at (-3,-2) {Après la collision};
+			
+			% Référence horizontale pour l'angle theta
+			\draw[dashed] (0,-1.5) -- (2.5,-1.5);
+			
+			% Impulsions après collision
+			\draw[thick, ->] (0,-1.5) -- (2,-0.5) node[right] {$\vec{p}_\gamma$};
+			\draw[thick, ->] (0,-1.5) -- (2,-2.5) node[right] {$\vec{p'}$};
+			\filldraw[red] (0,-1.5) circle (0.1) node[left] {$q$};
+			
+			% Angle theta
+			\draw[thick] (1.3,-1.5) arc (0:30:1.3);
+			\node at (1.5,-1.2) {$\theta$};
+			
+		\end{tikzpicture}
+	\end{center}
+	L'impulsion de la particule chargée est $\textbf{p}$ avant la collision, et $\textbf{p}_\gamma$ l'impulsion du photon après collision, et $\textbf{p}'$ l'impulsion de la particule chargée après la collision. L'angle $\theta$ est l'angle formé entre $\textbf{p}$ et $\textbf{p}_\gamma$.  
+	On rappelle que $\lambda = \frac c {n\nu}$.
+	\begin{enumerate}
+\item Exprimer $p_\gamma$ en fonction de $h, \nu, c, n$. En déduire la relation entre $p_\gamma, E_\gamma$ dans un milieu d'indice $n$.
+\item Pour l'événement élémentaire, écrire la conservation de l'impulsion.
+\item En utilisant la question précédente, donner l'expression de ${\textbf{p}'}^2$ en fonction des modules des impulsions $p, p_\gamma$ et de l'angle $\theta$.
+\item Écrire la conservation de l'énergie.
+\item En déduire que,
+$${p'}^2 = p^2 - 2 \frac E {c^2}h\nu + \frac{p_\gamma^2}{n^2}$$
+Où $E$ désigne l'énergie initiale de l'électron.
+\item Obtenir $\cos\theta$ en fonction de $p, p_\gamma, E, h, n, c, \nu$.
+\item Montrer ainsi que,
+$$\cos\theta = \frac c {nv}[1 + \frac{h\nu}{2E}(n^2-1)]$$
+\item A quelle condition l'effet Cherenkov se produit-il ?
+\item Dans quel intervalle de fréquence les photons sont-ils émis ?
+\item Dans quelle direction les photons les plus énergétiques sont-ils émis ?
+\item Tous les photons sont émis dans un cône ;  quel est le demi-angle au somme de ce cône $\phi$ ? Calculer $\phi$ approximativement pour $n = \frac 4 3$ et $v = \frac 4 5 c$.
+\item Comparer l'énergie cinétique minimale de la particule pour que l'effet se produise suivant qu'il s'agit d'un électron ou un proton, $n = \frac 43$.
+	\end{enumerate}
+	\newpage \section[Machine à champ magnétique pulsé]{Machine à champ magnétique pulsé \hyperref[subsubsec:maxwell]{(EM)}\space \faStar\faStar}\label{subsec:machine}
+	(\hyperref[subsec:correctionmachine]{Correction})\\
+	
+La machine de stimulation magnétique est une technologie non invasive utilisée en kinésithérapie et en rééducation. Son principe repose sur la génération de champs magnétiques pulsés à l'aide d'une bobine circulaire. Concrètement, la machine envoie des impulsions de courant à travers la bobine, ce qui crée un champ magnétique variable dans le temps. Selon la loi de Faraday, cette variation induit automatiquement un champ électrique dans les tissus environnants.
+
+Ce champ électrique induit agit directement sur les membranes cellulaires des muscles en activant les canaux ioniques. En conséquence, un potentiel d'action se déclenche, entraînant une contraction musculaire. Ce mécanisme permet non seulement de stimuler des muscles affaiblis ou atrophiés, mais aussi d'améliorer la circulation sanguine et de réduire la douleur. De plus, l'absence de contact direct avec la peau rend le traitement confortable et sécuritaire pour le patient.
+
+La machine de stimulation magnétique est notamment utilisée pour :
+
+Favoriser la rééducation musculaire après une blessure ou une chirurgie.
+Soulager des douleurs chroniques associées à des troubles musculosquelettiques.
+Améliorer le tonus musculaire et prévenir l'atrophie.
+Stimuler la circulation sanguine et lymphatique pour accélérer la récupération.
+En résumé, grâce à une approche basée sur des principes physiques fondamentaux d'induction électromagnétique, cette technologie permet de traiter efficacement diverses affections musculaires et nerveuses, offrant une solution complémentaire aux thérapies conventionnelles en rééducation.
+
+		On considère une bobine circulaire de rayon $R$ parcourue par un courant variable
+	\[
+	I(t) = I_0 e^{-t/\tau} \sin(\omega t),
+	\]
+	où $I_0$ est l'amplitude du courant, $\tau$ le temps caractéristique d'amortissement, et $\omega$ la fréquence d'oscillation. L'axe de la bobine est supposé coïncider avec l'axe $z$. La bobine est considérée comme mince et peut être modélisée par une spire unique.
+	
+	\begin{enumerate}
+		\item \textbf{Champ magnétique de la bobine}
+		\begin{enumerate}
+			\item[(a)] En supposant que la bobine se comporte comme un dipôle magnétique, exprimer le champ magnétique $\mathbf{B}$ sur l'axe central (à une distance $z$ du centre) en fonction de $I(t)$, $R$, $z$ et des constantes fondamentales.
+			\item[(b)] Montrer que pour $z \gg R$, le champ s'approxime à celui d'un dipôle et donner son expression asymptotique.
+		\end{enumerate}
+		
+		\item \textbf{Champ électrique induit dans le tissu biologique}  
+		On considère un tissu conducteur modélisé par un disque mince de rayon $a$, placé sous la bobine.
+		\begin{enumerate}
+			\item[(a)] À partir de la loi locale de Faraday
+			\[
+			\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t},
+			\]
+			exprimer le champ électrique induit $\mathbf{E}$ en fonction de $\frac{\text dB}{\text dt}$.
+			\item[(b)] En supposant une symétrie cylindrique (champ purement azimutal), déduire l'expression du champ électrique induit $E_\theta(r,t)$ dans le plan du disque, en distinguant les cas $r<R$ et $r>R$.
+		\end{enumerate}
+		
+		\item \textbf{Effet sur les neurones moteurs}  
+		Un neurone moteur est supposé être activé lorsque la tension induite dépasse un seuil $V_\text{seuil}$.
+		\begin{enumerate}
+			\item[(a)] Exprimer $V$ en fonction des paramètres du problème.
+			\item[(b)] Déterminer une condition sur $I_0$, $\tau$, $\omega$, et les paramètres géométriques pour assurer l'activation du neurone.
+			\item[(c)] En utilisant des valeurs numériques réalistes ($R = 5\,\text{cm}$, $a = 2\,\text{cm}$, $I_0 = 100\,\text{A}$, $\tau = 1\,\text{ms}$, $\omega = 10^4\,\text{rad/s}$, et $V_{\text{seuil}} = 10\,\text{mV}$), vérifier si l'activation du neurone est possible.
+		\end{enumerate}
+		
+		\item \textbf{Effet du champ magnétique pulsé sur les muscles}  
+		Expliquez pourquoi un champ magnétique pulsé, en induisant un champ électrique dans les tissus, peut provoquer une contraction musculaire. Décrivez brièvement le mécanisme physiologique (activation des canaux ioniques, génération d'un potentiel d'action, contraction musculaire).
+	\end{enumerate}
+	
+		\newpage \section[Métrique sur une sphère]{Métrique sur une sphère \hyperref[subsubsec:analytique]{(MA)}\space \faStar\faStar\faStar}\label{subsec:Schwarzschild}
+		(\hyperref[subsec:correctionSchwarzschild]{Correction})
+		
+		
+		\begin{figure}[ht!]
+			\centering
+\begin{tikzpicture}[scale=3]
+
+% Sphère (projection 3D simulée par ellipses)
+\shade[ball color=blue!10, opacity=0.4] (0,0) circle (1); % la sphère
+
+% Équateur (ellipse horizontale)
+\draw[thick, red] (1,0) arc[start angle=0, end angle=180, x radius=1, y radius=0.3];
+\draw[thick, red, dashed] (1,0) arc[start angle=0, end angle=-180, x radius=1, y radius=0.3];
+\node[red] at (1.5,0) {Équateur};
+
+% Méridien (ellipse verticale)
+\draw[thick, purple] (0,1) arc[start angle=90, end angle=270, x radius=0.3, y radius=1];
+\draw[thick, purple, dashed] (0,1) arc[start angle=90, end angle=-90, x radius=0.3, y radius=1];
+\node[purple] at (0.4,1.1) {Géodésique};
+
+% Pôle Nord et Sud
+\filldraw (0,1) circle (0.01);
+\filldraw (0,-1) circle (0.01);
+\node at (-0.5,1) {Pôle N};
+\node at (-0.5,-1) {Pôle S};
+
+\end{tikzpicture}
+	\caption{Schéma d'une sphère et de ses géodésiques.}
+\label{fig:sphère}
+\end{figure}
+	
+	Notre but va être de déterminer la métrique de la sphère et ses géodésiques. Cela nous permettra de comprendre quelles sont les meilleures trajectoires à suivre pour un avion.
+	On rappelle qu'en coordonnées sphérique, pour un rayon constant $R$,
+	\begin{align*}
+		x &= R\cos \varphi \sin \theta \\
+		y &= R\sin \varphi \sin \theta \\
+		z &= R\cos \theta 
+		\end{align*}
+	\begin{enumerate}
+		\item Calculer l'élément de longueur $\text{d}s = \sqrt{\text{d}x^2+\text{d}y^2+\text{d}z^2}$ en fonction de $R, \theta$ et $\varphi$.
+		\item Grâce à l'action $S = \int \dd s = \int \mathcal L \dd\lambda$, $\lambda$ un paramètre bien choisi et au principe variationnel, déterminer les équations des géodésiques. 
+		\item 
+		Résoudre les équations en utilisant des symétries.
+		On pourra utiliser que,
+		\begin{align*}
+			\int \frac{\dd \alpha}{\sin^2 \alpha \sqrt{1-\frac {\lambda^2} {\sin^2 \alpha}}} &\text{ poser } u = \cot \alpha \\
+			\int -\frac {\text dt}{\sqrt{1-t^2}} &= \arccos t + C
+		\end{align*}
+	Démontrer que les géodésiques sont de la forme suivante,
+		$$(x, y, z) \in S^2, a x + b y + c z = 0$$
+		C'est à dire que les géodésiques sont des intersections entre des plans passant par l'origine et la sphère, ou dit encore autrement des arcs de cercles.
+	\end{enumerate}
+
+	\newpage \section[Rayonnement du Corps Noir]{Rayonnement du Corps Noir \hyperref[subsubsec:statistique]{(PS)}\space \faStar\faStar\faStar\faStar}\label{subsec:CorpsNoir}
+	(\hyperref[subsec:correctionCorpsNoir]{Correction})
+\\
+	On cherche à avoir la densité spectrale d'énergie, c'est à dire la fonction,
+	\begin{equation*}
+u(\nu, T) = \frac {\text{d}^2W} {\text{d}\nu\text{d}\mathcal{V}} = \frac {\text{d}N} {\text{d}\nu}\frac{\langle W \rangle}{\mathcal{V}}, \tag{2.6.1} \label{eq:3.6.1}
+	\end{equation*}
+	Avec $W$ l'énergie, et $\langle W \rangle$ l'énergie moyenne.
+	On va également se placer dans un cadre historique, sans utiliser la mécanique quantique qui a été découverte, en partie grâce aux résultats que l'on va démontrer.
+\subsection{Nombre de modes excités par unité de fréquences}
+	\begin{enumerate}
+		\item Soit un corps noir, représenté par une cavité cubique de côté $L$ et de volume $\mathcal{V}$. Écrire l'équation de propagation du champ $\textbf{E}$ dans la cavité.
+		\item Calculer la solution de l'équation. Expliquer pourquoi le champ $\textbf{E}$ dépend de trois modes $n_x, n_y, n_z \in \mathbb{N}^*$.
+		\item Montrer que,
+		$$n_x^2+n_y^2+n_z^2 = r^2 = \Bigl(\frac {2L}\lambda\Bigr)^2$$
+		\item Par un comptage de cubes joints, de volume unitaire, empilés le long des axes  $n_x, n_y, n_z$, on peut énumérer le nombre total $N$ de modes excités.
+		Chaque cube peut être repéré de la manière suivante : $\textbf{r} = n_\mu \textbf{e}^\mu$.
+		Lorsque les cubes sont très nombreux, c'est à dire que $L$ est très grand devant $\lambda$, il suffit de calculer le volume de d'une boule de rayon $r$. Or, la condition que les entiers soient strictements positif impose le fait de ne prendre que $1/8$ du volume total de la boule. Un facteur $2$ est également à considérer dû aux deux plans de polarisations possibles pour le champ $\textbf{E}$.
+		Avec ces informations, en déduire que,
+		$$\frac {\text{d}N}{\text{d}\nu} = \frac {8\pi\nu^2}{c^3}\mathcal{V}$$
+			\end{enumerate}
+	\subsection{Catastrophe Ultraviolette}
+	\begin{enumerate}
+		\item Expliquer pourquoi un 
+		ensemble associé à ce problème, \textit{de calcul de u} est l'ensemble canonique.
+		\item Calculer l'hamiltonien d'un oscillateur harmonique. 
+		\item Donner la probabilité d'être dans l'état d'énergie $W$. En déduire la fonction de partition $Z$ d'un gaz d'oscillateurs harmonique.
+		\item Ainsi, démontrer que,
+		$$\langle W \rangle = k_B T$$
+		\item En déduire que,
+		$$u(\nu,T) = 8\pi \frac{\nu^2}{c^3}k_BT$$
+		Et expliquer le titre de cette sous partie.
+	\end{enumerate}
+	\subsection{Loi de Planck}
+	L'idée révolutionnaire est d'estimer que l'énergie des photons est quantifiée.
+	Ainsi, on passe de l'idée de distribution d'énergie continue à discrète. 
+	Son idée vint du fait que l'énergie moyenne d'un oscillateur ne dépendait pas de la fréquence $\nu$. Il suspecta alors une simple relation de proportionnalité entre $W$ et $\nu$ :
+	$$W_n = nh\nu$$
+	Vint alors l'idée de quanta, que l'énergie n'est pas une donnée continue mais qu'elle se distribue comme paquet indivisible, nommé \textbf{quanta}\footnote{Albert Einstein utilisa lors da l'année 1905, \textit{annus mirabilis}, l'idée de Plank pour expliquer l'effet photoélectrique, qui lui vaudra le prix Nobel en 1921.}.
+\begin{enumerate}
+	\item Recalculer la fonction de partition $Z$.
+	\item En déduire que,
+	$$u(\nu, T) = 8\pi\frac{\nu^2}{c^3} \frac{h\nu}{e^{\beta h \nu}-1}$$
+	Avec $\beta = \frac 1 {k_B T}$.
+\end{enumerate}
+Et la catastrophe ultra violette fut résolu, ce résultat s'accordait parfaitement à l'expérience.
+Cette fonction devint ainsi intégrable, ce qui donnera ensuite la Loi de Stefan.
+	
+\subsection{Flux énergétique émis par un corps noir}
+
+On considère une cavité en équilibre thermique, remplie d’un gaz de photons à température $T$. Le rayonnement est \textbf{isotrope} et caractérisé par une densité spectrale d’énergie volumique $u(\nu)$, telle que :
+\[
+u(\nu)\, \text{d}\nu = \text{énergie électromagnétique par unité de volume, entre les fréquences } \nu \text{ et } \nu + \text{d}\nu.
+\]
+
+Soit $I$ l’intensité totale (flux d’énergie par unité de surface perpendiculaire, toutes directions confondues) émise par le corps noir.
+
+\begin{enumerate}
+	\item Rappeler l’expression du flux énergétique monochromatique émis dans une direction d’angle $\theta$ par rapport à la normale à une surface, en fonction de l’intensité spectrale directionnelle $I_\nu$ et du solide d’angle $\text{d}\Omega$.
+	
+	\item Montrer que le flux énergétique total émis à la fréquence $\nu$ par unité de surface est donné par :
+	\[
+	I(\nu) = \int_{\Omega_+} I_\nu \cos\theta \, \text{d}\Omega,
+	\]
+	où $\Omega_+$ désigne l’hémisphère sortant $(0 \leq \theta \leq \pi/2)$.
+	
+	\item En supposant que le rayonnement est isotrope, c’est-à-dire que $I_\nu$ est indépendant de la direction, montrer que :
+	\[
+	I(\nu) = \pi I_\nu.
+	\]
+	
+	\item En intégrant sur toutes les fréquences, en déduire que l’intensité totale émise est :
+	\[
+	I = \int_0^\infty \pi I_\nu \, \text{d}\nu.
+	\]
+	
+	\item Montrer que la densité spectrale d’énergie volumique $u(\nu)$ est donnée par :
+	\[
+	u(\nu) = \frac{1}{c} \int_{S^2} I_\nu(\textbf{n}) \, \text{d}\Omega.
+	\]
+	En supposant que le rayonnement est isotrope, en déduire :
+	\[
+	u(\nu) = \frac{4\pi}{c} I_\nu.
+	\]
+	
+	\item En déduire que :
+	\[
+	I = \frac{c}{4} \int_0^\infty u(\nu)\, \text{d}\nu.
+	\]
+\end{enumerate}
+
+	\subsection{Loi de Stefan}
+	La loi de Stefan affirme, que pour un corps noir,
+	$$I(T) = \sigma\times T^4$$
+	Avec $\sigma$ la constante de Stefan.
+Nous allons le démontrer.
+\begin{enumerate}
+	\item En utilisant les parties précédentes, montrer que,
+	$$I = \frac{2\pi k_B^4}{h^3c^2}T^4\int_0^\infty \frac {x^3}{e^x-1}\text{d}x$$
+	\item Vérifier la convergence de l'intégrale, et exprimer l'intégrale comme une série.
+	\item Démontrer enfin que,
+	$$I(T) = \frac{2\pi^5 k_B^4}{15h^3c^2} T^4$$
+On reconnaîtra la loi de Stefan\footnote{On a donc $\sigma = \frac{2\pi^5 k_B^4}{15h^3c^2}$ et franchement, on ne l'aurait pas deviné.},
+$$I = \sigma T^4$$
+\end{enumerate}
+\subsection{Application : perte de masse solaire par rayonnement électromagnétique}
+En supposant que le Soleil est un corps noir, déterminer $\dot{m}$ la perte de masse par unité de temps. A combien de $\text{kg}.\text{s}$ cette perte de masse s'élève-t-elle ? Sachant que notre Soleil à $4.6\times10^9$ ans, combien de masses terrestres environ notre Soleil a-t-il déjà perdu ?
+
+\textbf{AN} : $R = 6.96 \times 10^8$ m, $T = 5775$ K, $m = 1.98 \times 10^{30}$ kg, $m_T = 6 \times 10^{24}$ kg.
+
+	
+\newpage \section[Minimisation du potentiel gravitationnel par une boule]{Minimisation du potentiel gravitationnel par une boule \hyperref[subsubsec:analytique]{(MA)}\\ \faStar\faStar\faStar\faStar\faStar}\label{subsec:Sphère_min}
+(\hyperref[subsec:correctionSphère_min]{Correction})
+\\ \textbf{Cet exercice fait appel à des notions de calcul différentiel.}\\\\
+On s'intéresse au problème variationnel suivant : trouver parmi les domaines bornés et ouverts $\Omega \subset \RR^3$, de volume fixé, celui qui minimise l'\textbf{interaction gravitationnelle interne} définie par la fonctionnelle :
+
+$$
+\mathcal{F}[\Omega] = \iint_{\Omega \times \Omega} \frac{1}{\abs{x - x'}} \text{d}^3{x} \text{d}^3{x'}
+$$
+
+On note que cette expression est proportionnelle au potentiel d'auto-interaction gravitationnelle d'un corps de densité uniforme.
+En effet, pour $x \in \RR^3$,
+$$ U(x) = -G \int_{\Omega} \frac{\rho}{|x - x'|} \,  \dd^3x$$
+L’énergie potentielle gravitationnelle totale du système est alors :
+\[
+E[\Omega] = \frac{1}{2} \int_{\Omega} \rho U( {x}) \,  \dd^3x = -\frac{G}{2} \rho^2 \int_{\Omega} \int_{\Omega} \frac{1}{| {x} -  {x}'|} \,  \dd^3x \,  \dd^3x'.
+\]
+	\begin{itemize}
+	\item On considère un domaine \(\Omega \subset \mathbb{R}^3\), c’est-à-dire un ouvert borné de classe \( \mathcal{C}^2\), avec frontière \(\partial \Omega\).
+	
+	\item Le volume de \(\Omega\) est défini par :
+	\[
+	V := \int_{\Omega} \text{d}^3 x
+	\]
+	
+	\item On considère une déformation infinitésimale normale de la frontière de \(\Omega\), paramétrée par \(\varepsilon \in \mathbb{R}\), selon :
+	\[
+x \mapsto x + \varepsilon f(x) n(x), \quad \text{pour } x \in \partial \Omega
+	\]
+	où \(f \in C^\infty(\partial \Omega)\) est une fonction lisse et \(n(x)\) est le vecteur normal unitaire sortant à \(\partial \Omega\).
+	
+	\item Le domaine déformé est noté \(\Omega_\varepsilon\), et désigne l’ouvert borné obtenu par cette déformation :
+	\[
+	\Omega_\varepsilon := \left\{ x + \varepsilon f(x) n(x) \,\middle|\, x \in \Omega \right\} + o(\varepsilon)
+	\]
+	(La déformation est supposée prolongée en l'intérieur de \(\Omega\) pour définir rigoureusement \(\Omega_\varepsilon\).)
+\end{itemize}
+\subsection{Formule de Hadamard}
+	Soit $F : \RR^3 \to \RR$ une fonction de classe $\mathcal{C}^1$, et soit $\Omega_\varepsilon$ une déformation lisse de $\Omega$ telle que pour $x \in \partial \Omega$,
+
+$$
+x \mapsto x + \varepsilon f(x) n(x)
+$$
+
+et on suppose que cette déformation est prolongée lisse sur tout $\Omega$.
+
+
+	On souhaite démontrer que :
+	\[
+	\diff{\varepsilon}|_{\varepsilon = 0} \int_{\Omega_\varepsilon} F(x) \dd^3 x = \int_{\partial \Omega} F(x) f(x) \dd S(x) \label{eq:Had}
+	\]
+Avec $\dd S$ élément de surface associé à $\partial \Omega$.
+	\begin{enumerate}
+		\item Nous allons faire une étude de la fonction $\det : \mathcal M_n(\RR) \to \RR$.
+		\begin{enumerate}
+			\item Justifier que $\det: \mathcal M_n(\RR) \to \RR, M \mapsto \det M$ est différentiable.
+			\item Démontrer que, $$\forall M \in \mathcal M_n(\RR),\det(I + \varepsilon M) \underset{0}{=} 1 + \varepsilon \Tr M + o(\varepsilon)$$
+			En déduire que $\diff \varepsilon \det(I + \varepsilon M) \underset{0}{=} \Tr M$.
+			\item Soit $X \in \text{GL}_n(\RR), H \in \mathcal M_n(\RR)$. Démontrer que,$$\dd(\det(H))(X) = \Tr(^t\text{Com}(X) H)$$
+		\end{enumerate}
+		\item Poser le changement de variable $x(u) = u + \varepsilon f(u) n(u)$, et calculer le jacobien $\det(\frac{\partial x}{\partial u})$ au premier ordre en $\varepsilon$, c-à-d à l'ordre $o(\varepsilon)$.
+
+		\item Soit $F : \RR^n \to \RR \in \mathcal \mathcal{C}^1$, $v : \RR^n \to \RR^n$ et $\varepsilon \in U$ un voisinage de $0$.
+		En posant une fonction bien choisie, démontrer que,
+		\[\forall x \in \RR^n, F(x+\varepsilon v(x)) \underset{\varepsilon \to 0}{=}
+		 F(x) + \varepsilon v(x) \cdot \nabla F + o(\varepsilon)\]
+	 \item En déduire le résultat voulu grâce au théorème de la Divergence.
+	 	\end{enumerate}
+	 	\subsection{Lien avec le potentiel gravitationnel}
+	 	
+	 	\begin{enumerate}
+	 		\item Montrer que \( E[\Omega] < 0 \), et que minimiser l’énergie revient à maximiser la quantité suivante :
+	 		\[
+	 		\mathcal{I}[\Omega] := \int_{\Omega} \int_{\Omega} \frac{1}{|x -  {x}'|} \,  \dd^3x \,  \dd^3x'.
+	 		\]
+	 		
+	 		\item On suppose que \( \Omega = B(0,R) \) est une boule centrée à l’origine, de rayon \( R \) tel que \( \mathrm{Vol}(\Omega) = \frac{4}{3} \pi R^3 = V \). Montrer que le potentiel gravitationnel au centre est donné par :
+	 		\[
+	 		U(0) = -G \rho \int_{\Omega} \frac{1}{| {x}'|} \,  \dd^3x'.
+	 		\]
+	 		Calculer explicitement cette intégrale.
+	 		
+	 	\end{enumerate}
+	 	
+	 	\subsection{La sphère ?}
+	 	\begin{enumerate}
+
+	 
+		\item Démontrer que,
+		\[
+		\delta \mathcal{F} = 2 \int_{\partial \Omega} \left( \int_\Omega \frac{1}{\abs{x - x'}} \text{d}^3{x'} \right) f(x) \ddS{x}
+		\]
+On pourra utiliser ou démontrer (\textit{pour les plus courageux}) que, $$\forall \Omega \subset \RR^n, \forall \varphi : \Omega \to \RR^n,  \int_{\partial (\Omega^2)} \varphi(x) \dd\mu(x) = 2\int_{\Omega \times \partial \Omega} \varphi(x) \dd\mu(x)$$
+		\item On cherche à minimiser $\mathcal F$ à volume constant et fixé $V$. Pour cela on cherche à minimiser $\mathcal{L}(\lambda) = \mathcal F - \lambda V, \lambda \in \RR$.
+		En déduire que la variation première de la fonctionnelle \(\mathcal{F}\) s'écrit :
+		\[ \delta \mathcal{L} = \int_{\partial \Omega} \left( 2 \int_{\Omega} \frac{1}{\abs{x - x'}} \text{d}^3{x'} - \lambda \right) f(x) \ddS{x} \]
+		\item 	En utilisant la symétrie sphérique, montrer que si $\Omega$ est une boule de rayon $R$, alors pour tout $x \in \partial \Omega$, la quantité :
+		
+		\[
+		\int_{\Omega} \frac{1}{\abs{x - x'}} \text{d}^3{x'}
+		\]
+		
+		est constante. En déduire que la boule satisfait la \textbf{condition stationnaire} : $\delta \mathcal{L} = 0$ pour tout $f$.
+			\item (\textit{Bonus})
+		Montrer que la boule est bien un \emph{minimum} local pour $\mathcal{F}$ sous contrainte de volume constant en étudiant la variation seconde. 
+		\item Conclure et expliquer pourquoi les grands objets de l'Univers sont sphériques.
+	\end{enumerate}
+	
+
+
+
+\newpage \section[Mouvement relativiste d'une particule chargée $\triangle$]{Mouvement relativiste d'une particule chargée (\hyperref[subsubsec:relativite]{RR}, \hyperref[subsubsec:analytique]{MA}, \hyperref[subsubsec:maxwell]{EM}, \hyperref[subsubsec:subatomique]{FS})\space \faStar\faStar\faStar\faStar\faStar}\label{subsec:Rel_eq}
+
+(\hyperref[subsec:correctionRel_eq]{Correction})
+
+\subsection{Lagrangien relativiste d'une particule chargée dans un champ électromagnétique}
+\begin{enumerate}
+	\item Montrer qu'en utilisant le principe de moindre action et l'invariance de Lorentz, l'action d'une particule libre de masse $m$ peut s'écrire $S=-mc\int \text ds$ où $\text ds^2=c^2\text{d}t^2-\text{d}\textbf{x}^2$. En déduire que le Lagrangien du système est 
+	\[
+\mathcal{L} = -mc^2\,\sqrt{1-\frac{\textbf{v}^2}{c^2}}\,,
+	\]
+	où ${\textbf{v}}=\text{d}\textbf{x}/\text{d}t$.
+	\item En introduisant le quadripotentiel électromagnétique $A^\mu=(\phi/c,\textbf{A})$, proposer un terme d'interaction $L_{\rm int}$ correspondant à une particule de charge $q$ dans ce champ. Montrer que l'on peut écrire 
+	\[
+\mathcal{L}_{\rm int}=q\,\textbf{A}\cdot{\textbf{v}}-q\phi\,,
+	\]
+	et en déduire le Lagrangien total $\mathcal{L}_{\rm tot}=\mathcal{L}+\mathcal{L}_{\rm int}$.
+	\item À partir du Lagrangien total, calculer l'impulsion généralisée $P_i=\partial \mathcal{L}_{\rm tot}/\partial v^i$. Montrer qu'elle s'écrit
+	\[
+	\textbf{p} = \gamma m\textbf{v} + q\textbf{A}\,,
+	\]
+	où $\gamma=(1-v^2/c^2)^{-1/2}$.
+	
+	\item Écrire les équations d'Euler–Lagrange associées à $L_{\rm tot}$ et montrer qu'elles conduisent à l'équation de Lorentz en 3 dimensions,
+	\[
+	\frac{\text d}{\text{d}t}(\gamma m \textbf{v}) = q\bigl(\textbf{E} + \textbf{v}\times \textbf{B}\bigr)\,,
+	\]
+	avec $\textbf{E}=-\nabla\phi-\partial_t\textbf{A}$ et $\textbf{B}=\nabla\times \textbf{A}$.
+	\item Écrire le lagrangien en paramétrant par le temps propre $\tau$ et en déduire que,
+	$$\mathcal{L} = -mc \sqrt{-g_{\mu\nu}\dot{x}^\mu\dot{x}^\nu} + q g_{\mu\nu}A^\mu \dot{x}^\nu$$
+	\item Donner la forme covariante de cette équation du mouvement : montrer que l'on obtient 
+	$$m\ddot{x}_\mu = q F_{\mu\nu}\dot x^\nu$$
+	
+	Où $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ est le tenseur du champ électromagnétique.
+	\item Écrire explicitement les composantes du tenseur $F_{\mu\nu}$ et montrer que $F_{0i}=E_i/c$ et $F_{ij}=-\varepsilon_{ijk}B_k$. Interpréter la signification physique de ces composantes.
+	\item Calculer les deux invariants du champ électromagnétique,
+	\[
+	I_1 = F_{\mu\nu}F^{\mu\nu}, 
+	\quad 
+	I_2 = \varepsilon^{\mu\nu\rho\sigma}F_{\mu\nu}F_{\rho\sigma},
+	\]
+	et exprimer-les en fonction de $\textbf{E}$ et $\textbf{B}$. Quels sont les cas physiques correspondant à $I_1=0$ et $I_2=0$ ?
+	\item Vérifier que sous une transformation de jauge $A_\mu \to A_\mu + \partial_\mu\Lambda$, les équations du mouvements restent inchangées. Quel est la symétrie associée ?
+\end{enumerate}
+
+\subsection{Équations du mouvement d'une particule chargée dans une onde électromagnétique plane}
+
+On considère une particule de masse $m$ et de charge $q$ soumise à un champ électromagnétique décrit par le tenseur $F^{\mu\nu}$. Son mouvement est régi par l'équation :
+
+\[
+m \ddot{x}^\mu = q F^{\mu\nu} \dot{x}_\nu
+\]
+
+où les points désignent les dérivées par rapport au temps propre $\tau$ de la particule. On se place dans un système d'unités naturelles où $c = 1$.
+
+On modélise une onde électromagnétique plane par un potentiel quadrivecteur de la forme :
+\[
+A^\mu(x) = a^\mu f(k_\nu x^\nu)
+\]
+où $f$ est une fonction de classe $\mathcal{C}^1$, $k^\mu$ est un quadrivecteur lumière, d'où $k^\mu k_\mu = 0$, et $a^\mu$ est un quadrivecteur constant représentant la polarisation.
+
+
+\begin{enumerate}
+	\item Montrer que
+	\[
+	F^{\mu\nu}(x) = \left(k^\mu a^\nu - k^\nu a^\mu\right) f'(k_\rho x^\rho)
+	\]
+\item 
+\begin{enumerate}
+	\item Calculer $\partial_\mu A^\mu$ dans le cas du potentiel $A^\mu(x) = a^\mu f(k_\rho x^\rho)$.
+	\item En déduire que la condition de jauge de Lorenz $\partial_\mu A^\mu = 0$ implique :
+	\[
+	a^\mu k_\mu = 0
+	\]
+\end{enumerate}
+
+
+\item On considère maintenant le mouvement d'une particule dans cette onde électromagnétique.
+
+\begin{enumerate}
+	\item En utilisant l'expression du tenseur $F^{\mu\nu}$ trouvée en question 1, montrer que :
+	\[
+	F^{\mu\nu} \dot{x}_\nu = \left[k^\mu (a_\rho \dot{x}^\rho) - a^\mu (k_\rho \dot{x}^\rho)\right] f'(k_\rho x^\rho)
+	\]
+	\item En déduire l'équation du mouvement sous la forme :
+	\[
+	m \ddot{x}^\mu = q \left[k^\mu (a_\rho \dot{x}^\rho) - a^\mu (k_\rho \dot{x}^\rho)\right] f'(k_\rho x^\rho)
+	\]
+\end{enumerate}
+
+
+\item On cherche maintenant à intégrer cette équation.
+
+\begin{enumerate}
+	\item Montrer que le scalaire $k_\rho \dot{x}^\rho$ est constant au cours du mouvement.
+	\item En déduire que $\phi = k_\rho x^\rho(\tau)$ est une fonction affine de $\tau$, que l'on pourra utiliser comme nouveau paramètre.
+	\item À l'aide des relations précédentes, intégrer l’équation du mouvement et déterminer l'expression complète de la trajectoire $\tau \mapsto x^\mu(\tau)$\footnote{Cet exercice permet de déterminer analytiquement la trajectoire d’une particule chargée dans une onde électromagnétique plane. Vous pourrez ensuite la représenter en Python à partir des fonctions obtenues.}
+\end{enumerate}
+\end{enumerate}
+
+
+\subsection{Théorie des Champs}
+On défini l'action,
+$$S = \int_\Omega- \frac{1} {4\mu_0} F^{\mu\nu}F_{\mu \nu} + A^\mu j_\mu \dd ^4x, \quad \Omega \subset \RR^{1,3} $$
+On peut ainsi définir aisément une \textbf{densité} de Lagrangien.
+\begin{enumerate}
+\item Pour une action dépendant d'un champ $\varphi$ (scalaire, tensoriel...) : \begin{equation*}
+	S = \int_\Omega \mathcal L (\varphi, \partial_\mu\varphi, x^\mu) \dd^4 x 
+\end{equation*}
+Démontrer que les équations d'Euler-Lagrange restent vraies pour un champ $\varphi$. \\
+Pour cela, on postulera le principe de moindre action, c'est à dire que pour une transformation infinitésimale $ \varphi \mapsto \varphi + \varepsilon \eta$\footnote{Où $\eta$ est une fonction de classe $\mathcal{C}^1(\Omega)$, et $\forall x \in \partial \Omega, \eta(x) = 0$, c'est à dire que la fonction est nulle aux bornes.}, on a,
+\begin{equation*}
+	\frac{\dd S}{\dd \varepsilon}[\varphi + \varepsilon \eta, \partial_\mu(\varphi + \varepsilon \eta), x^\mu](0) = 0
+\end{equation*}
+
+\item Démontrer les équations de Maxwell en tensorielle, 
+\[
+\partial_\mu F^{\mu\nu} = \mu_0 j^\nu, 
+\quad
+\partial_\lambda F_{\mu\nu} + \partial_\mu F_{\nu\lambda} + \partial_\nu F_{\lambda\mu} = 0
+\,,
+\]
+où $j^\mu=(c\rho,\textbf{j})$ est la quadricharge (quadri-densité de courant).
+\end{enumerate}
+
+\subsection{Trajectoire d'une particule chargée dans un champ magnétique constant}
+
+Considérons une particule de masse $m$ et de charge $q$ évoluant de manière relativiste dans un champ électromagnétique. Dans cet partie, on introduit progressivement les effets d’un champ magnétique constant $\textbf B = B\,\textbf{e}_z$ (secteur courbe d’un synchrotron) et d’une force moyenne de freinage due au rayonnement synchrotron. 
+ 
+\subsubsection{A. Rayonnement synchrotron négligé}
+\begin{enumerate}
+	\item  Calculer $F^{\mu\nu}$.
+	
+	\item En déduire que le mouvement est dans le plan $Oxy$.
+	Montrer que l'énergie est constante, si l'on néglige la perte dû au rayonnement.
+	
+	\item  Montrez que, en l’absence de perte d’énergie, pour $u^{\mu} = (\gamma c, 0, u_0 = \gamma v, 0)$\footnote{Il faudrait également démontrer que $\gamma$ et $v$ sont constant, et que $\tau(t) = \gamma t$.},
+		$$x(t)=R\cos(\frac \omega \gamma t),\qquad y(t)=R\sin(\frac \omega \gamma t)\,$$
+	Avec, (loi du synchrotron)\footnote{Pour cela, il faudra passer dans le référentiel du laboratoire.} : 
+	$$R = \frac{\gamma v}{\omega} = \frac{\gamma m v}{qB} $$ 
+		
+	
+	
+ 
+
+\end{enumerate}
+	\subsubsection{B. Étude du mouvement réel}
+	\begin{enumerate}
+	\item Le rayonnement synchrotron entraîne une perte d’énergie moyenne. Rappeler la formule de la puissance rayonnée moyenne (Larmor relativiste) pour une accélération centripète $a = v^2/R$,
+	$$P = -\diff t E \;=\; \frac{q^2}{6\pi\varepsilon_0c^3}\,\gamma^4 a^2 $$ 
+	En utilisant $E=\gamma mc^2$, montrez qu’en développant on obtient l'équation différentielle,
+	 $$\diff t \gamma = -C\,\gamma^2 \times v$$
+	 On donnera l’expression du coefficient $C$ en fonction de $q,B,m,c,\varepsilon_0$.
+	
+	\item  Résoudre l'équation différentielle sur $v$\footnote{Il est en effet bien plus simple de résoudre l'équation sur $v$ que sur $\gamma$, car ici $v$ dépend du temps.}.
+	
+	\item  En déduire la nouvelle trajectoire de la particule chargée. Étudier la limite quand $t \to \infty$.
+	
+	\item Tracer la courbe paramétrique $x(t), y(t)$ en python. Quel problème cela génère ?
+	
+\end{enumerate}
+
+
+
+
+\subsection{Physique des collisionneurs relativistes}
+Ici, on se placera avec l'unité de vitesse $c = 1$.
+\begin{enumerate}
+	\item Définir le carré de l'invariant d'énergie-momentum total $s=(p_1+p_2)^2$ pour la collision de deux particules de quatre-impulsions $p_1$ et $p_2$. Exprimer l'énergie totale disponible dans le référentiel centre de masse (CMS) en fonction de $s$.
+	\item Pour une collision tête-à-tête de deux particules identiques de masse $m$ et d'énergie $E$ (chacune) dans le référentiel du laboratoire, montrer que l'énergie en CMS vaut $\sqrt{s}=2E$ (supposant $E\gg m$).
+	\item Pour le cas d'une collision contre une cible fixe de masse $m$, dériver la formule 
+	\[
+	s = m^2 + m^2 + 2m E_{\rm lab},
+	\]
+	et déduire l'énergie au seuil de production de deux particules de masse $m$ (collision élastique extrême).
+	\item Calculer l'énergie requise dans une expérience à cible fixe pour produire un nouveau produit de masse $M$ au seuil, et comparer à l'énergie requise dans un collisionneur symétrique ($E_{\rm CM}=M+M$). Pourquoi les collisionneurs à faisceaux opposés sont-ils plus efficaces pour atteindre de hautes énergies ?
+\end{enumerate}
+
+ 
+\newpage \section[Hydrodynamique relativiste et collisions de noyaux lourds $\triangle$]{Hydrodynamique relativiste et collisions de noyaux lourds (\hyperref[subsubsec:relativite]{RR},\hyperref[subsubsec:subatomique]{FS}) \\ \faStar\faStar\faStar\faStar\faStar}\label{subsec:Hyd}
+(\hyperref[subsec:correctionHyd]{Correction})
+
+\subsection{Hydrodynamique classique}
+\begin{enumerate}
+	\item Écrire l'équation de conservation de la masse (continuité) pour un fluide classique, soit 
+	\[
+	\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \textbf{v}) = 0.
+	\]
+	Montrer que dans le cas d'un fluide incompressible ($\rho=\text{constante}$), cela réduit à $\nabla \cdot \textbf{v} = 0$.
+	\item Écrire l'équation d'Euler pour un fluide parfait (non visqueux) soumis à un champ de gravité $\textbf{g}$ :
+	\[
+	\rho\Bigl(\frac{\partial \textbf{v}}{\partial t} + (\textbf{v}\cdot\nabla)\textbf{v}\Bigr) = -\nabla p + \rho \textbf{g}.
+	\]
+	Décrire brièvement la signification physique de chaque terme de cette équation.
+	\item Montrer comment l'ajout d'effets visqueux conduit à l'équation de Navier–Stokes :
+	\[
+	\rho\Bigl(\frac{\partial \textbf{v}}{\partial t} + (\textbf{v}\cdot\nabla)\textbf{v}\Bigr)
+	= -\nabla p + \eta \nabla^2 \textbf{v} + \Bigl(\zeta+\frac{\eta}{3}\Bigr)\nabla(\nabla\cdot\textbf{v}) + \rho \textbf{g},
+	\]
+	où $\eta$ est la viscosité dynamique (cisaillement) et $\zeta$ la viscosité volumique. Expliquer le rôle de ces termes.
+	\item Expliquer la différence entre la description lagrangienne (recherche des trajectoires des particules de fluide) et la description eulérienne (vue sur le champ de vitesse à un point fixe de l'espace). En particulier, montrer que la dérivée totale pour un fluide est $\frac{\dd}{\text{d}t}=\frac{\partial}{\partial t} + \textbf{v}\cdot\nabla$ dans le formalisme eulérien.
+	\item Définir les lignes de courant (streamlines) dans un fluide, et montrer que ces courbes sont tangentes au vecteur champ de vitesses $\textbf{v}$ en chaque point. Interpréter physiquement ces lignes.
+	\item Démontrer le théorème de Bernoulli pour un fluide stationnaire, incompressible et sans viscosité. Montrer que le long d'une ligne de courant,
+	\[
+	\frac{1}{2}\rho v^2 + p + \rho\Phi = \text{constante},
+	\]
+	où $\Phi$ est un potentiel de forces (par exemple $\Phi= g z$ en champ constant $\textbf{g}$).
+\end{enumerate}
+\subsection{Introduction à l’hydrodynamique relativiste}
+
+L’hydrodynamique relativiste permet de décrire l’évolution de systèmes continus à haute densité d’énergie (comme le plasma de quarks-gluons) en incorporant les principes de la relativité restreinte. On s'intéresse ici à des fluides parfaits, sans viscosité ni conduction thermique, et à leur description covariante.
+
+\begin{enumerate}
+	\item \textbf{Tenseur énergie-impulsion.} Le contenu énergétique et dynamique d’un fluide parfait est encodé dans le tenseur énergie-impulsion :
+	\[
+	T^{\mu\nu} = (\varepsilon + p)\, \frac {u^\mu u^\nu}{c^2}- p\, g^{\mu\nu},
+	\]
+	où :
+	\begin{itemize}
+		\item \( \varepsilon \) est la densité d’énergie (dans le référentiel propre du fluide),
+		\item \( p \) est la pression (même unité que \( \varepsilon \), i.e. J/m$^3$),
+		\item \( u^\mu \) est le quadrivecteur vitesse du fluide,
+		\item \( \eta^{\mu\nu} = g^{\mu \nu} = \mathrm{diag}(-1, 1, 1, 1) \) est la métrique de Minkowski.
+	\end{itemize}
+	
+	\begin{enumerate}
+		\item Vérifier que \( T^{\mu\nu} \) est symétrique.
+		\item Calculer \( T^{\mu\nu} \) dans le référentiel propre du fluide (\( u^\mu = (c, 0, 0, 0) \)).
+		\item Interpréter les composantes physiques de \( T^{00} \), \( T^{0i} \), et \( T^{ij} \).
+		\item Montrer que la trace \( T^\mu_{\,\,\mu} = \varepsilon - 3p \).
+	\end{enumerate}
+	
+	\item \textbf{Conservation de l’énergie et de la quantité de mouvement.} Dans tout système isolé, le tenseur énergie-impulsion est conservé localement :
+	\[
+	\partial_\mu T^{\mu\nu} = 0.
+	\]
+	Cette équation tensorielle (4 équations scalaires) exprime la conservation de l’énergie (\( \nu=0 \)) et des trois composantes du moment (\( \nu=1,2,3 \)). Elle constitue l’équation fondamentale de l’hydrodynamique relativiste.
+	
+	\begin{enumerate}
+		\item Quelles sont les inconnues dynamiques du problème ?
+		\item Pourquoi faut-il compléter ce système par une équation d’état reliant \( \varepsilon \), \( p \) et éventuellement \( T \) ?
+	\end{enumerate}
+	
+	\item \textbf{Thermodynamique relativiste.} Dans le référentiel propre du fluide, on définit localement :
+	\[
+	T : \text{température}, s : \text{entropie volumique}, \mu : \text{potentiel chimique}, n : \text{densité de particules}.
+	\]
+	La première loi de la thermodynamique, exprimée en densités locales (c'est à dire dans un élément de volume $\dd V$), prend la forme :
+	\[
+	\dd \varepsilon = T\, \dd s + \mu\, \dd n.
+	\]
+	\begin{enumerate}
+		\item En supposant \( \mu = 0 \), montrer que \( \dd p = s\, \dd T \).
+		\item En déduire l'identité \( \varepsilon + p = Ts \), appelée relation d’Euler.
+	\end{enumerate}
+	
+	\item \textbf{Vitesse du son relativiste.} La vitesse du son \( c_s \) est définie par :
+	\[
+	c_s^2 = \left( \frac{\partial p}{\partial \varepsilon} \right)_s.
+	\]
+	\begin{enumerate}
+		\item Calculer \( c_s \) pour un fluide ultra-relativiste où \( p = \varepsilon / 3 \).
+		\item Comparer à la vitesse de la lumière \( c \) et commenter.
+	\end{enumerate}
+	
+
+\end{enumerate}
+\subsection{Hydrodynamique relativiste}
+On consid\`ere un fluide parfait en relativité restreinte. Le nombre total de particules est donné par
+
+$$
+N = \int_\Sigma J^\mu \, \text{d}\Sigma_{\mu},
+$$
+
+\`a travers une hypersurface spacelike $\Sigma$ orientée vers le futur (par exemple $t=\text{cste}$). On suppose que $N$ est conservé.
+
+\begin{enumerate}
+	\item Montrer que la conservation du nombre de particules s'exprime localement par
+	
+	$$
+	\partial_\mu(n u^\mu) = 0,
+	$$
+	
+	o\`u $n$ est la densité de particules dans le referentiel comobile, et $u^\mu$ la quadrivitesse du fluide.
+	
+	
+	\item Montrer qu'en prenant $u^\mu = (c,0,0,0)$, on a $T^{00} = \varepsilon$ et $T^{ii} = p$. Interpréter.
+	
+	\item En utilisant $\partial_\mu T^{\mu\nu} = 0$, déduire l'équation du mouvement (ou \textit{relativistic Euler equation}) d'un fluide parfait sans source :
+	
+	$$
+	(\varepsilon + p) u^\mu \partial_\mu u^\nu + \left(g^{\mu\nu} + \frac{u^\mu u^\nu}{c^2}\right) \partial_\mu p = 0.
+	$$
+	
+\end{enumerate}
+
+
+\subsection{Application aux collisions de noyaux lourds}
+
+\begin{enumerate}
+	\item D\'ecrire le sc\'enario d'une collision centrale de noyaux lourds \`a RHIC ou LHC : formation d’un plasma de quarks et gluons (QGP), thermalisation, expansion hydrodynamique, d\'ecouplage (freeze-out)\footnote{Le terme « fluide relativiste » désigne tout fluide dont les constituants ont des énergies cinétiques comparables à leur masse : \( k_BT \gtrsim mc^2 \). Il peut s’agir d’un plasma (chargé), mais aussi d’un gaz de photons ou neutrinos. Le cadre de l’hydrodynamique relativiste est donc plus général que la physique des plasmas.}.
+	
+	\item Introduire les coordonn\'ees de Bjorken : $\tau = \sqrt{t^2 - z^2}$, $\eta = \frac{1}{2} \ln\frac{t+z}{t-z}$. En supposant un fluide boost-invariant, montrer que $\partial_\mu T^{\mu\nu} = 0$ conduit \`a :
+	\[ \frac{\text{d}\varepsilon}{\text{d}\tau} + \frac{\varepsilon + p}{\tau} = 0. \]
+	
+	\item Pour $p = \varepsilon/3$, r\'esoudre l'\'equation ci-dessus et en d\'eduire :
+	\[ \varepsilon(\tau) \propto \tau^{-4/3}, \quad T(\tau) \propto \tau^{-1/3}. \]
+	
+	\item Lors de la transition QGP $\rightarrow$ hadrons, l'\'equation d'\'etat peut s'\'ecrire :
+	\[ p = \frac{\varepsilon - 4B}{3}. \]
+	Montrer que $p=0$ \`a la transition implique $\varepsilon = 4B$ et en d\'eduire la temp\'erature critique $T_c$.
+	
+	\item En mod\'elisant un noyau par une sph\`ere de rayon $R$, d\'efinir la section efficace g\'eom\'etrique $\sigma \approx \pi (2R)^2$. Relier cette quantit\'e \`a la distinction entre collisions centrales et p\'eriph\'eriques.
+	
+	\item Montrer que l’\'energie volumique initiale $\varepsilon_0$ est plus grande pour une collision centrale. En supposant $\varepsilon = a T^4$, estimer la temp\'erature initiale $T_0$ atteinte \`a RHIC ($\varepsilon_0 \sim 10$ GeV/fm$^3$).
+	
+	\item D\'efinir le rapport viscosit\'e sur entropie $\eta/s$. Pourquoi des valeurs proches de $1/4\pi$ indiquent-elles un fluide presque parfait ? Quel est l'effet d’une faible viscosit\'e sur le flux elliptique $v_2$ ?
+	
+	\item Expliquer les notions de freeze-out chimique (r\'eactions in\'elastiques gel\'ees) et cin\'etique (r\'eactions \'elastiques gel\'ees). Pourquoi l’hydrodynamique cesse-t-elle d’\^etre valide \`a ce stade ?
+	
+	\item Comment l'hydrodynamique relativiste permet-elle de relier les observables mesur\'ees (spectre en impulsion transverse, anisotropies, etc.) \`a l'\'etat initial du QGP ?
+\end{enumerate}
+
+
+\newpage \section[Atome d'hydrogène et équation radiale]{Atome d'hydrogène et équation radiale \hyperref[subsubsec:quantique]{(MQ)}\space\faStar\faStar\faStar}
+\label{subsec:Atom}(\hyperref[subsec:correctionAtom]{Correction})
+
+Dans ce problème, on étudie l'atome d'hydrogène (électron de masse $m_e$ dans le potentiel coulombien $V(r)=-e^2/r$ d'un proton fixe) en mécanique quantique non-relativiste. On utilise les coordonnées sphériques $(r,\theta,\phi)$ et l'équation de Schrödinger indépendante du temps 
+\[
+-\frac{\hbar^2}{2m_e}\Bigl[\frac{1}{r^2}\partial_r\bigl(r^2 \partial_r\bigr) - \frac{\textbf{L}^2}{\hbar^2 r^2}\Bigr]\psi(r,\theta,\phi) - \frac{e^2}{r}\psi(r,\theta,\phi) = E\,\psi(r,\theta,\phi),
+\]
+où $\textbf{L}^2$ est l'opérateur du carré du moment cinétique orbital. 
+
+\subsection{Séparation des variables et équation radiale}
+\begin{enumerate}
+	\item Montrer que la fonction d'onde peut se séparer sous la forme $\psi(r,\theta,\phi) = R(r)\, Y_{\ell m}(\theta,\phi)$, où $Y_{\ell m}$ est une harmonique sphérique propre de $\vb{L}^2$ et $\textbf{L}_z$, avec :
+	\[
+	\vb{L}^2 Y_{\ell m} = \hbar^2 \ell(\ell+1)\, Y_{\ell m}, \qquad \textbf{L}_z Y_{\ell m} = \hbar m\, Y_{\ell m}.
+	\]
+	En déduire que l’équation de Schrödinger radiale vérifiée par $R(r)$ est :
+	\[
+	-\frac{\hbar^2}{2m_e} \left[ \frac{\dd^2R}{\dd r^2} + \frac{2}{r}\frac{\dd R}{\dd r} - \frac{\ell(\ell+1)}{r^2} R \right] - \frac{e^2}{r} R = E R.
+	\]
+	
+	\item En posant $u(r) = r R(r)$, montrer que l'équation devient :
+	\[
+	-\frac{\hbar^2}{2m_e} \frac{\dd ^2u}{\dd r^2} + \left[ \frac{\hbar^2 \ell(\ell+1)}{2m_e r^2} - \frac{e^2}{r} \right] u(r) = E u(r).
+	\]
+On définit le paramètre $\kappa$ par :
+	\[
+	\kappa = \sqrt{\frac{2m_e |E|}{\hbar^2}}.
+	\]
+	Montrer que si l’on introduit la variable adimensionnelle $\rho = \kappa r$, l’équation prend la forme :
+	\[
+	\frac{\dd ^2 u}{\dd \rho^2} = \left[ \frac{\ell(\ell+1)}{\rho^2} - \frac{\rho_0}{\rho} + 1 \right] u(\rho),
+	\]
+	avec $\rho_0 = \dfrac{m_e e^2}{\hbar^2 \kappa}$.
+	
+	\item Proposer l’ansatz :
+	\[
+	u(\rho) = \rho^{\ell+1} e^{-\rho/2} v(\rho),
+	\]
+	et montrer que $v(\rho)$ vérifie l’équation différentielle\footnote{On reconnaît une équation d’hypergéométrie confluente.} :
+	\[
+	\rho \frac{\dd ^2 v}{\dd \rho^2} + (2\ell + 2 - \rho) \frac{\dd v}{\dd \rho} + (\rho_0 - 2\ell - 2) v = 0.
+	\]
+	
+	
+	\item En développant $v(\rho) = \sum_{k=0}^\infty c_k \rho^k$, montrer que la série diverge en général à l’infini, sauf si elle s’arrête à un ordre fini. En déduire que la condition de terminaison de la série est :
+	\[
+	\rho_0 = 2n, \qquad \text{où } n = \hat{k} + \ell + 1 \in \mathbb{N}^*.
+	\]
+	
+	\item En déduire l’expression des niveaux d’énergie liés de l’atome d’hydrogène :
+	\[
+	\kappa_n = \frac{m_e e^2}{\hbar^2} \cdot \frac{1}{2n}
+	\quad \Rightarrow \quad
+	E_n = - \frac{\hbar^2 \kappa_n^2}{2 m_e} = - \frac{m_e e^4}{2 \hbar^2} \cdot \frac{1}{n^2}.
+	\]
+	
+	\item Quel est le degré de dégénérescence de chaque niveau $E_n$ ? Montrer qu’il vaut $n^2$ en tenant compte des possibilités pour $\ell$ (allant de $0$ à $n-1$) et $m$ (allant de $-\ell$ à $+\ell$). Interpréter pourquoi, dans ce modèle non-relativiste, l’énergie dépend uniquement de $n$ et non de $\ell$.
+\end{enumerate}
+
+
+\subsection{État fondamental ($n=1$) et propriétés radiales}
+\begin{enumerate}
+	\setcounter{enumi}{6}
+	\item Pour le niveau fondamental ($n=1$, $\ell=0$), montrer que la fonction d'onde normale du radial s'écrit 
+	\[
+	R_{1,0}(r) = \frac{2}{a_0^{3/2}}\,e^{-r/a_0}.
+	\]
+	En déduire l'expression complète de $\psi_{1,0,0}(r,\theta,\phi)$ et vérifier sa normalisation $\int |\psi_{1,0,0}|^2 \text d^3x = 1$ (on utilise que $Y_{0}^{0}=1/\sqrt{4\pi}$). 
+	\item Calculer la densité de probabilité radiale $P(r)=4\pi |R_{1,0}(r)|^2 r^2$ et tracer qualitativement son profil en fonction de $r$. Interpréter la signification physique de cette densité (lieu le plus probable où se trouve l'électron). 
+	\item Démontrer que l'espérance de la distance $\langle r \rangle$ entre l'électron et le noyau, ainsi que la variance $(\Delta r)^2$, sont données par 
+	\[
+	\langle r \rangle = \frac{3}{2} a_0, 
+	\qquad (\Delta r)^2 = \langle r^2 \rangle - \langle r \rangle^2 = \frac{3}{2}a_0^2 - \Bigl(\frac{3}{2}a_0\Bigr)^2.
+	\]
+	(Indication : utiliser l'intégrale $\int_0^\infty r^n e^{-2r/a_0}dr = n! (a_0/2)^{\,n+1}$ et vérifier les résultats.) 
+	\item (Optionnel) On peut également introduire la représentation impulsionnelle. Calculez la transformée de Fourier $\tilde\psi_{1,0,0}(\vb{p})$ de l'état fondamental et interprétez la distribution en impulsion (carré du module) associée. Quelle est la valeur moyenne de la quantité de mouvement $\langle \vb{p}\rangle$ et de son carré $\langle p^2\rangle$ ?
+	\item \emph{Interpréter} : Discutez brièvement pourquoi la dépendance en $1/n^2$ des niveaux $E_n$ explique la structure fine de raies spectrales de l'hydrogène et la notion de nombre quantique principal.
+\end{enumerate}
+
+\newpage \section[Vers un formalisme relativiste $\triangle$]{Vers un formalisme relativiste (\hyperref[subsubsec:quantique]{MQ}, \hyperref[subsubsec:relativite]{RR}) \space \faStar\faStar\faStar\faStar\faStar}\label{subsec:Dirac}
+(\hyperref[subsec:correctionDirac]{Correction})\\
+On utilise la métrique de Minkowski $\eta_{\mu\nu}=\mathrm{diag}(-1,1,1,1)$ et les unités $c=\hbar=1$. 
+
+\begin{enumerate}
+	\item On considère un champ scalaire réel $\phi(x)$ de masse $m$. On pose la densité de Lagrangien relativiste 
+	\[
+	\mathcal{L} = \frac{1}{2} \partial_\mu \phi\,\partial^\mu \phi - \frac{1}{2} m^2 \phi^2.
+	\]
+	Montrer que $\mathcal{L}$ est invariante sous les transformations de Lorentz. 
+	
+	\item 
+	Appliquer les équations d'Euler--Lagrange au champ scalaire et en déduire l'équation de Klein--Gordon $(\Box + m^2)\phi=0$. 
+	
+	\item 
+	Commenter l'équation de Klein--Gordon en rappelant pourquoi une équation du second ordre pose des problèmes d'interprétation probabiliste pour un champ relativiste. 
+	
+	\item 
+	Motivé par cette difficulté, on cherche une équation d'onde relativiste du premier ordre en les dérivées, symétrique en temps et en espace, pour un objet $\psi(x)$ à plusieurs composantes (un spineur). Énoncer la forme générale d'une telle équation linéaire en $\partial_\mu$ (on peut l'écrire sous la forme $(i A^\mu \partial_\mu - m)\psi=0$ avec des matrices $A^\mu$).
+	
+	\item
+	On propose le Lagrangien de Dirac pour un champ de spineurs à 4 composantes $\psi_\alpha(x)$ et son conjugué de Dirac $\bar\psi = \psi^\dagger \gamma^0$ :
+	\[
+	\mathcal{L}_D = \bar\psi\, (i \gamma^\mu \partial_\mu - m)\,\psi.
+	\]
+	\begin{enumerate}
+		\item Montrer que $\mathcal{L}_D$ est hermitien (à un dérivé total près). 
+		\item Vérifier que $\mathcal{L}_D$ est invariant sous les transformations de Lorentz (transformations spinoriales de $\psi$). 
+	\end{enumerate}
+	
+	\item 
+	En appliquant les équations d'Euler--Lagrange pour les champs à composantes (variation par rapport à $\bar\psi$), établir l'équation de Dirac : 
+	\[
+	(i\gamma^\mu\partial_\mu - m)\psi = 0.
+	\]
+	En utilisant la définition de $\bar\psi$, écrire l'équation adjointe satisfaite par $\bar\psi$.
+	
+	\item 
+	\begin{enumerate}
+		\item En multipliant à gauche l'équation de Dirac par $(i\gamma^\nu \partial_\nu + m)$, montrer que $\psi$ vérifie l'équation de Klein--Gordon. Expliquer pourquoi il est nécessaire que les matrices $\gamma^\mu$ satisfassent des relations d'anticommutation.
+		\item En déduire explicitement les relations d'anticommutation des matrices de Dirac : 
+		\[
+		\{\gamma^\mu,\gamma^\nu\} = 2\eta^{\mu\nu} \mathbf{1}.
+		\]
+	\end{enumerate}
+	
+	\item 
+	\begin{enumerate}
+		\item Donner explicitement les matrices $\gamma^\mu$ dans la représentation de Dirac (par exemple $\gamma^0 = \begin{pmatrix}I & 0\\ 0 & -I\end{pmatrix}$, $\gamma^i = \begin{pmatrix}0 & \sigma^i\\ -\sigma^i & 0\end{pmatrix}$). 
+		\item Vérifier à partir de cette représentation les relations de Clifford obtenues ci-dessus pour $\mu,\nu=0,1,2,3$.
+	\end{enumerate}
+	
+	\item On cherche des solutions de l'équation de Dirac de la forme onde plane 
+	\[
+	\psi(x) = u(p)\,e^{-ip\cdot x}, 
+	\]
+	avec $p^\mu=(E,\vec p)$, $p\cdot x = p_\mu x^\mu = -E t + \vec p\cdot\vec x$. 
+	\begin{enumerate}
+		\item Montrer que pour $u(p)$ on obtient l'équation algébrique 
+		\[
+		(\gamma^\mu p_\mu - m)\,u(p) = 0.
+		\]
+		\item En déduire les valeurs de $E$ autorisées et interpréter les solutions correspondantes en termes d'états d'énergie positive ou négative. 
+		\item Combien de solutions linéairement indépendantes (spineurs $u$ et $v$) existe-t-il au total pour un moment donné ? Relier ce résultat aux degrés de liberté de spin de la particule et de son antiparticule.
+	\end{enumerate}
+	
+	\item On définit le courant de Dirac 
+	\[
+	j^\mu = \bar\psi\,\gamma^\mu \psi.
+	\]
+	\begin{enumerate}
+		\item En utilisant les équations de Dirac (et son adjoint), montrer que $\partial_\mu j^\mu=0$ (courant conservé). 
+		\item Vérifier que la densité $j^0 = \bar\psi \gamma^0 \psi = \psi^\dagger \psi$ est positive définie. Interpréter $j^0$ comme densité de probabilité et comparer avec le cas du champ de Klein--Gordon.
+	\end{enumerate}
+	
+	\item On souhaite quantifier le champ de Dirac. 
+	\begin{enumerate}
+		\item Énoncer les conditions de quantification canonique du champ de Dirac $\psi$ et $\psi^\dagger$ (ou $\psi$ et $\bar\psi$). Justifier pourquoi on doit utiliser des anticommutateurs $\{\,,\,\}$ plutôt que des commutateurs. 
+		\item Indiquer comment la quantification mène à l’introduction d’opérateurs de création et d’annihilation de particules et d’antiparticules (de Dirac). Expliquer comment les états d’énergie négative sont interprétés comme des états d’antiparticules (principe de la mer de Dirac).
+	\end{enumerate}
+	
+	\item Montrer que le Lagrangien de Dirac $\mathcal{L}_D$ est invariant sous la transformation de phase globale $\psi \to e^{i\alpha}\psi$. En déduire, par le théorème de Noether, la conservation du courant $j^\mu$. 
+	
+	\item Introduire le couplage minimal du champ de Dirac à un potentiel électromagnétique $A_\mu$ : on remplace $\partial_\mu$ par $D_\mu = \partial_\mu + i e A_\mu$ dans $\mathcal{L}_D$. Montrer que cette prescription rend le Lagrangien invariant sous la jauge locale $\psi \to e^{i e\Lambda(x)}\psi$, $A_\mu \to A_\mu - \partial_\mu \Lambda$. Expliquer brièvement l'implication physique de cette invariance (introduction de l'interaction électromagnétique et conservation de la charge électrique).
+	
+	\item Résumer les implications physiques de l'équation de Dirac obtenue : existence d'une particule libre de spin $1/2$ (et de son antiparticule), calcul du moment magnétique $\vec\mu= g\frac{q}{2m}\vec S$ avec $g=2$, etc. Conclure sur la façon dont cette construction respecte la covariance relativiste et sur le rôle de l'algèbre de Clifford dans la description des fermions relativistes.
+\end{enumerate}
+
+\newpage \section[Potentiel de Pöschl--Teller $V(x) = -\dfrac{V_0}{\cosh^2(\alpha x)}$ $\triangle$]{Potentiel de Pöschl--Teller $V(x) = -\dfrac{V_0}{\cosh^2(\alpha x)}$ \hyperref[subsubsec:quantique]{(MQ)}\space \faStar\faStar\faStar}\label{subsec:Potentiel}
+(\hyperref[subsec:correctionPotentiel]{Correction})
+\\
+On étudie un système quantique subissant uniquement le potentiel $V(x) = -\dfrac{V_0}{\cosh^2(\alpha x)}$.\\
+L'Hamiltonien du système s'écrit,
+$$\textbf{H} = \frac{\textbf{P}^2}{2m} + V(\textbf{X}) = \frac{\textbf{P}^2}{2m}-\dfrac{V_0}{\cosh^2(\alpha\textbf{X})} $$
+
+\begin{enumerate}
+	\item Écrire l'équation de Schrödinger indépendante du temps pour une fonction d'onde $\psi(x)$ :  
+	\[
+	-\frac{\hbar^2}{2m}\psi''(x) - \frac{V_0}{\cosh^2(\alpha x)} \,\psi(x) = E\,\psi(x).
+	\]
+	\item Montrer que la substitution $u = \tanh(\alpha x)$ entraîne 
+	\[
+	\psi'(x) = \alpha\,(1-u^2)\,\frac{\mathrm{d}\phi}{\mathrm{d}u}, 
+	\quad
+	\psi''(x) = \alpha^2\Big((1-u^2)\frac{\mathrm{d}^2\phi}{\mathrm{d}u^2} - 2u\frac{\mathrm{d}\phi}{\mathrm{d}u}\Big),
+	\]
+	avec $\phi(u)=\psi(x(u))$.
+	\item En déduire que l'équation en $u\in(-1,1)$ s'écrit
+	\[
+	(1-u^2)\,\frac{\mathrm{d}^2\phi}{\mathrm{d}u^2} - 2u\,\frac{\mathrm{d}\phi}{\mathrm{d}u}
+	+ \Big[\lambda(\lambda+1) - \frac{\mu^2}{1-u^2}\Big]\phi = 0,
+	\]
+	et exprimer $\lambda,\mu$ en fonction de $V_0,\alpha,m,\hbar,E$.
+	\item Identifier $\lambda,\mu$. Chercher une solution de la forme $\phi(u) = (1-u^2)^{\frac \mu 2} P(u)$.
+	Montrer que $P$ doit être un polynôme.
+	\item En déduire la quantification $E_n$ sous la forme
+	\[
+	E_n = -\frac{\hbar^2\alpha^2}{2m}\,( \lambda - n)^2, 
+	\quad n=0,1,\dots,\lfloor\lambda\rfloor,
+	\]
+	où $\lambda(\lambda+1)=\tfrac{2mV_0}{\hbar^2\alpha^2}$.
+	\item Montrer que le nombre d'états liés est fini : $N = \lfloor\lambda\rfloor +1$.  
+	\item Interpréter physiquement pourquoi seuls ces $N$ niveaux peuvent exister.  
+\end{enumerate}
+
+\newpage \section[Instabilité électrodynamique de l'atome classique]{Puissance de Larmor et instabilité électrodynamique de l'atome classique$^\dag$ (\hyperref[subsubsec:maxwell]{EM})\space \faStar\faStar}\footnote{$^\dag$ Inspiré de Claude Aslangul, \textit{Mécanique Quantique 1}, Chapitre 1.}\label{subsec:Instable}
+(\hyperref[subsec:correctionInstable]{Correction})\\
+Une charge confinée (donc accélérée) émet un rayonnement électromagnétique. Il s'agit maintenant d'examiner plus précisément quelques conséquences des lois de l'Électromagnétisme classique combinées avec celles de la dynamique (d'où : \emph{Électrodynamique}) et notamment de montrer que l'atome classique est fondamentalement instable : l'électron localisé au sein de l'atome émet un rayonnement et, de ce fait, perd graduellement son énergie.
+
+La description ci-dessous repose sur le fait que l'effet de rayonnement reste un phénomène minoritaire, bien qu'il conduise finalement à des conclusions spectaculaires. Le point de départ sera donc une description dynamique ordinaire, à laquelle on rajoutera les effets perturbatifs dus au rayonnement de la source (l'électron confiné) sur le mouvement de cette source.
+
+\subsection{Calcul de la force de freinage et de radiation $\textbf{F}_\text{rad}$.}
+La puissance de Larmor, est la puissance perdue par une charge accélérée. Nous allons en déduire une force de radiation, $\textbf{F}_\text{rad}$, qui mènera à des conséquences spectaculaires.
+\begin{equation}
+	P = \frac{\mu_0 q^2 a^2}{6\pi c} = \frac{2 q^2 a^2}{3 c^3} \tag{3.13.1} \label{eq:larmor}
+\end{equation}
+\begin{enumerate}
+	\item Écrire le travail $\dd E_\text{at}=\dd W$, qui est égale à la variation d'énergie de l'atome pendant un temps $\dd t$ de la force de radiation $\textbf{F}_\text{rad}$.
+	\item Écrire la variation d'énergie de l'atome pendant un temps $\dd t$ dû à la puissance rayonnée de l'électron.
+	\item En intégrant par partie et en supposant que le mouvement est périodique, montrer qu'on a alors\footnote{Où $\vartheta^2 = \frac{e^2}{4\pi\varepsilon_0}$},
+	\begin{equation}
+	\textbf{F}_\text{rad} = \frac{2\vartheta^2}{3c^3}\ddot{\textbf{v}} \tag{3.13.2} \label{eq:frad}
+	\end{equation}
+	
+	\item Appliquez le PFD, avec la force $\textbf{F}_\text{rad}$	\footnote{Remarquez l'apparition d'une force dépendant de la dérivée de l'accélération. Nous allons étudier dans la partie suivante les problèmes que cette force cause.}  calculée précédemment et une force de rappel $\textbf{F} = -m\omega_0^2 \textbf{r}$.
+	En cherchant une solution de la forme $\textbf{r}(t) = \Re{\textbf{r}_0 e^{i\omega t}}$, en cherchant 
+	\begin{equation}
+		\omega = \omega_0(1+\alpha(\omega_0\tau) + o(\omega_0\tau)), \alpha \in \RR \tag{3.13.3}
+	\end{equation} Montrer que la solution est un oscillateur amorti. 
+	\\\textbf{AN} : On donne $\tau = \frac{2 e^2}{3 m c^3} \simeq 6{,}4 \times 10^{-24}~\text{s}$, $\omega_0 = 3\times 10^{15} \text{ rad.s}^{-1}$.
+	Commentez.
+
+\end{enumerate}
+\subsection{Problèmes conceptuels générés par la force de freinage $\textbf{F}_\text{rad}$.}
+La force de freinage $\textbf{F}_\text{rad}$ écrite précédemment est conceptuellement pathologique, comme le montre l'analyse qui suit. En reprenant les notations de la section 1.5, Tome I, l'équation d'Abraham-Lorentz pour une particule de charge $e$ et de masse $m$ soumise à une force $\textbf{F}$ est (avec $\vb{v} = \dot{\vb{r}}$) :
+\begin{equation}
+	m \ddot{\vb{r}} = m \tau \dddot{\vb{r}} + \vb{F}, \tag{3.13.4} \label{eq:patho}
+\end{equation}
+où le temps $\tau = \frac{2 e^2}{3 m c^3} \simeq 6{,}4 \times 10^{-24}~\text{s}$ correspond à une période. 
+Une première bizarrerie de cette équation est l’apparition d’une dérivée troisième de la position de la particule (définie par le rayon-vecteur $\vb{r}$), censée représenter l’effet du freinage par rayonnement.
+
+De surcroît, la perturbation du mouvement provoquée par cet effet est fondamentalement \textit{singulière}, au sens où elle modifie l’ordre de l’équation différentielle du mouvement, lequel passe de 2 à 3 dès que la charge est non nulle. En fait, c’est bien parce que le petit paramètre $\tau$ est en facteur de la plus haute dérivée que la perturbation est dite \textit{singulière}, par définition\footnote{Le même phénomène se produit pour l’équation aux valeurs propres de Schrödinger, où c’est cette fois la constante de Planck qui est en facteur de la plus haute dérivée. Il existe un traitement perturbatif spécifique pour ce genre de question, appelé méthode BKW (ou WKB) dans le contexte quantique.}.
+
+Ces avertissements étant donnés, il s’agit maintenant d’examiner les conséquences de l’équation (\ref{eq:patho}) telle qu’elle est, précisément pour bien mettre en évidence les très graves difficultés de fond qu’elle soulève.
+
+\begin{enumerate}
+	\item En utilisant la méthode connue pour intégrer une équation différentielle telle que (\ref{eq:patho}), écrire l’expression générale de l’accélération $\ddot{\vb{r}}(t)$, supposant connue l’accélération à un certain instant $t_0$, $\ddot{\vb{r}}(t_0)$.
+	
+	\item En examinant le cas particulier $\vb{F} = 0$, montrer que cette solution est aberrante physiquement.
+	
+	\item Revenant à la solution générale obtenue en 1 dans le cas $\vb{F} \neq 0$, montrer que l’on peut formellement éliminer les solutions divergentes par un choix convenable de $t_0$. Commenter ce choix --- qui, sur le plan technique, exprime une condition aux limites plutôt qu’une condition initiale.
+	
+	\item En déduire l’expression régularisée de la solution obtenue en 1. Revenant un cran en arrière et en analysant le noyau intégral figurant dans cette expression, vérifier que l’équation du mouvement redonne bien, dans la limite de charge nulle, l’équation ordinaire de la dynamique.
+	
+	\item Afin d’exhiber clairement la violation annoncée d’un grand principe physique, effectuer un changement de variable d’intégration très simple pour obtenir :
+	\begin{equation}
+		\dot{\vb{v}}(t) = \frac{1}{m} \int_0^{+\infty} e^{-s} \times \vb{F}(t + \tau s) \, \text ds. \tag{3.13.5}\label{eq:viol}
+	\end{equation}
+	Commenter cette dernière équation et montrer qu’un principe physique y est violé.
+	
+	\item Afin de mettre en évidence cette violation de façon encore plus spectaculaire, traiter le cas d’une particule de vitesse nulle en $t = -\infty$ et soumise à une force échelon :
+	\begin{equation}
+		\vb{F}(t) = 
+		\begin{cases}
+			0 & \text{si } t < 0, \\
+			\vb{F}_0 & \text{si } t > 0.
+		\end{cases} \tag{3.13.6}
+	\end{equation}
+	Résumer ces résultats en traçant la variation en fonction du temps de l’accélération et de la vitesse. Noter que la particule se met en mouvement... \textbf{avant l’application de la force} !
+\end{enumerate}
+
+
+	\chapter{Correction des exercices}\label{section:correction}
+	Comme vous le remarquerez, les exercices ne sont pas encore \textbf{tous} corrigés. 
+	Les exercices non corrigés sont accompagné du symbole $\triangle$. Les dernières corrections seront données petit à petit. Si vous voulez proposer une correction d'exercice, merci de me l'envoyer en format Latex au mail suivant :
+\\ \href{mailto:ryanartero2005@gmail.com}{ryanartero2005@gmail.com}.\\\\
+Par ailleurs, vous pouvez revenir à l'exercice que vous étiez en train de faire en cliquant sur le titre de l'exercice en question, que ce soit en haut de page ou en début de l'exercice.
+
+ \section{\hyperref[subsec:2corps]{Problème à deux corps}}\label{subsec:correction2corps}
+
+\subsection{Centre de masse}
+On désigne $\textbf{r}_1, \textbf{r}_2$ les rayons vecteurs de l'électron et du noyaux par rapport à un repère quelconque, et $\textbf{v}_1, \textbf{v}_2$ les vitesses correspondantes. 
+\begin{enumerate}
+	\item $\mathcal L = \frac 1 2 (m_1 \textbf{v}_1^2+m_2\textbf{v}_2^2)-\frac{\vartheta^2}{\norm{\textbf{r}_1-\textbf{r}_2}}$.
+	\item \begin{align*}
+	\textbf{R} &= \frac{m_1\textbf{r}_1+m_2\textbf{r}_2}{m_1+m_2} \implies \textbf{V} = \frac{m_1\textbf{v}_1+m_2\textbf{v}_2}{m_1+m_2} \\
+	\textbf{r}&= \textbf{r}_1-\textbf{r}_2 \implies \textbf{v} =  \textbf{v}_1-\textbf{v}_2\\
+	\mu &= \frac {m_1m_2}{m_1+m_2}\\
+	\implies \mathcal L &= \frac 1 2 (m_1+m_2)\textbf{V}^2+\frac 1 2 \mu \textbf{v}^2-\frac {\vartheta^2}r = \mathcal L_G(\textbf{V})+\mathcal L_r(\textbf{r},\textbf{v})
+	\end{align*}
+	\item Le potentiel est central pour le centre de masse. Cela implique que $\textbf{J}$ est une constante du mouvement.
+\end{enumerate}
+Dans la suite, on examine exclusivement le mouvement interne par $\mathcal{L}_r$ en coordonnées polaires $(r, \theta)$ dans le plan perpendiculaire à $\textbf{J}$.
+\subsection{Intégration des équations du mouvement}
+
+\begin{enumerate}
+	 \item
+	 
+	 L'expression de l'énergie cinétique en coordonnées polaires de $\mathbb{R}^2$ est :
+	 \[
+	 \frac{1}{2} \mu (\dot{r}^2 + r^2 \dot{\theta}^2),
+	 \]
+	 d'où le Lagrangien :
+	 \[
+	 \mathcal{L} = \frac{1}{2} \mu (\dot{r}^2 + r^2 \dot{\theta}^2) - \frac{k}{r}, k = \vartheta^2.
+	 \]
+	 
+	 Les équations d'Euler-Lagrange sont :
+	 \[
+	 \frac{\dd}{\dd t} \left( \mu \dot{r} \right) - \mu r \dot{\theta}^2 + \frac{k}{r^2} = 0,
+	 \]
+	 \[
+	 \frac{\dd}{\dd t} \left( \mu r^2 \dot{\theta} \right) = 0.
+	 \]
+	 
+	 Les moments conjugués en découlent :
+	 \[
+	 p_r = \pdv{\mathcal{L}}{\dot{r}} = \mu \dot{r}, \qquad p_\theta = \pdv{\mathcal{L}}{\dot{\theta}} = \mu r^2 \dot{\theta}.
+	 \]
+	 
+	 Le Hamiltonien s'écrit :
+	 \[
+	 H = p_r \dot{r} + p_\theta \dot{\theta} - \mathcal{L} = \frac{p_r^2}{2\mu} + \frac{p_\theta^2}{2\mu r^2} - \frac{k}{r}.
+	 \]
+	 
+	 Les équations de Hamilton sont alors :
+	 \[
+	 \dot{r} = \pdv{H}{p_r} = \frac{p_r}{\mu}, \qquad \dot{p}_r = -\pdv{H}{r} = \frac{p_\theta^2}{\mu r^3} - \frac{k}{r^2},
+	 \]
+	 \[
+	 \dot{\theta} = \pdv{H}{p_\theta} = \frac{p_\theta}{\mu r^2}, \qquad \dot{p}_\theta = -\pdv{H}{\theta} = 0.
+	 \]
+	 
+	 $p_\theta$ est une constante du mouvement (car $\theta$ est une variable cyclique) ; en conséquence, la quantité $p_\theta = \mu r^2 \dot{\theta}$ est constante : c'est le moment cinétique $J$, fixé une fois pour toutes par les conditions initiales.
+	 
+	 \medskip
+	 
+	 En effet, $\textbf{J} = \mu \textbf{r} \times \dot{\textbf{r}} = \mu r \textbf{u}_r \times ( \dot{r} \textbf{u}_r + r \dot{\theta} \textbf{u}_\theta ) = \mu r^2 \dot{\theta} = p_\theta$.
+	 
+	 \medskip
+	 
+	 L'intégrale première de l'énergie donne :
+	 \[
+	 E = \frac{1}{2} \mu \dot{r}^2 + \frac{J^2}{2\mu r^2} - \frac{k}{r}.
+	 \]
+	 
+	 En dérivant en temps $p_r = \mu \dot{r}$, et en y substituant :
+	 \[
+	 \dot{p}_r = \mu \ddot{r} = \frac{J^2}{\mu r^3} - \frac{k}{r^2},
+	 \]
+	 on retrouve l'équation du mouvement radial :
+	 \begin{equation}
+	 	\mu \ddot{r} = \frac{J^2}{\mu r^3} - \frac{k}{r^2}. \tag{7.25}
+	 \end{equation}
+	 
+	 Le premier terme au second membre est la force centrifuge (car $\mu r \dot{\theta}^2 = \mu v^2 / r$), le second terme est la force attractive de Coulomb.
+	 
+	 \item
+	 
+	 Pour éliminer le temps, on dérive comme d'habitude la fonction composée $r(\theta(t))$ :
+	 
+	 On note $r'(\theta) = \dv{r}{\theta}$ et $r''(\theta) = \dv[2]{r}{\theta}$. On utilise $p_\theta = \mu r^2 \dot{\theta} = J$, d'où :
+	 \[
+	 \dot{\theta} = \frac{J}{\mu r^2}, \qquad \dv{}{t} = \dv{\theta}{t} \dv{}{\theta} = \frac{J}{\mu r^2} \dv{}{\theta}.
+	 \]
+	 
+	 Ainsi :
+	 \[
+	 \dot{r} = \dv{r}{t} = \dv{r}{\theta} \dot{\theta} = r' \frac{J}{\mu r^2}, \qquad
+	 \ddot{r} = \dv{t}(\dot{r}) = \frac{J}{\mu r^2} \dv{\theta} \left( r' \frac{J}{\mu r^2} \right).
+	 \]
+	 
+	 En posant $u = \frac{1}{r}$, on a :
+	 \[
+	 \dot{r} = -\frac{J}{\mu} u', \qquad \ddot{r} = -\frac{J^2}{\mu^2} \left( u'' + u \right),
+	 \]
+	 et le remplacement dans (7.25) donne :
+	 \[
+	 - \frac{J^2}{\mu^2} (u'' + u) = \frac{J^2}{\mu} u^3 - \frac{k}{\mu} u^2.
+	 \]
+	 
+	 Multipliée par $- \frac{\mu^2}{J^2}$, cette équation devient :
+	 \[
+	 u'' + u = \frac{\mu k}{J^2}.
+	 \]
+	 
+	 \item
+	 
+	 L'équation différentielle en $u(\theta)$ :
+	 \[
+	 u'' + u = \frac{\mu k}{J^2}
+	 \]
+	 admet pour solution générale :
+	 \[
+	 u(\theta) = A \cos(\theta + \varphi) + \frac{\mu k}{J^2},
+	 \]
+	 d'où :
+	 \[
+	 r(\theta) = \frac{1}{A \cos(\theta + \varphi) + \frac{\mu k}{J^2}}.
+	 \]
+	 
+	 Il est toujours loisible de choisir l’axe polaire astucieusement, par exemple de sorte que $r(\theta)$ soit extrémale en $\theta = 0$ (ou $\theta = \pi$), ce qui donne $\varphi = 0$ :
+	 \begin{equation}
+	 	r(\theta) = \frac{1}{\dfrac{\mu k}{J^2} (1 + \varepsilon \cos \theta)}, \tag{7.26}
+	 \end{equation}
+	 où l'on a posé $\varepsilon = \dfrac{A J^2}{\mu k}$ : l'excentricité.
+	 
+	 La constante $A$ (ou $\varepsilon$) est déterminée par les conditions initiales, ou via l'énergie :
+	 \[
+	 E = \frac{1}{2} \mu \dot{r}^2 + \frac{J^2}{2\mu r^2} - \frac{k}{r}.
+	 \]
+	 
+	 À l'aide de $r(\theta)$ et de $J = \mu r^2 \dot{\theta}$, on peut écrire $E$ comme fonction de $\varepsilon$ :
+	 \[
+	 \varepsilon^2 = 1 + \frac{2 E J^2}{\mu k^2}. \tag{7.27}
+	 \]
+	 
+	 \item
+	 
+	 L'expression (7.26) définit une famille de courbes appelées \textbf{coniques} (intersections d’un cône avec un plan). Trois sous-familles sont distinguées selon la valeur de $\varepsilon$ :
+	 
+	 \begin{itemize}
+	 	\item Si $\varepsilon < 1$, la trajectoire est une \textbf{ellipse}, fermée, correspondant à une énergie $E < 0$ : mouvement lié et périodique (cas particulier $\varepsilon = 0$ : un cercle).
+	 	\item Si $\varepsilon = 1$, la trajectoire est une \textbf{parabole} : cas limite $E = 0$ séparant les mouvements liés et non liés.
+	 	\item Si $\varepsilon > 1$, le dénominateur dans (7.26) peut s'annuler pour un angle $\theta_\infty = \arccos\left(-\frac{1}{\varepsilon}\right)$ : la trajectoire est une \textbf{hyperbole}, ouverte, avec asymptotes ; $E > 0$ correspond à une particule venant de l'infini avec une vitesse initiale non nulle.
+	 \end{itemize}
+	 
+	 Dans tous les cas, l’origine (le centre de force) est l’un des deux foyers de la conique.
+	 
+	 
+\end{enumerate}
+
+\subsection{Quantification de Bohr}
+Dans cette partie, on ne considère que les états liés $E < 0$.
+\begin{enumerate}
+\item
+
+La condition de quantification sur l'angle $\theta$ est immédiate puisque $p_\theta = J$ est une constante du mouvement :
+\[
+J_\theta = \int_0^{2\pi} p_\theta \, \dd \theta = 2\pi J, \quad \text{d'où} \quad J = n_\theta \hbar \quad \text{avec } n_\theta \in \mathbb{N}^*.
+\]
+$n_\theta$ ne peut être nul, puisque ceci donnerait une trajectoire rectiligne traversant périodiquement le noyau. En définitive :
+\[
+J = n_\theta \hbar, \quad n_\theta \in \mathbb{N}^*.
+\]
+
+\item
+
+On a :
+\[
+\int p_r \, \dd r = \int \mu \dot{r} \, \dd r = \mu \int r'(\theta) \dot{\theta} \, \dd r = \mu \int r'(\theta) \frac{J}{\mu r^2} \, \dd r = \int \frac{J r'(\theta)}{r^2} \, \dd r = \int \frac{J}{r^2} \frac{\dd r}{\dd \theta} \, \dd \theta.
+\]
+La condition de quantification s’écrit, compte tenu de l’équation $(7.26)$ :
+\[
+\int_0^{2\pi} \frac{J\varepsilon \sin \theta}{(1 + \varepsilon \cos \theta)^2} \, \dd \theta = n_r h.
+\]
+L’intégrale vaut :
+\[
+2\pi J \left( \int_0^{2\pi} \frac{\varepsilon \sin \theta}{(1 + \varepsilon \cos \theta)^2} \, \dd \theta \right) = -2\pi J \left( \int_0^{2\pi} \frac{\dd}{\dd \theta} \left( \frac{1}{1 + \varepsilon \cos \theta} \right) \, \dd \theta \right).
+\]
+Une intégration par parties transforme cette expression en :
+\[
+\int_0^{2\pi} \left( \frac{1}{1 + \varepsilon \cos \theta} - 1 \right) \dd \theta = \int_0^{2\pi} \left( \frac{1 - (1 + \varepsilon \cos \theta)}{1 + \varepsilon \cos \theta} \right) \dd \theta = \int_0^{2\pi} \left( \frac{- \varepsilon \cos \theta}{1 + \varepsilon \cos \theta} \right) \dd \theta.
+\]
+La condition de quantification devient alors :
+\[
+2\pi J \left( \frac{1}{\sqrt{1 - \varepsilon^2}} - 1 \right) = n_r h.
+\]
+Comme $2\pi J = n_\theta h$, cela donne aussi :
+\[
+n_\theta \left( \frac{1}{\sqrt{1 - \varepsilon^2}} - 1 \right) = n_r,
+\]
+ce qui peut se mettre sous la forme :
+\[
+\frac{1}{\sqrt{1 - \varepsilon^2}} = \frac{n}{n_\theta}, \quad \text{où } n = n_r + n_\theta.
+\tag{7.28}
+\]
+
+\item
+
+Selon l’équation $(7.27)$ :
+\[
+1 - \varepsilon^2 = -\frac{2EJ^2}{\mu \vartheta^4}, \quad \text{d’où} \quad E = - \frac{\mu \vartheta^4}{2 J^2} (1 - \varepsilon^2).
+\]
+Comme $J = n_\theta \hbar$ et $1 - \varepsilon^2 = \left( \frac{n_\theta}{n} \right)^2$, on obtient finalement :
+\[
+E_n = - \frac{\mu \vartheta^4}{2 \hbar^2 n^2}.
+\tag{7.29}
+\]
+\end{enumerate}
+	\newpage \section{\hyperref[subsec:Rutherford]{Section efficace de Rutherford}}\label{subsec:correctionRutherford}
+
+	
+	\subsection{Déviation d’une particule chargée par un noyau d’atome}
+	
+	On se place dans un repère polaire $(r,\varphi)$ dans le plan du mouvement.
+	\begin{enumerate}
+		\item \textbf{Moment cinétique :} Le moment cinétique dans le repère polaire est :
+		\[
+		J = m r^2 \dot{\varphi}.
+		\]
+		À l'infini passé, la particule a une vitesse $v_0$ et un paramètre d'impact $b$. Le moment cinétique est alors :
+		\[
+		J = -m b v_0.
+		\]
+		Le signe négatif vient du fait que $\varphi$ décroît au cours du temps.
+		
+		\item \textbf{Équation du mouvement :} La force centrale de répulsion est donnée par :
+		\[
+		\textbf{F} = \frac{C}{r^2} \hat{\textbf{r}}, \quad \text{où } C = \frac{qQ}{4\pi\varepsilon_0}.
+		\]
+		On décompose $\textbf{v} = \dot{\textbf{r}}$ en deux composantes. En projetant sur la direction perpendiculaire à l’axe polaire, on trouve :
+		\[
+		m \dot{v}_\perp = \frac{C}{r^2} \sin\varphi.
+		\]
+		
+		\item \textbf{Angle de déviation $\theta$ :} En multipliant l’équation par $\mathrm{d}t$ puis en changeant de variable, on utilise :
+		\[
+		r^2 \dot{\varphi} = \frac{J}{m} \Rightarrow \mathrm{d}t = \frac{m r^2}{J} \mathrm{d}\varphi.
+		\]
+		On intègre entre $t = -\infty$ et $t = +\infty$ :
+		\[
+		v_0 \sin\theta = \int \dot{v}_\perp \mathrm{d}t = \frac{C}{J} (\cos\theta + 1).
+		\]
+		
+		\item \textbf{Lien avec l’énergie cinétique :} L’énergie initiale est $E_0 = \frac{1}{2} m v_0^2$, donc :
+		\[
+		\tan\left(\frac{\theta}{2}\right) = \frac{C}{2 E_0 b}.
+		\]
+	\end{enumerate}
+	
+	\subsection{Section efficace de Rutherford}
+	
+	\begin{enumerate}
+		\item \textbf{Expression de la section efficace différentielle :}
+		La définition générale est :
+		\[
+		\frac{\mathrm{d}\sigma}{\mathrm{d}\Omega} = \frac{b}{\sin\theta} \left| \frac{\mathrm{d}b}{\mathrm{d}\theta} \right|.
+		\]
+		
+		\item \textbf{Utilisation de $\tan(\theta/2)$ :} Avec :
+		\[
+		b = \frac{C}{2E_0} \cot\left(\frac{\theta}{2}\right), \quad \frac{\mathrm{d}b}{\mathrm{d}\theta} = -\frac{C}{4E_0} \frac{1}{\sin^2(\theta/2)},
+		\]
+		alors :
+		\[
+		\frac{\mathrm{d}\sigma}{\mathrm{d}\Omega} = \left( \frac{C}{4E_0} \right)^2 \frac{1}{\sin^4(\theta/2)}.
+		\]
+		
+		\item \textbf{Limite du modèle :} Pour $\theta \to 0$, on a $\sin(\theta/2) \to 0$ donc $\mathrm{d}\sigma/\mathrm{d}\Omega \to \infty$. L’intégrale sur $\theta \in [0,\pi]$ diverge : la section efficace totale est infinie. Cela reflète la portée infinie de l’interaction coulombienne.
+		
+		\item \textbf{Interprétation expérimentale :} Ce modèle explique les résultats expérimentaux de Rutherford : des particules $\alpha$ peuvent être fortement déviées. Cela implique l’existence d’un noyau atomique très concentré, car une telle déviation nécessite un champ très intense dans une région très localisée\footnote{En introduisant la distance minimale d’approche $a_{\min}$ pour une collision frontale ($b=0$), on a :
+			\[
+			a_{\min} = \frac{C}{E_0}.
+			\]
+			On peut alors réécrire la section efficace différentielle sous la forme :
+			\[
+			\boxed{\frac{\mathrm{d}\sigma}{\mathrm{d}\Omega} = \frac{a_{\min}^2}{16} \cdot \frac{1}{\sin^4(\theta/2)}}.
+			\]}.
+	\end{enumerate}
+	
+	
+	\newpage \section{\hyperref[subsec:Cherenkov]{Effet Cherenkov}}\label{subsec:correctionCherenkov}
+	\begin{enumerate}
+		\item 
+		\[
+		p = \frac{E}{c} = \frac{nh\nu}{c}, \quad p_z = \frac{c}{c} (nh\nu) = \frac{nh\nu}{c}, \quad n = \frac{p_z c}{h\nu}.
+		\]
+		
+		\item Les composantes du moment sont :
+		\[
+		p = p' \cos\varphi + p_z \cos\theta, \quad 0 = -p' \sin\varphi + p_z \sin\theta.
+		\]
+		
+		\item On a :
+		\[
+		p_z^2 = p^2 - 2pp_z \cos\varphi + p_z^2.
+		\]
+		
+		\item La conservation de l’énergie s’écrit :
+		\[
+		\sqrt{p^2c^2 + m^2c^4} = \sqrt{p_z^2c^2 + m^2c^4} + h\nu,
+		\]
+		ou encore :
+		\[
+		\frac{1}{\sqrt{1 - \beta^2}}mc^2 = \frac{1}{\sqrt{1 - \beta_f^2}}mc^2 + h\nu.
+		\]
+		
+		\item Par élévation au carré, on obtient :
+		\[
+		p_z^2 = p^2 - \frac{2h\nu E}{c^2} + \frac{(h\nu)^2}{c^2}, \quad \text{où } E \text{ désigne l’énergie initiale de l’électron.}
+		\]
+		
+		\item En rapprochant les deux expressions de $p_z^2$, on peut écrire :
+		\[
+		p^2 - 2pp_z \cos\varphi + p_z^2 = p^2 - \frac{2h\nu E}{c^2} + \frac{(h\nu)^2}{c^2},
+		\]
+		d’où, après calcul :
+		\[
+		\cos\varphi = \frac{h\nu}{pc} \left(1 - \frac{E}{pc} \right) + \frac{h\nu}{2pc},
+		\]
+		avec $E = \gamma mc^2$, $p = \gamma mv$, $p_z = \frac{nh\nu}{c}$, de sorte que :
+		\[
+		\cos\theta = \frac{1}{n\beta} \left(1 - \frac{1}{2} \frac{1}{\gamma^2} \right).
+		\]
+		
+		\item Finalement :
+		\[
+		\cos\theta = \frac{1}{n\beta} \left[1 + (n^2 - 1)\frac{1}{2\gamma^2} \right].
+		\]
+		Comme $E = \gamma mc^2$, ceci s’écrit aussi :
+		\[
+		\cos\theta = \frac{1}{n\beta} \left[1 + \frac{n^2 - 1}{2} \left(1 - \beta^2 \right) \right].
+		\]
+		
+		\item Il faut :
+		\[
+		\frac{1}{n\beta} \left[1 + (n^2 - 1) \frac{1}{2\gamma^2} \right] \leq 1.
+		\]
+		Comme le crochet est visiblement supérieur à 1, il est nécessaire (mais pas suffisant) que :
+		\[
+		\beta > \frac{1}{n}.
+		\]
+		
+		\item Les photons sont émis entre $v = 0$ et une fréquence $\nu_{\text{max}}$ pour laquelle $\cos\theta = 1$, soit :
+		\[
+		0 \leq \nu \leq \frac{E}{h} \left(1 - \frac{1}{n\beta} \right), \quad \text{avec } E = \nu_{\text{max}} h.
+		\]
+		
+		\item Les photons les plus énergétiques sont émis dans la direction $\theta = 0$.
+		
+		\item Tous les photons sont émis à l’intérieur d’un cône de demi-angle $\varphi$ correspondant à l’angle $\theta$ pour un photon de fréquence nulle, soit :
+		\[
+		\varphi = \arccos \left( \frac{1}{n\beta} \right) = \arccos \left( \frac{1}{n} \right) \simeq 20^\circ.
+		\]
+		
+		\item Pour que l’effet se produise, il faut $\nu > \frac{1}{n}$, soit $\beta > \frac{1}{n}$, et donc :
+		\[
+		E > \frac{1}{\sqrt{1 - \frac{1}{n^2}}} mc^2.
+		\]
+		Pour un électron, il faut donc $E > 0{,}77$ MeV, pour un proton $E > 1{,}4$ GeV.
+	\end{enumerate}
+	\newpage \section{\hyperref[subsec:machine]{Machine à champ magnétique pulsé}}\label{subsec:correctionmachine}
+	\subsection{Champ magnétique de la bobine}
+	\textbf{(a)} Pour une spire circulaire de rayon $R$, la loi de Biot-Savart donne le champ sur l'axe $z$ :
+	\[
+	B_z(z,t)= \frac{\mu_0 I(t) R^2}{2\left(z^2+R^2\right)^{3/2}}.
+	\]
+	Ceci est obtenu par intégration sur la spire, en exploitant la symétrie circulaire.
+	
+	\textbf{(b)} Pour $z \gg R$, on peut approximer $\left(z^2+R^2\right)^{3/2} \simeq z^3$. Ainsi,
+	\[
+	B_z(z,t)\sim \frac{\mu_0 I(t) R^2}{2z^3},
+	\]
+	ce qui est l'expression du champ d'un dipôle magnétique de moment $m= I(t) R^2$.
+	
+	\subsection{Champ électrique induit dans le tissu biologique}
+	La loi locale de Faraday en coordonnées cylindriques s'exprime sous la forme (en supposant que le champ électrique induit est purement azimutal) :
+	\[
+	\left(\nabla \times \mathbf{E}\right)_z = \frac{1}{r}\frac{\partial (rE_\theta)}{\partial r} = -\frac{\partial B_z}{\partial t}.
+	\]
+	Dérivons $B_z$ par rapport au temps :
+	\[
+	\frac{\partial B_z}{\partial t} = \frac{\mu_0 R^2}{2\left(z^2+R^2\right)^{3/2}}\,\dot{I}(t).
+	\]
+	L'équation locale devient donc :
+	\[
+	\frac{1}{r}\frac{\partial (rE_\theta)}{\partial r} = -\frac{\mu_0 R^2\,\dot{I}(t)}{2\left(z^2+R^2\right)^{3/2}}.
+	\]
+	
+	\textbf{Intégration pour $r < R$:}  
+	Intégrons de $0$ à $r$, en imposant $E_\theta(0,t)=0$ (pour éviter une singularité) :
+	\[
+	\int_0^r \frac{\partial (r'E_\theta(r',t))}{\partial r'}\,\frac{\dd r'}{r'} = -\frac{\mu_0 R^2\,\dot{I}(t)}{2\left(z^2+R^2\right)^{3/2}} \int_0^r \dd r'.
+	\]
+	La solution obtenue est :
+	\[
+	rE_\theta(r,t) = -\frac{\mu_0 R^2\,\dot{I}(t)}{2\left(z^2+R^2\right)^{3/2}}\cdot\frac{r^2}{2},
+	\]
+	ce qui conduit à :
+	\[
+	E_\theta(r,t)= -\frac{\mu_0 R^2\,\dot{I}(t)}{4\left(z^2+R^2\right)^{3/2}}\,r \quad \text{pour } r\le R.
+	\]
+	
+	\textbf{Intégration pour $r > R$:}  
+	Pour $r>R$, le flux magnétique restant confiné dans la zone de la bobine, il est plus adapté d'utiliser la loi intégrale de Faraday. Considérons un contour circulaire de rayon $r>R$. La loi intégrale de Faraday donne :
+	\[
+	\oint \mathbf{E} \cdot d\boldsymbol{\ell} = 2\pi r\,E_\theta = -\frac{\dd \Phi}{\text{d}t},
+	\]
+	où le flux $\Phi$ est celui à travers la zone de la bobine, c'est-à-dire :
+	\[
+	\Phi = \pi R^2\,B_z(z,t)= \pi R^2 \frac{\mu_0 I(t) R^2}{2\left(z^2+R^2\right)^{3/2}}.
+	\]
+	La dérivée temporelle de $\Phi$ est alors :
+	\[
+	\frac{\dd \Phi}{\text{d}t} = \pi R^2 \frac{\mu_0 R^2}{2\left(z^2+R^2\right)^{3/2}}\,\dot{I}(t).
+	\]
+	Ainsi,
+	\[
+	2\pi r\,E_\theta = - \pi \frac{\mu_0 R^4\,\dot{I}(t)}{2\left(z^2+R^2\right)^{3/2}},
+	\]
+	et donc pour $r>R$ :
+	\[
+	E_\theta(r,t)= -\frac{\mu_0 R^4\,\dot{I}(t)}{4r\left(z^2+R^2\right)^{3/2}}.
+	\]
+	
+	\textbf{Récapitulatif :}
+	\[
+	E_\theta(r,t)= 
+	\begin{cases}
+		-\dfrac{\mu_0 R^2\,\dot{I}(t)}{4\left(z^2+R^2\right)^{3/2}}\,r, & r\le R, \\[2mm]
+		-\dfrac{\mu_0 R^4\,\dot{I}(t)}{4r\left(z^2+R^2\right)^{3/2}}, & r\ge R.
+	\end{cases}
+	\]
+	
+	\textbf{Vérification de la continuité :}  
+	À $r=R$, la solution intérieure donne
+	\[
+	E_\theta(R,t)= -\frac{\mu_0 R^3\,\dot{I}(t)}{4\left(z^2+R^2\right)^{3/2}},
+	\]
+	et la solution extérieure donne exactement le même résultat. La continuité est donc assurée.
+	
+	\subsection{Effet sur les neurones moteurs}
+	La tension induite sur un disque de rayon $a$ est donnée par :
+	\[
+	V = \int_0^a E(r,t)\,dr.
+	\]
+	En utilisant l'expression de $E_\theta(r,t)$ pour $r\le R$ (supposons $a\le R$ pour simplifier), on a :
+	\[
+	V = -\frac{\mu_0 R^2\,\dot{I}(t)}{4\left(z^2+R^2\right)^{3/2}} \int_0^a r\,dr
+	= -\frac{\mu_0 R^2\,\dot{I}(t)}{4\left(z^2+R^2\right)^{3/2}} \cdot \frac{a^2}{2}.
+	\]
+	Ainsi,
+	\[
+	V = -\frac{\mu_0 R^2\,a^2\,\dot{I}(t)}{8\left(z^2+R^2\right)^{3/2}}.
+	\]
+	Pour activer le neurone, il faut que $|V| \ge V_{\text{seuil}}$. La condition d'activation est donc :
+	\[
+	\frac{\mu_0 R^2\,a^2\,|\dot{I}(t)|}{8\left(z^2+R^2\right)^{3/2}} \ge V_{\text{seuil}}.
+	\]
+	En utilisant des valeurs numériques réalistes ($R=5\,\text{cm}$, $a=2\,\text{cm}$, $I_0=100\,\text{A}$, $\tau=1\,\text{ms}$, $\omega=10^4\,\text{rad/s}$, etc.), on peut vérifier si cette inégalité est satisfaite.
+	
+	\subsection{Effet du courant oscillant}
+	Si l'on suppose que
+	\[
+	I(t)= I_0 e^{i\omega t},
+	\]
+	alors $\dot{I}(t)= i\omega I_0 e^{i\omega t}$ et le champ électrique induit devient oscillant :
+	\[
+	E_\theta(r,t)= E_\theta(r) \, e^{i\omega t}.
+	\]
+	Ce comportement reflète la présence d'ondes électromagnétiques dans le système, avec des phases et des amplitudes modulées par la fréquence $\omega$.
+	
+	\subsection{Effet du champ magnétique pulsé sur les muscles}
+	Lorsque la machine de stimulation magnétique délivre des impulsions rapides, la variation temporelle du champ magnétique induit un champ électrique dans les tissus environnants. Dans les muscles, ce champ électrique peut provoquer la dépolarisation des membranes cellulaires en activant les canaux ioniques, ce qui génère un potentiel d'action. Cette excitation conduit à une contraction musculaire involontaire, exploitée en kinésithérapie pour améliorer la rééducation musculaire, augmenter la circulation sanguine et réduire la douleur.
+	
+		\newpage \section{\hyperref[subsec:Schwarzschild]{Métrique d'une sphère}}\label{subsec:correctionSchwarzschild}
+		 
+	\begin{enumerate}
+		\item $\text{En utilisant que } \dd (\cos u) = -\sin u \dd u \text { et } \dd (\sin u) = \cos u \dd u$, on obtient, \begin{align*}
+			\frac {\dd x^2}{R^2} &= [-\sin \theta \sin \varphi \dd\varphi + \cos \theta \cos \varphi \dd\theta]^2\\
+			 &= (\sin \theta \sin \varphi \dd\varphi)^2 - 2\sin \theta \sin \varphi \dd\varphi \cos \theta \cos \varphi \dd\theta + (\cos \theta \cos \varphi \dd\theta)^2\\
+			\frac {\dd y^2}{R^2} &= [\sin \theta \cos \varphi \dd\varphi + \cos \theta \sin \varphi \dd\theta]^2 \\
+			&= (\sin \theta \cos \varphi \dd\varphi)^2 + 2\sin \theta \sin \varphi \dd\varphi \cos \theta \cos \varphi \dd\theta +  (\cos \theta \sin \varphi \dd\theta)^2\\
+			\frac {\dd z^2}{R^2} &= \sin^2 \theta \dd \theta^2\\
+		\end{align*}
+		Ainsi, en ajoutant ces termes, et en utilisant que $\cos^2 + \sin^2 = 1$, on obtient,
+		\begin{equation}
+			\dd s^2 = R^2(\dd \theta^2 + \sin^2 \theta \dd \varphi^2) \label{eq:ds} \tag{3.5.1}
+		\end{equation}
+	\item Grâce à l'eq \ref{eq:ds}, on a en factorisant par $\dd \theta^2$ dans la racine, on a,
+	\begin{align*}
+		\dd s &= R\sqrt{\dd \theta^2 + \sin^2 \theta \dd \varphi^2}\\
+		&= R \sqrt{1 + \sin^2 \theta \varphi'^2}\dd \theta, \varphi' = \frac{\dd \varphi}{\dd \theta}\\
+		&= R \mathcal L \dd \varphi
+	\end{align*}
+	On remarque que $\partial_\varphi \mathcal L = 0$, donc $\varphi$ est une variable cyclique.
+	Ainsi, $$\partial_{\varphi'} \mathcal L = \lambda \in \mathbb{R}$$
+	Où $\lambda$ est une constante.
+	
+	\item \begin{align*}
+\partial_{\varphi'} \mathcal L &= \lambda \in \mathbb{R}\\
+\implies \frac{\varphi' \sin^2\theta}{\sqrt{1+\sin^2\theta \varphi'^2}} &= \lambda \\
+\implies \varphi'^2(\sin^4\theta - \lambda^2\sin^2\theta) &=\lambda^2\\
+\implies \dd\varphi &= \lambda \frac{\dd\theta}{\sin^2\theta \sqrt{1-\frac {\lambda^2}{\sin^2\theta}}}
+	\end{align*}
+Ainsi, en intégrant,
+	\begin{align*}
+		\varphi - \varphi_0 &= \lambda \int^\theta \frac{\dd \alpha}{\sin^2 \alpha \sqrt{1-\frac {\lambda^2} {\sin^2 \alpha}}}\\
+		&=_{u = \cot \alpha} - \lambda \int^{\cot \theta} \frac{\dd u}{\sqrt{1 - \lambda^2(1+u^2)}}\\
+		&=_{t = \frac u \beta} - \frac \lambda \beta  \int^{\frac{\cot \theta} \beta} \frac{\dd t}{\sqrt{1-t^2}}, \beta^2 = 1-\lambda^2\\
+		&= \arccos(\frac{\cot \theta}{\beta})
+	\end{align*}
+	On a ainsi, \begin{align*}
+		\beta \cos(\varphi - \varphi_0) &= \cot \theta \\
+		\beta \sin \theta \cos(\varphi - \varphi_0) &= \cos \theta \\
+	\end{align*}
+	En utilisant \hyperref[subsubsec:trigo]{quelques formules trigonométriques}, on obtient
+	\begin{align*}
+ R\times (\beta \cos \varphi_0 \cos \varphi \sin \theta + \beta \cos \varphi_0 \sin \varphi \sin \theta &= \cos \theta)\\
+ \implies a x + by -z &=0
+	\end{align*}
+	On a ici substitué, grâce aux coordonnées sphériques, avec $a = \beta \cos\varphi_0 = b$.
+	\end{enumerate}
+	
+	
+	\newpage \section{\hyperref[subsec:CorpsNoir]{Rayonnement du Corps Noir}}\label{subsec:correctionCorpsNoir}
+
+	\subsection{Nombre de modes excités par unité de fréquences}
+	\begin{enumerate}
+	\item C'est l'équation de D'Alembert dans le vide, $$\square \textbf{E} = 0$$
+	\item La cavité force une solution stationnaire, d'où
+	$$\textbf{E} = \cos \omega t \sum_{\mu = 1}^3 E^\mu \sin(k_\mu x^\mu) \textbf{e}_\mu$$
+	On a pour chaque $\mu$, $\textbf{E}(x^\mu = L) =  \textbf{0}$, les conditions aux limites.
+	Donc,
+	\begin{align*}
+		\sin(k_\mu L) &= 0 \\
+		k_\mu L &= n_\mu \pi \\
+		k_\mu &= \frac{n_\mu \pi}{L}
+	\end{align*}
+	\item On sait que la norme de $\textbf{k}$ doit être égale à la somme sur chaque composante, 
+	\begin{align*}
+\norm{\textbf{k}}^2 &= \sum_\mu (\frac{n_\mu \pi}{L})^2 \\
+\Bigl(\frac{2\pi}{\lambda}\Bigr)^2 &= \frac{\pi^2}{L^2}\sum_\mu n_\mu ^2\\
+r^2 = \Bigl(\frac{2L}{\lambda}\Bigr)^2 &= \sum_\mu n_\mu ^2
+	\end{align*}
+	
+	\item On a, le volume de modes de fréquences,
+	$$V(\norm{\textbf{k}}) = \frac 4 3 \pi r^3 = \frac 4 3 \pi \Bigl(\frac{2L}{\lambda}\Bigr)^3 = \frac 4 3 \pi \norm{\textbf{k}}^3$$
+Le nombre de modes est le volume de mode divisé par un volume élémentaire de mode, avec quelques facteurs.	Ainsi, comme $k_\mu = \frac \pi L n_\mu$ et en prenant en compte que $n_\mu \in \mathbb{N}^*$, (facteur $\times \frac 1 8$), et la polarisation (facteur $\times 2$), on obtient, 
+	\begin{align*}
+		\implies N&= \frac{V(\norm{\textbf{k}})}{(\frac \pi L)^3} \\
+		&= \frac 1 8 \times 2 \frac{ \frac 4 3 \pi \norm{\textbf{k}}^3}{\pi^3} L^3 \\
+		&= \frac 1 8 \times 2 \times \frac 4 3 \pi \frac { \Bigl(\frac{2 \pi}{\lambda}\Bigr)^3} {\pi^3}\\
+	 &= \pi \frac{8 L ^3}{\lambda^3} \\
+	&= \frac{8\pi \nu^3}{3 c^3}L^3 \\
+		\implies \frac{\dd N}{\dd \nu} &= \frac{8\pi \nu^2}{c^3}\mathcal V \label{eq:Nnu}\tag{4.6.1}
+	\end{align*}
+
+	
+	\end{enumerate}
+	\subsection{Catastrophe Ultraviolette}
+	\begin{enumerate}
+	\item Le système est en contact avec un thermostat de température $T$, et le système est fermé.
+	\item En 1D, $$\mathcal H = \frac{p^2}{2m} + \frac 1 2\omega^2 q^2$$
+	\item $$p(W = \varepsilon) = \frac 1 Z \exp(-\beta \varepsilon)$$
+	On a également en 1D, $$Z = \frac{1}{h} \int_{\mathbb{R}^2} e^{-\beta \mathcal H} \dd q \dd p$$
+	D'où,
+	$$\int_\mathbb{R} e^{-\beta \frac{p^2}{2m}} dp  = \sqrt{\frac{2m\pi}{\beta}}$$
+	Et, $$\int_\mathbb{R} e^{-\beta \frac{m \omega^2 q^2}{2}} dq  = \sqrt{\frac{2\pi}{m\omega^2\beta}}$$
+	D'où, $$Z = \frac 1 h \frac{2\pi}{\omega \beta} = \frac 1 h\frac{T}{\beta}$$
+	\item On utilise \hyperref[subsubsec:statistique]{la formule de la moyenne de l'énergie}, $$\langle W \rangle = - \partial_\beta \ln Z = \partial_\beta \ln \beta = \frac 1 \beta = k_B T$$
+		\item Il est alors évident de dire que grâce à l'eq \ref{eq:unu} et la question précédente,
+	$$u(\nu,T) = 8\pi \frac{\nu^2}{c^3}k_BT$$
+D'où $u \propto \nu^2$, ce qui implique, $\int_{\mathbb{R}^+ } u \dd\nu \propto \int_{\mathbb{R}^+ }\nu^2 \dd\nu$, qui diverge. 
+	\end{enumerate}
+	\subsection{Loi de Planck}
+
+	\begin{enumerate}
+	\item Les niveaux d'énergies sont discrets, donc on somme : $$Z = \sum_n e^{-\beta W_n} = \frac{1}{1 - e^{-\beta W_1}}$$
+	Ainsi, l'énergie moyenne devient par le même calcul,
+	$$- \partial_\beta \ln Z  = \frac{h\nu}{e^{\beta h\nu}-1}$$
+	En utilisant, $W_1 = h\nu$.
+	\item Il est alors évident que, 
+	\begin{equation*}
+u(\nu, T) = 8\pi\frac{\nu^2}{c^3} \frac{h\nu}{e^{\beta h \nu}-1} \label{eq:unu}\tag{4.6.2}
+	\end{equation*}
+	\end{enumerate}
+	
+	\subsection{Flux énergétique émis par un corps noir}
+	
+
+\begin{enumerate}
+	\item {Flux énergétique monochromatique dans une direction donnée.}
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[scale=1.5]
+			% Surface
+			\fill[gray!10] (0,0) rectangle (3,0.1);
+			\draw[thick] (0,0) -- (3.2,0) node[right] {Surface};
+			
+			% Normal vector
+			\draw[->, thick, blue] (1.5,0) -- (1.5,1.2) node[above] {$\vec{n}$};
+			
+			% Emitted ray at angle theta
+			\draw[->, thick, red] (1.5,0) -- (2.8,0.8) node[above right] {$\text{Rayonnement}$};
+			
+			% Projection line
+			\draw[dashed] (2.8,0.8) -- (2.8,0);
+			
+			% Angle theta
+			\draw (1.8,0) arc[start angle=0, end angle=30, radius=0.4];
+			\node at (2,0.15) {$\theta$};
+		\end{tikzpicture}
+		\caption{Le rayonnement est émis avec un angle $\theta$ par rapport à la normale : seul $\cos\theta$ contribue au flux à travers la surface. En effet, il sort dans toutes les directions, on va devoir intégrer sur $[0, \frac \pi 2]$, et seule la contribution de $\cos \theta$ (la projection), contribue.}
+		\label{fig:ahah}
+	\end{figure}
+	
+	L’intensité spectrale directionnelle $I_\nu(\theta, \varphi)$ est définie comme l’énergie transportée par unité de surface, de temps, de fréquence et de stéradian, dans la direction $(\theta, \varphi)$.
+	
+	Le flux énergétique monochromatique émis dans la direction $(\theta, \varphi)$ par rapport à la normale à la surface est :
+	\[
+	\text{d}\Phi_\nu = I_\nu(\theta, \varphi) \cos\theta \, \text{d}\Omega,
+	\]
+	où $\text{d}\Omega$ est l’élément de solide d’angle autour de cette direction, et $\cos\theta$ vient de la projection du flux sur la normale à la surface (cf. fig \ref{fig:ahah}).
+
+
+	
+	\item {Flux énergétique total émis à la fréquence $\nu$.}
+	
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[scale=2]
+			% Hemisphere and surface
+			\draw[thick] (0,0) circle(1);
+			\draw[dashed] (-1,0) arc[start angle=180, end angle=360, radius=1];
+			\fill[blue!10, opacity=0.4] (0,0) -- (1,0) arc (0:180:1) -- cycle;
+			
+			% Surface
+			\draw[thick] (-1.3,0) -- (1.3,0);
+			\node at (2,0.1) {Surface};
+			
+			% Rays going outward
+			\foreach \angle in {30, 60, 90, 120, 150}
+			\draw[->, thick, red] (0,0) -- ({cos(\angle)}, {sin(\angle)});
+			
+			% Label
+			\node at (0,-0.25) {$\Omega_+$};
+		\end{tikzpicture}
+		\caption{Le rayonnement sort dans toutes les directions de l’hémisphère $\Omega_+$ : on intègre seulement pour $\theta \in [0, \pi/2]$.}
+		\label{fig:sortant}
+	\end{figure}
+	Le flux énergétique total $I(\nu)$ émis à la fréquence $\nu$ par unité de surface est obtenu en intégrant le flux élémentaire sur tout l’hémisphère sortant (i.e. directions telles que $0 \leq \theta \leq \pi/2$, c.f. fig \ref{fig:sortant}) :
+	\[
+	I(\nu) = \int_{\Omega_+} I_\nu(\theta, \varphi) \cos\theta \, \text{d}\Omega.
+	\]
+
+
+
+	\item {Cas d’un rayonnement isotrope}
+	
+	Si le rayonnement est isotrope, on a $I_\nu(\theta, \varphi) = I_\nu = \text{constante}$ (indépendant de la direction). On peut donc sortir $I_\nu$ de l’intégrale :
+	\[
+	I(\nu) = I_\nu \int_{\Omega_+} \cos\theta \, \text{d}\Omega.
+	\]
+	Or :
+	\[
+	\int_{\Omega_+} \cos\theta \, \text{d}\Omega = \int_0^{2\pi} \int_0^{\pi/2} \cos\theta \sin\theta \, \text{d}\theta \, \text{d}\varphi.
+	\]
+	On calcule :
+	\[
+	\int_0^{\pi/2} \cos\theta \sin\theta \, \text{d}\theta = \frac{1}{2},
+	\quad \text{et} \quad \int_0^{2\pi} \text{d}\varphi = 2\pi.
+	\]
+	D’où :
+	\[
+	I(\nu) = I_\nu \cdot 2\pi \cdot \frac{1}{2} = \pi I_\nu.
+	\]
+	
+	\item {Intensité totale émise (toutes fréquences confondues)}
+
+	
+	On cherche à démontrer que la densité spectrale d'énergie volumique $u(\nu)$ s'exprime en fonction de l'intensité directionnelle $I_\nu(\textbf{n})$ par :
+	\[
+	u(\nu) = \frac{1}{c} \int_{S^2} I_\nu(\textbf{n})\, \dd\Omega.
+	\]
+
+	\begin{itemize}
+		\item $u(\nu)\, \dd\nu$ représente l'énergie électromagnétique contenue dans une unité de volume, pour des ondes dont la fréquence est comprise entre $\nu$ et $\nu + \dd\nu$.
+		\item $I_\nu(\textbf{n})$ est l'intensité spectrale dans la direction $\textbf{n}$, c’est-à-dire l’énergie transportée par unité de temps, par unité de surface perpendiculaire, par unité de fréquence, par unité d’angle solide.
+	\end{itemize}
+	
+	
+	Considérons une surface élémentaire $\dd s$ et un faisceau de rayonnement incident selon une direction $\textbf{n}$ faisant un angle $\theta$ avec la normale à $\dd s$.
+	
+	Le volume $V$ balayé par les rayons dans la direction $\textbf{n}$ pendant un petit intervalle de temps $\dd t$ est donné par :
+	\[
+	\dd V = c\, \dd t \cdot \dd s \cdot \cos\theta.
+	\]
+	
+	L’énergie transportée à travers la surface $\dd s$ par ces rayons pendant ce temps est :
+	\[
+	\dd E = I_\nu(\textbf{n}) \cdot \cos\theta \cdot \dd s \cdot \dd t \cdot \dd\Omega.
+	\]
+	
+	On en déduit que l’énergie par unité de volume associée à la direction $\textbf{n}$ est :
+	\[
+	\dv{E}{V} = \frac{I_\nu(\textbf{n}) \cdot \cos\theta \cdot \dd s \cdot \dd t \cdot \dd\Omega}{c\, \dd t \cdot \dd s \cdot \cos\theta}
+	= \frac{I_\nu(\textbf{n})}{c} \dd\Omega.
+	\]
+
+	
+	Pour obtenir la densité d’énergie totale, on somme sur toutes les directions de propagation sur la sphère unité :
+	\[
+	u(\nu) = \frac{1}{c} \int_{S^2} I_\nu(\textbf{n})\, \dd\Omega.
+	\]
+
+	
+	Si le rayonnement est isotrope, alors $I_\nu(\textbf{n}) = I_\nu$ est indépendant de la direction. L'intégrale devient :
+	\[
+	u(\nu) = \frac{I_\nu}{c} \int_{S^2} \dd\Omega = \frac{I_\nu}{c} \cdot 4\pi.
+	\]
+	
+D'où,
+	
+	\[
+	\boxed{u(\nu) = \frac{4\pi}{c} I_\nu}
+	\]
+	
+
+	\item {Lien entre l’intensité totale et $u(\nu)$}
+	
+	On reprend l’expression précédente :
+	\[
+	I = \int_0^\infty \pi I_\nu \, \text{d}\nu,
+	\]
+	et on injecte $I_\nu = \frac{c}{4\pi} u(\nu)$ :
+	\[
+	I = \int_0^\infty \pi \cdot \frac{c}{4\pi} u(\nu) \, \text{d}\nu = \frac{c}{4} \int_0^\infty u(\nu) \, \text{d}\nu.
+	\]
+\end{enumerate}
+
+	
+	\subsection{Loi de Stefan}
+
+	\begin{enumerate}
+	\item On a démontré précédemment que, $$I(T) = \frac c 4\int_{\mathbb{R}^+} u(\nu, T)\dd\nu$$
+	On remplace par ce qui a été obtenu l'eq \ref {eq:unu},
+	\begin{align*}
+		I &= \frac c 4\frac{8\pi}{c^3}\int_{\mathbb{R}^+}\frac{h\nu^3}{e^{\beta h \nu}-1}\dd \nu\\
+		&\underset{x = \beta h \nu}{=} \frac{2\pi k_B^4}{h^3c^2}T^4\int_0^\infty \frac {x^3}{e^x-1}\text{d}x
+	\end{align*}
+Avec, on le rappelle, $\beta = \frac 1 {k_B T}$.
+	\item En faisant un développement limité, on arrive facilement a éliminer la division par zéro. En effet, en $0$, 
+	$$e^x-1 \underset{0}{=} x + o(x) \implies \frac{x^3}{e^x-1} \underset{0}{=} x^2 +o(x^2)$$
+	Ce qui converge bien en $0$.
+	En $\infty$, l'exponentielle permet la convergence de l'intégrale.
+	\begin{align*}
+		\int_{\mathbb{R}^+} \frac{x^3}{e^x-1}\dd x &= \int_{\mathbb{R}^+} \dd x \text{ }x^3 e^{-x}\frac{1}{1-e^{-x}}\\
+		&=_{\text{DSE}} \int_{\mathbb{R}^+} \dd x \text{ } x^3 \sum_{n\in \mathbb{N}^*} e^{-nx}\\
+		&\underset{u = nx}{=}\sum_{n\in \mathbb{N}^*} \frac 1 {n^4} \int_{\mathbb{R}^+} \dd u \text{ } u^3 e^{-u}\\
+		&= \zeta(4)\Gamma(4)\\
+	&= 6 \zeta(4)
+	\end{align*}
+	\item Grâce à la théorie de Fourier, on peut démontrer que $\zeta(4) = \frac{\pi^4}{90}$.
+	On a alors,
+	\begin{equation*}
+		I(T) = \frac{2\pi^5 k_B^4}{15h^3c^2} T^4, \label{eq:I(T)} \tag{4.6.3}
+	\end{equation*}
+	\end{enumerate}
+	\subsection{Application : perte de masse solaire par rayonnement électromagnétique}
+On considère le Soleil comme un corps noir à température $T = 5775\,\text{K}$.  
+La puissance totale rayonnée par le Soleil est donnée par la loi de Stefan-Boltzmann :
+\[
+P = I \cdot S = \sigma T^4 \cdot 4 \pi R^2,
+\]
+où 
+\[
+\sigma = 5{,}67 \times 10^{-8}\ \text{W.m}^{-2}\text{K}^{-4}, \quad R = 6{,}96 \times 10^{8}\ \text{m}
+\]
+est le rayon du Soleil.
+
+Calculons $P$ :
+\[
+P = 5{,}67 \times 10^{-8} \times (5775)^4 \times 4 \pi (6{,}96 \times 10^{8})^2.
+\]
+
+On évalue :
+\[
+(5775)^4 \simeq 1{,}11 \times 10^{15},
+\]
+\[
+4 \pi (6{,}96 \times 10^{8})^2 = 4 \pi \times 4{,}84 \times 10^{17} \simeq 6{,}08 \times 10^{18}.
+\]
+
+Ainsi,
+\[
+P \simeq 5{,}67 \times 10^{-8} \times 1{,}11 \times 10^{15} \times 6{,}08 \times 10^{18} \simeq 3{,}83 \times 10^{26}\ \text{W}.
+\]
+
+D'après la relation d'équivalence masse-énergie d'Einstein,
+\[
+E = m c^2,
+\]
+la perte de masse $\dot{m}$ par unité de temps liée à cette puissance rayonnée est
+\[
+\dot{m} = \frac{P}{c^2},
+\]
+avec $c = 3{,}00 \times 10^8\ \text{m/s}$.
+
+Donc,
+\[
+\dot{m} = \frac{3{,}83 \times 10^{26}}{(3{,}00 \times 10^8)^2} = \frac{3{,}83 \times 10^{26}}{9 \times 10^{16}} \simeq 4{,}26 \times 10^9\ \text{kg/s}.
+\]
+
+
+Sachant que l'âge du Soleil est d'environ $t = 4{,}6 \times 10^{9}$ ans, soit
+\[
+t = 4{,}6 \times 10^{9} \times 3{,}15 \times 10^{7} \simeq 1{,}45 \times 10^{17}\ \text{s},
+\]
+la masse totale perdue est
+\[
+\Delta m = \dot{m} \times t = 4{,}26 \times 10^{9} \times 1{,}45 \times 10^{17} \simeq 6{,}18 \times 10^{26}\ \text{kg}.
+\]
+
+En nombre de masses terrestres, avec $m_T = 6 \times 10^{24}\ \text{kg}$,
+\[
+\frac{\Delta m}{m_T} = \frac{6{,}18 \times 10^{26}}{6 \times 10^{24}} \simeq 103.
+\]
+ 
+Ainsi, le Soleil perd environ $4{,}3 \times 10^{9}$ kg/s par rayonnement.  
+Depuis sa formation, il a perdu environ 100 fois la masse de la Terre.
+
+
+	\newpage \section{\hyperref[subsec:Sphère_min]{Minimisation du potentiel gravitationnel par une boule}}\label{subsec:correctionSphère_min}
+		
+		\subsection{Formule de Hadamard}
+		Soit \(F : \RR^3 \to \RR\) de classe \(\mathcal{C}^1\), et soit \(\Omega_\varepsilon\) une déformation lisse de \(\Omega\) telle que, pour \(x \in \partial \Omega\),
+		\[
+		x \;\mapsto\; x + \varepsilon\,f(x)\,n(x),
+		\]
+		prolongée en tout \(\Omega\). On souhaite démontrer :
+		\[
+		\left.\frac{\dd}{\dd\varepsilon}\right|_{\varepsilon=0} 
+		\int_{\Omega_\varepsilon} F(x)\,\dd^3x 
+		\;=\; \int_{\partial \Omega} F(x)\,f(x)\,\dd S(x),
+		\tag{4.7.1}\label{eq:Had}
+		\]
+		où \(\dd S\) est l’élément de surface sur \(\partial \Omega\).
+		\begin{enumerate}
+			\item \textbf{Étude de la fonction \(\det : \mathcal{M}_n(\RR) \to \RR\).}
+			\begin{enumerate}
+				\item \emph{Différentiabilité de \(\det\).}\\
+				Rappelons que pour \(M = (m_{ij}) \in \mathcal{M}_n(\RR)\),
+				\[
+				\det(M) \;=\; \sum_{\sigma \in S_n} \text{sign}(\sigma)\,\prod_{i=1}^n m_{i,\sigma(i)}.
+				\]
+				C’est donc un polynôme en les \(n^2\) variables \(m_{ij}\). Toute fonction polynomiale \(\RR^{n^2}\to\RR\) est de classe \( \mathcal{C}^\infty\). En particulier, \(\det\) est différentiable en tout point de \(\mathcal{M}_n(\RR)\), notamment au voisinage de l’identité \(I\).
+				
+				\item \emph{Développement de \(\det(I + \varepsilon M)\).}\\
+				On veut montrer :
+				\[
+				\forall M\in\mathcal{M}_n(\RR),\quad
+				\det\bigl(I + \varepsilon M\bigr) 
+				\underset{\varepsilon\to0}{=} 1 \;+\; \varepsilon\,\Tr(M) \;+\; o(\varepsilon),
+				\]
+				ce qui entraîne 
+				\(\bigl.\frac{\dd}{\dd\varepsilon}\bigr|_{\varepsilon=0}\,\det(I + \varepsilon M) = \Tr(M).\)
+				
+			Il suffit d'écrire $M$ en matrice triangulaire supérieure, le déterminant devient alors le produit des valeurs propres !
+			
+			Ainsi,
+			$$\det(I + \varepsilon M) = \prod_{i=1}^n (1+\varepsilon \lambda_i) = 1 + \varepsilon \sum_{i=1}^n \lambda_i + O(\varepsilon^2) = 1+\varepsilon \Tr M + o(\varepsilon)$$
+			Ce qui permet de conclure.
+			\item On se ramène au cas précédent en factorisant par $X$.
+			\begin{align*}
+				\det(X+H) &= \det X \det(I + X^{-1}H)\\
+				 &= \det X \Bigl(1 + \tr(X^{-1}H) + o(\norm{H})\Bigr)\\
+				  &= \det X + \tr(^t\text{Com}(X) H) + o(\norm{H})
+			\end{align*}
+			Ainsi on a alors,
+			$$\dd(\det(H))(X) = \Tr(^t\text{Com}(X) H)$$
+			\end{enumerate}
+			
+			\item \textbf{Changement de variables et calcul du jacobien.}\\
+			On effectue le changement de variable
+			\[
+			x = x(u) = u + \varepsilon\,f(u)\,n(u), 
+			\qquad u \in \Omega.
+			\]
+			Pour calculer 
+			\( \det\Bigl(\frac{\partial x}{\partial u}\Bigr)\) au premier ordre en \(\varepsilon\), on note
+			\[
+			x_i(u) = u_i + \varepsilon\,f(u)\,n_i(u), 
+			\quad i=1,\dots,n.
+			\]
+			Alors 
+			\[
+			\frac{\partial x_i}{\partial u_j}
+			= \delta_{ij} 
+			+ \varepsilon\,\Bigl(\partial_j f(u)\Bigr)\,n_i(u)
+			+ \varepsilon\,f(u)\,\partial_j n_i(u).
+			\]
+			Posons la matrice 
+			\(\displaystyle A(u) = \bigl(\partial_j f\,n_i + f\,\partial_j n_i\bigr)_{i,j}\). 
+			On a donc 
+			\(\displaystyle \frac{\partial x}{\partial u} = I + \varepsilon\,A(u)\). 
+			Par le développement précédent,
+			\[
+			\det\Bigl(\frac{\partial x}{\partial u}\Bigr) 
+			= \det\bigl(I + \varepsilon\,A(u)\bigr) 
+			= 1 + \varepsilon\,\Tr\bigl(A(u)\bigr) + o(\varepsilon).
+			\]
+			En remarquant que \(\Tr(A(u)) = \nabla \!\cdot\!\bigl(f\,n\bigr)\), on obtient
+			\[
+			\det\Bigl(\frac{\partial x}{\partial u}\Bigr) 
+			= 1 + \varepsilon\,\nabla\!\cdot\!\bigl(f\,n\bigr)(u) + o(\varepsilon).
+			\]
+			
+			\item \textbf{Développement de \(F(x + \varepsilon\,v(x))\).}\\
+			Soit \(F : \RR^n \to \RR\in \mathcal{C}^1\), \(v : \RR^n \to \RR^n\). Pour fixer \(x\), définissons 
+			\(\varphi(\varepsilon) = F\bigl(x + \varepsilon\,v(x)\bigr)\). 
+			Par la règle de dérivation en chaîne en dimension \(1\),
+			\[
+			\varphi'(\varepsilon) 
+			= \diff{\varepsilon} F(x + \varepsilon v(x))  = v(x)\,\cdot \nabla F\bigl(x + \varepsilon\,v(x)\bigr).
+			\]
+			En particulier, pour \(\varepsilon \to 0\),
+			\[
+			\varphi(\varepsilon) 
+			= \varphi(0) + \varepsilon\,\varphi'(0) + o(\varepsilon) 
+			= F(x) + \varepsilon\,v(x)\cdot\nabla F(x) + o(\varepsilon).
+			\]
+			D’où 
+			\[
+			\forall x\in\RR^n,\quad 
+			F\bigl(x + \varepsilon\,v(x)\bigr)
+			= F(x) + \varepsilon\,v(x)\cdot\nabla F(x) + o(\varepsilon).
+			\]
+			
+			\item \textbf{Obtention de la formule de Hadamard.}\\
+			On fait le changement \(x(u)\) dans 
+			\(\displaystyle \int_{\Omega_\varepsilon} F(x)\,\dd^3x\). 
+			Alors 
+			\[
+			\int_{\Omega_\varepsilon} F(x)\,\dd^3x 
+			= \int_{\Omega} F\bigl(x(u)\bigr)\,
+			\det\Bigl(\frac{\partial x}{\partial u}\Bigr)\,\dd^3u.
+			\]
+			D’après les deux points précédents,
+			\[
+			F\bigl(x(u)\bigr) = F(u) + \varepsilon\,f(u)\,n(u)\cdot\nabla F(u) + o(\varepsilon),
+			\quad
+			\det\Bigl(\tfrac{\partial x}{\partial u}\Bigr) = 1 + \varepsilon\,\nabla\!\cdot\!\bigl(f\,n\bigr)(u) + o(\varepsilon).
+			\]
+			En multipliant et en ne retenant que le terme en \(\varepsilon\), on trouve
+			\[
+			F\bigl(x(u)\bigr)\,\det\!\Bigl(\tfrac{\partial x}{\partial u}\Bigr)
+			= F(u) 
+			+ \varepsilon\,\Bigl(F(u)\,\nabla\!\cdot\!(f\,n)(u)
+			+ f(u)\,n(u)\cdot\nabla F(u)\Bigr)
+			+ o(\varepsilon).
+			\]
+			Ainsi
+			\[
+			\int_{\Omega_\varepsilon} F(x)\,\dd^3x 
+			= \int_{\Omega} F(u)\,\dd^3u
+			+ \varepsilon \int_{\Omega} \Bigl(F\,\nabla\!\cdot\!(f\,n)
+			+ f\,n\cdot\nabla F\Bigr)\,\dd^3u
+			+ o(\varepsilon).
+			\]
+			Or 
+			\[
+			F\,\nabla\!\cdot\!(f\,n) + f\,n\cdot\nabla F 
+			= \nabla\!\cdot\!\bigl(F\,f\,n\bigr),
+			\]
+			donc par le théorème de la divergence,
+			\[
+			\int_{\Omega} \nabla\!\cdot\!\bigl(F\,f\,n\bigr)\,\dd^3u 
+			= \int_{\partial \Omega} F(x)\,f(x)\,\dd S(x).
+			\]
+			Finalement,
+			\[
+			\left.\frac{\dd}{\dd\varepsilon}\right|_{\varepsilon=0} 
+			\int_{\Omega_\varepsilon} F(x)\,\dd^3x 
+			= \int_{\partial \Omega} F(x)\,f(x)\,\dd S(x),
+			\]
+			ce qui établit la formule de Hadamard \(\eqref{eq:Had}\).
+			
+		\end{enumerate}
+		
+		\subsection{Lien avec le potentiel gravitationnel}
+		\begin{enumerate}
+			\item \textbf{Signe de \(E[\Omega]\) et définition de \(\mathcal{I}[\Omega]\).}\\
+			On a 
+			\[
+			E[\Omega] = -\frac{G}{2}\,\rho^2 
+			\iint_{\Omega \times \Omega} \frac{1}{\lvert x - x' \rvert}\,\dd^3x\,\dd^3x'.
+			\]
+			Comme \(G>0\) et \(\rho>0\), il suit immédiatement \(E[\Omega] < 0\). 
+			Minimiser \(E[\Omega]\) revient donc à \emph{maximiser} 
+			\[
+			\mathcal{I}[\Omega] 
+			:= \iint_{\Omega \times \Omega} \frac{1}{\lvert x - x' \rvert}\,\dd^3x\,\dd^3x'.
+			\]
+			
+			\item \textbf{Calcul du potentiel au centre d’une boule.}\\
+			Supposons \(\Omega = B(0,R)\) de volume fixe 
+			\(\tfrac{4}{3}\pi R^3 = V\). La densité est \(\rho\). Pour \(x=0\),
+			\[
+			U(0) = -G\,\rho 
+			\int_{\Omega} \frac{1}{\lvert x' \rvert}\,\dd^3x'
+			= -G\,\rho \int_{0}^{R} \int_{S^2} \frac{1}{r}\,r^2\,\sin\theta\,\dd\theta\,\dd\varphi\,\dd r.
+			\]
+			En coordonnées sphériques,
+			\[
+			\int_{S^2} \sin\theta\,\dd\theta\,\dd\varphi 
+			= 4\pi, 
+			\quad 
+			\text{et} 
+			\quad 
+			\int_{0}^{R} \frac{r^2}{r}\,\dd r 
+			= \int_{0}^{R} r\,\dd r 
+			= \frac{R^2}{2}.
+			\]
+			Donc
+			\[
+			U(0) = -G\,\rho \cdot 4\pi \cdot \frac{R^2}{2}
+			= -2\pi\,G\,\rho\,R^2.
+			\]
+			D’où l’expression explicite du potentiel au centre.
+			
+		\end{enumerate}
+		
+		\subsection{La sphère ?}
+		\begin{enumerate}
+			\item \textbf{Variation première de \(\mathcal{F}\).}\\
+			On écrit 
+			\(\displaystyle \mathcal{F}[\Omega_\varepsilon]\) 
+			et on applique la formule de Hadamard avec 
+			\(F(x) = \int_\Omega \frac{1}{\lvert x - x' \rvert}\,\dd^3x'\). 
+			Alors
+			\[
+			\delta\mathcal{F} 
+			= \left.\frac{\dd}{\dd\varepsilon}\right|_{\varepsilon=0} 
+			\iint_{\Omega_\varepsilon \times \Omega_\varepsilon} \frac{1}{\lvert x - y \rvert}\,\dd x\,\dd y.
+			\]
+			Ainsi, on a en utilisant la formule de Hadamard pour $\Omega^2$,
+			\[
+			\delta\mathcal{F} 
+			= 2 \int_{\partial \Omega} \biggl(\int_{\Omega} \frac{1}{\lvert x - x' \rvert}\,\dd^3x' \biggr)\,f(x)\,\dd S(x).
+			\]
+			\item \textbf{Introduction du multiplicateur de Lagrange \(\lambda\).}\\
+			On veut minimiser \(\mathcal{F}\) sous la contrainte \(V[\Omega]=V\). 
+			On définit la fonctionnelle de Lagrange
+			\[
+			\mathcal{L}[\Omega] 
+			:= \mathcal{F}[\Omega] - \lambda\,V[\Omega],
+			\quad \lambda \in \RR.
+			\]
+			Sa variation première s’écrit
+			\[
+			\delta\mathcal{L} 
+			= \delta\mathcal{F} - \lambda\,\delta V 
+			= 2 \int_{\partial \Omega} \biggl(\int_{\Omega} \frac{1}{\lvert x - x' \rvert}\,\dd^3x' \biggr)\,f(x)\,\dd S(x)
+			\;-\; \lambda \int_{\partial \Omega} f(x)\,\dd S(x).
+			\]
+			Par linéarité,
+			\[
+			\delta\mathcal{L} 
+			= \int_{\partial \Omega} \Bigl(2 \int_{\Omega} \frac{1}{\lvert x - x' \rvert}\,\dd^3x' - \lambda \Bigr)\,f(x)\,\dd S(x).
+			\]
+			
+			\item \textbf{Condition stationnaire pour la boule.}\\
+			Pour que \(\delta\mathcal{L} = 0\) pour \emph{toute} perturbation \(f\), il faut et il suffit que 
+			\[
+			2 \int_{\Omega} \frac{1}{\lvert x - x' \rvert}\,\dd^3x' - \lambda 
+			\;=\; 0,
+			\quad \text{pour tout } x \in \partial \Omega.
+			\]
+			Autrement dit, la fonction 
+			\(\displaystyle x\mapsto \int_{\Omega} \frac{1}{\lvert x - x' \rvert}\,\dd^3x'\)
+			est constante sur \(\partial \Omega\). 
+			
+			Or si \(\Omega = B(0,R)\) est une boule, alors, par symétrie sphérique, pour tout 
+			\(x \in \partial B(0,R)\) (i.e.\ \(\lvert x \rvert = R\)), l’intégrale
+			\(\displaystyle \int_{B(0,R)} \frac{1}{\lvert x - x' \rvert}\,\dd^3x'\) 
+			ne dépend que de \(\lvert x \rvert = R\). \\ 
+			Ainsi elle est \emph{constante} sur \(\partial B\). 
+			On en déduit que la boule satisfait la condition stationnaire \(\delta\mathcal{L}=0\) pour tout \(f\).
+			
+			\item \textbf{(\emph{Bonus}) Variation seconde et minimum local.}\\
+			Pour montrer que la boule est un \emph{minimum local} de \(\mathcal{F}\) sous contrainte \(V\), il faut vérifier que la variation seconde 
+			\(\delta^2 \mathcal{L}[f]\) est strictement positive pour toute perturbation \(f\neq 0\) satisfaisant \(\int_{\partial\Omega} f\,\dd S = 0\).
+			
+			Sans détails complets ici, on peut écrire la variation seconde sous la forme d’une forme bilinéaire :
+			\[
+			\delta^2 \mathcal{F}[f] 
+			= \int_{(\partial\Omega)^2} K(x,x')\,f(x)\,f(x')\,\dd S(x)\,\dd S(x')
+			\;+\; \int_{\partial\Omega} f(x)^2 \kappa(x)\dd S(x),
+			\]
+			avec un noyau \(K(x,x') = \frac{1}{\lvert x - x' \rvert}\) et $\kappa(x)$ la courbure moyenne en $x$.\\ 
+			Pour la boule, grâce au développement en harmoniques sphériques, on montre que cette forme est strictement positive sur 
+			\(\bigl\{\,f\mid \int_{\partial\Omega} f\,\dd S = 0\,\bigr\}\).  
+			Cela prouve que la boule est un minimum local.
+			
+			\item \textbf{Conclusion physique.}\\
+			La boule minimise l’énergie gravitationnelle interne pour un volume fixé.  
+			En physique, cela explique que, dans l’approximation d’un corps massif autogravitant au repos, la configuration stationnaire de moindre énergie est sphérique. C’est la raison pour laquelle les grands objets de l’Univers (étoiles, planètes en l’absence de force de marée ou de rotation rapide) tendent vers une forme sphérique.
+		\end{enumerate}
+		
+	\newpage \section{\hyperref[subsec:Rel_eq]{Mouvement relativiste d'une particule chargée  $\triangle$}}\label{subsec:correctionRel_eq}
+
+	
+	\newpage \section{\hyperref[subsec:Hyd]{Hydrodynamique relativiste et collisions de noyaux lour\text ds $\triangle$}}\label{subsec:correctionHyd}
+	
+	\newpage \section{\hyperref[subsec:Atom]{Atome d'hydrogène et équation radiale}}\label{subsec:correctionAtom}
+	
+	\subsection{Séparation des variables et équation radiale}
+	
+	\begin{enumerate}
+		\item \textbf{Séparation des variables}
+		
+		Le Hamiltonien de l’atome d’hydrogène, dans la base sphérique, s’écrit :
+		\[
+		\textbf{H} = -\frac{\hbar^2}{2m_e} \nabla^2 - \frac{e^2}{r}.
+		\]
+		En coordonnées sphériques, le Laplacien est
+		\[
+		\nabla^2 = \frac{1}{r^2} \frac{\partial}{\partial r}\left( r^2 \frac{\partial}{\partial r} \right) - \frac{\vb{L}^2}{\hbar^2 r^2},
+		\]
+		où $\vb{L}^2$ est le carré du moment angulaire orbital.
+		
+		On cherche une solution de la forme 
+		\[
+		\psi(r, \theta, \phi) = R(r) Y_{\ell m}(\theta, \phi),
+		\]
+		où $Y_{\ell m}$ sont les harmoniques sphériques propres simultanées de $\vb{L}^2$ et $\textbf{L}_z$, vérifiant
+		\[
+		\vb{L}^2 Y_{\ell m} = \hbar^2 \ell(\ell+1) Y_{\ell m}, \quad \textbf{L}_z Y_{\ell m} = \hbar m Y_{\ell m}.
+		\]
+		
+		En injectant dans l'équation de Schrödinger stationnaire $\textbf{H}\psi = E\psi$, on obtient l’équation radiale suivante :
+		\[
+		-\frac{\hbar^2}{2m_e} \left[ \frac{1}{r^2} \frac{\dd}{\dd r} \left( r^2 \frac{\dd R}{\dd r} \right) - \frac{\ell(\ell+1)}{r^2} R \right] - \frac{e^2}{r} R = E R.
+		\]
+		En développant la dérivée radiale,
+		\[
+		\frac{1}{r^2} \frac{\dd}{\dd r} \left( r^2 \frac{\dd R}{\dd r} \right) = \frac{\dd^2 R}{\dd r^2} + \frac{2}{r} \frac{\dd R}{\dd r},
+		\]
+		ce qui donne l’équation annoncée :
+		\[
+		-\frac{\hbar^2}{2m_e} \left( \frac{\dd^2 R}{\dd r^2} + \frac{2}{r} \frac{\dd R}{\dd r} - \frac{\ell(\ell+1)}{r^2} R \right) - \frac{e^2}{r} R = E R.
+		\]
+		
+		\item \textbf{Changement de fonction : $u(r) = r R(r)$}
+		
+		En posant $u(r) = r R(r)$, on calcule :
+		\[
+		\frac{\dd R}{\dd r} = \frac{1}{r} \frac{\dd u}{\dd r} - \frac{u}{r^2},
+		\]
+		\[
+		\frac{\dd^2 R}{\dd r^2} = \frac{1}{r} \frac{\dd^2 u}{\dd r^2} - \frac{2}{r^2} \frac{\dd u}{\dd r} + \frac{2u}{r^3}.
+		\]
+		
+		En remplaçant dans l’équation radiale, les termes en $u/r^3$ s’annulent et on obtient :
+		\[
+		-\frac{\hbar^2}{2m_e} \frac{\dd^2 u}{\dd r^2} + \left[ \frac{\hbar^2 \ell(\ell+1)}{2 m_e r^2} - \frac{e^2}{r} \right] u = E u.
+		\]
+		
+		\item \textbf{Changement de variable adimensionnelle}
+		
+		On définit 
+		\[
+		\kappa = \sqrt{\frac{2m_e |E|}{\hbar^2}}, \quad \rho = \kappa r.
+		\]
+		
+		L’équation devient
+		\[
+		-\frac{\hbar^2}{2m_e} \kappa^2 \frac{\dd^2 u}{\dd \rho^2} + \left[ \frac{\hbar^2 \ell(\ell+1)}{2m_e r^2} - \frac{e^2}{r} \right] u = E u.
+		\]
+		
+		Comme $E = -|E|$, on divise toute l'équation par $-\frac{\hbar^2 \kappa^2}{2m_e}$ :
+		\[
+		\frac{\dd^2 u}{\dd \rho^2} = \left[ \frac{\ell(\ell+1)}{\rho^2} - \frac{2m_e e^2}{\hbar^2 \kappa} \frac{1}{\rho} + 1 \right] u.
+		\]
+		
+		On pose alors 
+		\[
+		\rho_0 = \frac{m_e e^2}{\hbar^2 \kappa}.
+		\]
+		
+		Ce qui donne l’équation annoncée :
+		\[
+		\frac{\dd^2 u}{\dd \rho^2} = \left[ \frac{\ell(\ell+1)}{\rho^2} - \frac{\rho_0}{\rho} + 1 \right] u.
+		\]
+		
+		\item \textbf{Ansatz sur la forme de $u(\rho)$}
+		
+		On pose
+		\[
+		u(\rho) = \rho^{\ell+1} e^{-\rho/2} v(\rho).
+		\]
+		
+		En calculant la dérivée seconde de $u(\rho)$ et en remplaçant dans l'équation différentielle, on obtient que $v(\rho)$ satisfait :
+		\[
+		\rho \frac{\dd^2 v}{\dd \rho^2} + (2\ell + 2 - \rho) \frac{\dd v}{\dd \rho} + (\rho_0 - 2\ell - 2) v = 0.
+		\]
+		
+		Cette équation est celle de la fonction hypergéométrique confluente.
+		
+		\item \textbf{Série en puissance et condition de terminaison}
+		
+		On développe
+		\[
+		v(\rho) = \sum_{k=0}^\infty c_k \rho^k.
+		\]
+		
+		L'équation donne une relation de récurrence entre les coefficients $c_k$. En général, cette série diverge pour $\rho \to \infty$ sauf si la série est polynomiale, c’est-à-dire si elle s’arrête à un certain ordre fini $\hat{k}$. La condition de terminaison est
+		\[
+		\rho_0 = 2 n,
+		\]
+		où 
+		\[
+		n = \hat{k} + \ell + 1 \in \mathbb{N}^*.
+		\]
+		
+		\item \textbf{Expression des niveaux d’énergie liés}
+		
+		En réinjectant la définition de $\rho_0$,
+		\[
+		\rho_0 = \frac{m_e e^2}{\hbar^2 \kappa} = 2n \quad \Rightarrow \quad \kappa = \frac{m_e e^2}{2 \hbar^2 n}.
+		\]
+		
+		Or
+		\[
+		E = - \frac{\hbar^2 \kappa^2}{2 m_e} = - \frac{m_e e^4}{2 \hbar^2} \cdot \frac{1}{n^2}.
+		\]
+		
+		Ce sont les niveaux d’énergie quantifiés de l’atome d’hydrogène.
+		
+		\item \textbf{Degré de dégénérescence}
+		
+		Pour un niveau $n$, les valeurs possibles de $\ell$ sont
+		\[
+		\ell = 0, 1, 2, \ldots, n-1,
+		\]
+		et pour chaque $\ell$, les valeurs de $m$ vont de
+		\[
+		m = -\ell, -\ell+1, \ldots, \ell-1, \ell,
+		\]
+		soit $(2\ell + 1)$ valeurs.
+		
+		Le degré de dégénérescence est donc
+		\[
+		g_n = \sum_{\ell=0}^{n-1} (2\ell + 1) = 2 \sum_{\ell=0}^{n-1} \ell + \sum_{\ell=0}^{n-1} 1 = 2 \frac{(n-1)n}{2} + n = n^2.
+		\]
+		
+		\textit{Interprétation :} Dans ce modèle non-relativiste sans prise en compte des interactions spin-orbite ni effets relativistes, l'énergie dépend uniquement du nombre quantique principal $n$. Ceci reflète la symétrie plus large du problème (invariance de rotation et symétrie de type Runge-Lenz), qui entraîne cette dégénérescence élevée.
+		
+	\end{enumerate}
+	
+	\subsection{État fondamental ($n=1$) et propri\'et\'es radiales}
+	
+	\begin{enumerate}
+		\setcounter{enumi}{6}
+		\item Pour $n=1$, $\ell=0$, $n_r=0$ :
+		\[ u(r) = A r e^{-r/a_0}, \quad \Rightarrow R(r) = \frac{u(r)}{r} = A e^{-r/a_0}. \]
+		La normalisation impose :
+		\[
+		\int_0^\infty |R(r)|^2 r^2 \text{d}r = |A|^2 \int_0^\infty e^{-2r/a_0} r^2 \text{d}r = 1.
+		\]
+		L'int\'egrale donne $2! (a_0/2)^3 = a_0^3/4 \Rightarrow |A|^2 = 4/a_0^3$.
+		Donc :
+		\[ R_{1,0}(r) = \frac{2}{a_0^{3/2}} e^{-r/a_0}. \]
+		L'harmonique sph\'erique est $Y_{00} = 1/\sqrt{4\pi}$, donc :
+		\[ \psi_{1,0,0}(r,\theta,\phi) = \frac{2}{a_0^{3/2}} e^{-r/a_0} \cdot \frac{1}{\sqrt{4\pi}} = \frac{1}{\sqrt{\pi a_0^3}} e^{-r/a_0}. \]
+		La normalisation est bien v\'erifi\'ee :
+		\[ \int |\psi|^2 \dd ^3x = \int_0^\infty |R|^2 r^2 \dd r \int |Y|^2 \dd \Omega = 1. \]
+		
+		\item La densit\'e de probabilit\'e radiale est :
+		\[ P(r) = 4\pi |R(r)|^2 r^2 = 4\pi \left(\frac{2}{a_0^{3/2}}\right)^2 e^{-2r/a_0} r^2 = \frac{16\pi}{a_0^3} r^2 e^{-2r/a_0}. \]
+		Elle s'annule en $r=0$ et pour $r \to \infty$ ; le maximum se trouve pour $r = a_0$.
+		\emph{Interpr\'etation :} la probabilit\'e maximale de trouver l'\'electron est au rayon de Bohr.
+		
+		\item On utilise :
+		\[ \int_0^\infty r^n e^{-2r/a_0} \dd r = n! \left(\frac{a_0}{2}\right)^{n+1}. \]
+		Pour $\langle r \rangle$ :
+		\[ \langle r \rangle = \int_0^\infty r |R(r)|^2 r^2 \dd r = \frac{4}{a_0^3} \int_0^\infty r^3 e^{-2r/a_0} \dd r = \frac{4}{a_0^3} \cdot 3! \left(\frac{a_0}{2}\right)^4 = \frac{3}{2} a_0. \]
+		Pour $\langle r^2 \rangle$ :
+		\[ \int r^4 e^{-2r/a_0} \dd r = 4! (a_0/2)^5 = 24(a_0/2)^5 \Rightarrow \langle r^2 \rangle = 3 a_0^2. \]
+		Donc :
+		\[ (\Delta r)^2 = 3a_0^2 - (3a_0/2)^2 = 3a_0^2 - \frac{9}{4}a_0^2 = \frac{3}{4}a_0^2. \]
+		
+		\item La transform\'ee de Fourier de l'\'etat fondamental donne une distribution isotrope centr\'ee sur $p=0$. L'esp\'erance \`a $\langle \vb{p} \rangle = 0$ (fonction paire), et :
+		\[ \langle p^2 \rangle = \int \tilde\psi^*(\vb{p}) p^2 \tilde\psi(\vb{p}) \dd ^3p. \]
+		Elle peut se relier \`a l'\'energie cin\'etique moyenne :
+		\[ \langle T \rangle = \frac{\langle p^2 \rangle}{2m} = -E_1 = \frac{1}{2} E_0. \Rightarrow \langle p^2 \rangle = m_e E_0. \]
+		
+		\item La d\'ependance en $1/n^2$ explique la structure des raies d\'ecrites par la formule de Rydberg :
+		\[ \frac{1}{\lambda} = \mathcal{R}_H\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right). \]
+		Le nombre quantique principal $n$ classe les niveaux d'\'energie. En MQ non relativiste, $\ell$ n'influe pas sur $E_n$, contrairement au cas relativiste (effet Lamb, spin-orbite).
+	\end{enumerate}
+	
+	
+	\newpage \section{\hyperref[subsec:Dirac]{Vers un formalisme relativiste $\triangle$}}\label{subsec:correctionDirac}
+	
+	\newpage \section{\hyperref[subsec:Potentiel]{Potentiel de Pöschl--Teller $V(x) = -\dfrac{V_0}{\cosh^2(\alpha x)}$ $\triangle$}}\label{subsec:correctionPotentiel}
+		
+	\newpage \section{\hyperref[subsec:Instable]{Instabilité électrodynamique de l'atome classique}}\label{subsec:correctionInstable}
+\subsection{Calcul de la force de freinage et de radiation $\textbf{F}_\text{rad}$.}
+\begin{enumerate}
+	\item \begin{equation}
+		\dd E_\text{at} = \dd W = \textbf{F}_{\text{rad}} \cdot \textbf{v} \dd t \implies \Delta E_{\text{at}} = \int_{t_1}^{t_2} \textbf{F}_\text{rad} \cdot \textbf{v} \dd t \tag{4.13.1} \label{eq:4.13.1}
+			\end{equation}
+		\item Attention, cette variation d'énergie est l'opposé de l'énergie rayonnée pendant le même intervalle :
+		
+		\begin{equation}
+			\dd E_{\text{at}} = -P \, \dd t = -\frac{2 e^2 a^2}{3 c^3} \dd t = -\frac{2 e^2 \dot{\textbf{v}}^2}{3 c^3} \dd t \tag{4.13.2} \label{eq:4.13.2}
+		\end{equation}
+		
+		On obtient :
+		
+		\begin{equation}
+			\Delta E_{\text{at}} = - \frac{2 e^2}{3 c^3} \int_{t_1}^{t_2} \dot{\textbf{v}}^2 \dd t \tag{4.13.3}\label{eq:4.13.3}
+		\end{equation}
+		\item 	Par ailleurs, 
+		En intégrant par parties et en supposant une quasi-périodicité :
+		
+		\begin{equation}
+			\Delta E_{\text{at}} = \frac{2 e^2}{3 c^3} \int_{t_1}^{t_2} \ddot{\textbf{v}} \cdot \textbf{v} \dd t \tag{4.13.4}
+		\end{equation}
+		
+		Par comparaison avec \ref{eq:3.13.1}, une force candidate est la \textbf{force de freinage de radiation d’Abraham-Lorentz} :
+		
+		\begin{equation}
+			\textbf{F}_{\text{rad}} = \frac{2 e^2}{3 c^3} \ddot{\textbf{v}} \tag{4.13.5}
+		\end{equation}
+		\item Considérons maintenant le \textbf{modèle de Thomson}, dans lequel l’électron est lié à l'origine par une force de rappel harmonique. L'équation du mouvement devient :
+		
+		\begin{equation}
+			m \ddot{\textbf{r}} = - m \omega_0^2 \textbf{r} + \frac{2 e^2}{3 c^3} \dddot{\textbf{r}} \tag{4.13.6}
+		\end{equation}
+		
+		On cherche une solution de la forme $r(t) = \Re \left[ r(0) e^{i \omega t} \right]$. Le développement perturbatif :
+		
+		\begin{equation}
+			\omega = \omega_0 \left[1 + a (\omega_0 \tau) + \mathcal{O}((\omega_0 \tau)^2)\right] \tag{4.13.7}
+		\end{equation}
+		
+		donne $a = \frac{1}{2}$, soit finalement :
+		
+		\begin{equation}
+			\textbf{r}(t) = \textbf{r}(0) e^{- \omega_0^2 \tau t} \cos(\omega_0 t) \tag{4.13.8}
+		\end{equation}
+		
+		Le mouvement est donc un oscillateur amorti. Le temps caractéristique d’amortissement, ou durée de vie typique de l’atome dans ce modèle, est :
+		
+		\begin{equation}
+			T_{\text{nat}} = \frac{1}{\omega_0^2 \tau} \sim 10^{-8}~\text{s} \tag{4.13.9}
+		\end{equation}
+		
+		L'atome classique est ainsi fondamentalement instable : l’électron spirale vers le noyau, très lentement à l’échelle atomique (pseudo-période), mais très rapidement à l’échelle macroscopique.
+		
+\end{enumerate}	
+	
+\subsection{Problèmes conceptuels générés par la force de freinage $\textbf{F}_\text{rad}$.}
+
+
+		\begin{enumerate}
+			\item L'équation à résoudre est :
+			\begin{equation*}
+				\dot{\textbf{v}} - \tau \ddot{\textbf{v}} = \frac{1}{m} \textbf{F}(t)
+			\end{equation*}
+			dont la solution générale est :
+			\begin{equation}
+				\dot{\textbf{v}}(t) = v(t_0) e^{(t - t_0)/\tau} - \frac{1}{m\tau} \int_{t_0}^t e^{(t - t')/\tau} \textbf{{F}}(t')\, \dd t' \tag{4.13.10}\label{eq:4.13.10}
+			\end{equation}
+			
+			\item Un phénomène inacceptable, que l'on appelle parfois \emph{préaccélération d'une particule chargée}, apparaît : si $F = 0$, l’expression précédente montre clairement que l’accélération diverge exponentiellement aux grands temps.
+			
+			\item On peut formellement éliminer les solutions divergentes en prenant $t_0 = +\infty$. Il s'agit d'une condition aux limites qui élimine de fait la \og condition initiale \fg.
+			
+			\item En prenant $t_0 = +\infty$, on obtient :
+			\begin{align}
+				\dot{\textbf{v}}(t) &= -\frac{1}{m\tau} \int_t^{+\infty} e^{(t - t')/\tau} \textbf{{F}}(t')\, \dd t' \notag \\
+				&= -\frac{1}{m} \int_t^{+\infty} K(t - t') \textbf{{F}}(t')\, \dd t' \tag{4.13.11}
+			\end{align}
+			avec $K(t - t') = \frac{1}{\tau} e^{(t - t')/\tau}$.
+			
+			Il s'agit ici de la \emph{forme régularisée}, et ce d'autant plus que la limite de charge nulle reproduit bien l’Électrodynamique de la Force de Lorentz (EFD).
+			
+			En effet, dans la limite $e \to 0$, on a $\tau \to 0$ et le noyau $K(t - t')$ tend vers une fonction de Dirac $\delta(t - t')$, ce qui donne :
+			\[
+			\dot{\textbf{v}}(t) = \frac{1}{m} \textbf{F}(t)
+			\]
+			
+			\item Il est déjà visible que l'accélération à l'instant $t$ dépend des valeurs futures de la force. Cette équation viole donc le \textbf{principe de causalité}. Un changement de variable met cela en évidence. Posons $s = \frac{t' - t}{\tau}$, on obtient :
+			\begin{equation}
+				\dot{\textbf{v}}(t) = -\frac{1}{m} \int_0^{+\infty} e^{-s} \textbf{{F}}(t + \tau s)\, \dd s \tag{4.13.12}
+			\end{equation}
+			
+			\item Avec une force échelon :
+			\[
+			\textbf{{F}}(t) = 
+			\begin{cases}
+				0 & \text{si } t < 0 \\
+				\textbf{{F}}_0 & \text{si } t \geq 0
+			\end{cases}
+			\]
+			on obtient :
+			\begin{align*}
+				t < 0: \quad \dot{\textbf{v}}(t) &= -\frac{1}{m\tau} \int_0^{+\infty} e^{(t - t')/\tau} \cdot 0 \, \dd t' = -\frac{\textbf{{F}}_0}{m} e^{t/\tau} \\
+				t > 0: \quad \dot{\textbf{v}}(t) &= -\frac{\textbf{F}_0}{m\tau} \int_t^{+\infty} e^{(t - t')/\tau} \, \dd t' = -\frac{\textbf{{F}}_0}{m}
+			\end{align*}
+			
+		\end{enumerate}
+\end{document}
