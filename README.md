@@ -56,4 +56,4 @@ Ce travail est sous licence **Creative Commons BY-NC-ND 4.0** :
 Comments, suggestions and feedback from students, teachers, or researchers are very welcome.  
 Les retours pédagogiques sont les bienvenus (enseignants, étudiants, passionnés).
 
-📧 Contact : à ajouter selon ton souhait
+📧 Contact : [ryanartero2005@gmail.com](mailto:ryanartero2005@gmail.com)
