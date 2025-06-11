@@ -1,41 +1,59 @@
-# Exercises in Fundamental Physics / Exercices de Physique Fondamentale
+# Fundamental Physics Exercises / Exercices de Physique Fondamentale
 
-🧠 Collection of advanced problems in theoretical physics  
-📘 Auteur / Author: Ryan Artero  
-📚 Niveau / Level: L3 – M1 (Advanced undergrad – early graduate)
-
----
-
-## 🔗 Download / Téléchargement
-
-| Language | File |
-|---------|------|
-| 🇫🇷 Français | [FR_Exercices_de_Physique_Fondamentale.pdf](./FR_Exercices_de_Physique_Fondamentale.pdf) |
-| 🇬🇧 English | [EN_Exercices_of_Fundamental_Physics.pdf](./EN_Exercices_of_Fundamental_Physics.pdf) |
+**Author / Auteur**: Ryan Artero  
+**Level / Niveau**: L3 – M1 (Advanced Undergraduate – Beginning Graduate)
 
 ---
 
-## 🧾 Description (FR / EN)
+## 📘 English Version
 
-### 🇫🇷 Présentation (français)
+### 📄 Description
 
-Ce document propose une sélection originale d'exercices de physique fondamentale...
+This document is a curated collection of advanced exercises in theoretical physics, created to provide both conceptual challenges and pedagogical structure. Topics include special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics.
 
-📄 Voir le fichier [FR_README.md](./FR_README.md) pour plus de détails.
+Each exercise is original and often inspired by historical ideas or modern interpretations. Some come with fully detailed solutions. The collection is ideal for students in advanced undergraduate (L3) or early graduate (M1) programs.
+
+### 📎 Download
+
+👉 [EN_Exercises_of_Fundamental_Physics.pdf](./EN_EPF.pdf)
+
+> ℹ️ Open the PDF in a proper reader (e.g., Adobe, Okular) to activate internal links.
+
+### ⚠️ License and Conditions
+
+This work is licensed under **Creative Commons BY-NC-ND 4.0**:
+- You may **read**, **share**, and **distribute** the PDF freely.
+- You may **not modify**, **reuse**, or **sell** this material.
+- The LaTeX source is not published to prevent unauthorized reuse.
+
+---
+
+## 🇫🇷 Version française
+
+### 📄 Présentation
+
+Ce document rassemble une sélection originale d’exercices de physique fondamentale, conçus pour combiner rigueur théorique et clarté pédagogique. Les thématiques abordées incluent la relativité restreinte, la mécanique quantique, la physique statistique, l’électrodynamique, ainsi que des aspects de physique mathématique.
+
+Chaque exercice est soigneusement rédigé, parfois accompagné d’une correction complète. Ce recueil s’adresse aux étudiants de Licence 3 à Master 1.
+
+### 📎 Téléchargement
+
+👉 [FR_Exercices_de_Physique_Fondamentale.pdf](./FR_EPF.pdf)
+
+> ℹ️ Ouvrir le PDF avec un lecteur classique (Adobe, Okular) pour activer les liens internes.
+
+### ⚠️ Licence et conditions
+
+Ce travail est sous licence **Creative Commons BY-NC-ND 4.0** :
+- Vous pouvez **lire**, **partager** et **diffuser** librement le PDF.
+- Il est **interdit de le modifier, le réutiliser ou le vendre**.
+- Le fichier source LaTeX n’est pas publié pour protéger la diffusion de l’auteur.
 
 ---
 
-### 🇬🇧 Overview (English)
+## 💬 Feedback
 
-This document provides a curated selection of advanced physics exercises...
+Comments, suggestions and feedback from students, teachers, or researchers are very welcome.  
+Les retours pédagogiques sont les bienvenus (enseignants, étudiants, passionnés).
 
-📄 See [EN_README.md](./EN_README.md) for full description.
-
----
-
-## 📋 License
-
-This work is licensed under [CC BY-NC-ND 4.0](LICENSE).  
-Commercial use and derivative works are not permitted.
-
----
+📧 Contact : à ajouter selon ton souhait
