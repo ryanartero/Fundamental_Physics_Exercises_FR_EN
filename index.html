@@ -18,54 +18,65 @@
   --gap: 20px;
 }
 
-/* Reset & base */
+/* RESET */
 *{box-sizing:border-box}
 html,body{height:100%; margin:0; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial; background:var(--bg); color:var(--white); -webkit-font-smoothing:antialiased}
 a{color:inherit; text-decoration:none}
 
-/* --- TOP TITLE BAND --- */
+/* --- TITLE BAND --- */
 .title-band{
-  position:sticky; top:0; z-index:100;
+  position:sticky; top:0; z-index:120;
   background:#000; color:#fff;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding:22px 18px 12px 18px; border-bottom:1px solid rgba(255,255,255,0.03);
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:18px 28px; border-bottom:1px solid rgba(255,255,255,0.03);
 }
+.title-left { display:flex; align-items:center; gap:16px; }
 .site-title{
-  font-size:30px; font-weight:700; letter-spacing:0.6px;
-  margin:0; color:#fff; text-shadow: 0 6px 18px rgba(0,0,0,0.6); text-align:center;
+  font-size:28px; font-weight:700; letter-spacing:0.3px; margin:0;
+  color:#fff; text-shadow: 0 6px 18px rgba(0,0,0,0.6);
 }
-.site-sub{ color:var(--muted); font-size:13px; margin-top:6px; text-align:center }
+.site-sub{ color:var(--muted); font-size:12px; margin-top:3px }
 
-/* tiles row below title (still in title-band) */
+/* Title center area (tiles live below, centered) */
+.title-center { text-align:center; flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; }
+
+/* tiles row (desktop) */
 .tiles-row{
-  display:flex; gap:12px; margin-top:18px; align-items:center; justify-content:center;
+  display:flex; gap:12px; align-items:center; justify-content:center;
 }
 .tile{
   background:transparent; border:1px solid rgba(255,255,255,0.04); color:#fff;
-  padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600;
+  padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:600;
   transition:all .18s ease;
 }
-.tile:hover{ transform:translateY(-4px); border-color: rgba(255,255,255,0.08) }
+.tile:hover{ transform:translateY(-3px); border-color: rgba(255,255,255,0.08) }
 .tile.active{ background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.08) }
 
-/* language button top-right */
-.lang-wrap{ position:fixed; top:18px; right:18px; z-index:120; }
+/* controls (right) */
+.controls { display:flex; gap:10px; align-items:center; }
 .lang-btn{
   background:#0b1220; color:var(--white); border:1px solid rgba(255,255,255,0.06);
-  padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:700;
+  padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:700; white-space:nowrap;
 }
 .lang-btn:hover{ transform:translateY(-2px) }
 
+/* hamburger for mobile */
+.hamburger{
+  display:none; background:transparent; border:1px solid rgba(255,255,255,0.06);
+  padding:8px 10px; border-radius:8px; color:var(--white); cursor:pointer;
+}
+.hamburger.open { background: rgba(255,255,255,0.03); }
+
 /* --- FULL BLEED SECTIONS --- */
 .section{ position:relative; width:100%; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:48px 0; }
-.section + .section{ padding-top:36px; } /* extra spacing between sections */
+.section + .section{ padding-top:36px; } /* spacing */
 .bg-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.02); transition: transform .6s ease; filter: saturate(1.02) contrast(1.03); }
 .overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)); z-index:2; }
 
-/* container used by sections */
+/* container */
 .container{ position:relative; z-index:6; width:min(1100px,94%); margin:0 auto; display:flex; justify-content:center; align-items:center; }
 
-/* ABOUT: centered black box (solid black) */
+/* ABOUT */
 .about-box{
   width:100%; max-width:900px; text-align:center; color:#fff;
   background:#000; padding:42px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
@@ -74,22 +85,23 @@ a{color:inherit; text-decoration:none}
 .about-title{ font-size:26px; font-weight:700; margin-bottom:10px; color:#fff; text-shadow:0 6px 20px rgba(0,0,0,0.6); }
 .about-desc{ color:var(--muted); font-size:15px; margin-bottom:14px; line-height:1.55; text-align:center }
 
-/* EXERCISES: white panel, minimal */
+/* EXERCISES */
 .ex-section{ background:#fff; color:#0b0c10; padding:64px 0; display:block; }
 .ex-card{ width:min(920px,100%); margin:0 auto; display:block; }
 .ex-title{ font-size:22px; font-weight:700; color:#0b0c10; margin-bottom:16px; text-align:left }
 .ex-lead{ color:#344054; margin-bottom:20px; line-height:1.6; text-align:left }
+.ex-block{ margin-bottom:28px; }
 
-/* Give clear spacing between blocks in exercises */
-.ex-block{ margin-bottom:22px; }
-
-/* PDF panel minimal; desktop: horizontal; mobile: square */
+/* PDF panel (desktop horizontal, mobile stacked/square) */
 .pdf-panel{
   background:#fff; border:1px solid #e6e9ef; padding:18px; border-radius:10px;
   display:flex; gap:18px; align-items:flex-start; box-shadow: 0 8px 28px rgba(16,24,40,0.06);
   min-height:140px;
 }
-.pdf-thumb{ width:120px; height:120px; background:#f8fafc; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#0b0c10; font-weight:800; font-size:20px }
+.pdf-thumb{
+  width:120px; height:120px; background:#f8fafc; border-radius:8px; display:flex; align-items:center; justify-content:center;
+  color:#0b0c10; font-weight:800; font-size:20px; cursor:pointer; border:1px solid #e3e6ea;
+}
 .pdf-meta{ flex:1; }
 .pdf-meta h3{ margin:0 0 8px 0; font-size:16px }
 .pdf-meta p{ color:#55606b; margin:0 0 12px 0; font-size:14px; line-height:1.55 }
@@ -108,56 +120,86 @@ a{color:inherit; text-decoration:none}
 .contact-links{ display:flex; gap:12px; flex-wrap:wrap }
 .link-chip{ padding:10px 14px; border-radius:10px; border:1px solid rgba(0,0,0,0.06); background:#0b0c10; color:#fff; font-weight:700 }
 
-/* CREDITS footer (black) */
+/* FOOTER */
 footer.credits{ background:#000; color:var(--muted); text-align:center; padding:26px 14px; border-top:1px solid rgba(255,255,255,0.02); font-size:13px }
 
-/* responsiveness */
-@media(max-width:880px){
-  .tiles-row{ flex-direction:column; gap:8px }
-  .pdf-panel{ flex-direction:column; padding:12px; border-radius:12px; min-height:360px; aspect-ratio:1/1; }
-  .pdf-thumb{ width:100%; height:40%; border-radius:8px; font-size:18px }
-  .pdf-meta{ height:60%; overflow:auto; padding-top:8px }
-  .about-box{ padding:24px }
-  .site-title{ font-size:22px }
-  .ex-title{ text-align:center }
-  .ex-lead{ text-align:center }
+/* MODAL (PDF preview) */
+.modal {
+  position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:300;
+  background: rgba(2,6,23,0.7);
+}
+.modal.open { display:flex; }
+.modal .inner {
+  width:min(1100px,94%); height:min(80vh, 900px); background:#fff; border-radius:10px; overflow:hidden; position:relative;
+  box-shadow: 0 30px 90px rgba(2,6,23,0.8);
+}
+.modal iframe { width:100%; height:100%; border:0; display:block; }
+.modal .close-btn {
+  position:absolute; top:12px; right:12px; background:rgba(0,0,0,0.6); color:#fff; border:0; padding:8px 10px; border-radius:8px; cursor:pointer;
 }
 
-/* small visual polish */
+/* MOBILE: hamburger + spacing + pdf square preview */
+@media(max-width:880px){
+  .title-band{ padding:14px 18px; }
+  .lang-btn{ padding:6px 8px; font-size:14px; }
+  .title-center{ gap:6px; }
+  .tiles-row{ display:none; }
+  .hamburger{ display:inline-block; }
+  .title-center .tiles-row.open{ display:flex; flex-direction:column; gap:8px; margin-top:8px; align-items:center; }
+  /* spacing on mobile to avoid overlap & give breathing room */
+  .section{ padding:28px 12px; }
+  .container{ width:94%; padding:0 6px; }
+  .pdf-panel{ flex-direction:column; min-height:360px; aspect-ratio:1/1; padding:12px; }
+  .pdf-thumb{ width:100%; height:40%; border-radius:8px; font-size:18px; }
+  .pdf-meta{ height:60%; overflow:auto; padding-top:8px }
+  .site-title{ font-size:20px }
+  .about-box{ padding:20px }
+  .ex-title, .ex-lead { text-align:center }
+}
+
+/* small polish */
 html{ scroll-behavior:smooth }
 </style>
 </head>
 <body>
 
-<!-- LANGUAGE CONTROL (top-right) -->
-<div class="lang-wrap">
-  <button id="langBtn" class="lang-btn" aria-pressed="false">FR → EN</button>
-</div>
-
-<!-- TITLE BAND (big title centered, black) -->
+<!-- TITLE BAND -->
 <div class="title-band" role="banner">
-  <div class="site-title" data-i18n-fr="Exercices de physique fondamentale" data-i18n-en="Fundamental Physics Exercises">Exercices de physique fondamentale</div>
-  <div class="site-sub" data-i18n-fr="Recueil d'exercices L3–M1 — Ryan Artero" data-i18n-en="Exercises collection L3–M1 — Ryan Artero">Recueil d'exercices L3–M1 — Ryan Artero</div>
+  <div class="title-left">
+    <div class="logo-square" aria-hidden="true" style="width:46px;height:46px;border-radius:8px;background:#07070a;border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--white);">FP</div>
+  </div>
 
-  <!-- tiles / rubric BELOW title (still part of title band) -->
-  <div class="tiles-row" role="navigation" aria-label="Rubriques">
-    <div class="tile" data-target="#about" id="tile-about"><span data-i18n-fr="À propos" data-i18n-en="About">À propos</span></div>
-    <div class="tile" data-target="#exercises" id="tile-ex"><span data-i18n-fr="Exercices" data-i18n-en="Exercises">Exercices</span></div>
-    <div class="tile" data-target="#contact" id="tile-ct"><span data-i18n-fr="Contact" data-i18n-en="Contact">Contact</span></div>
+  <div class="title-center">
+    <div class="site-title" data-i18n-fr="Exercices de physique fondamentale" data-i18n-en="Fundamental Physics Exercises">Exercices de physique fondamentale</div>
+    <div class="site-sub" data-i18n-fr="Recueil d'exercices L3–M1 — Ryan Artero" data-i18n-en="Exercises collection L3–M1 — Ryan Artero">Recueil d'exercices L3–M1 — Ryan Artero</div>
+
+    <!-- tiles: visible on desktop; on mobile they are toggled -->
+    <div class="tiles-row" id="tilesRow">
+      <div class="tile" data-target="#about" id="tile-about"><span data-i18n-fr="À propos" data-i18n-en="About">À propos</span></div>
+      <div class="tile" data-target="#exercises" id="tile-ex"><span data-i18n-fr="Exercices" data-i18n-en="Exercises">Exercices</span></div>
+      <div class="tile" data-target="#contact" id="tile-ct"><span data-i18n-fr="Contact" data-i18n-en="Contact">Contact</span></div>
+    </div>
+
+    <!-- mobile hamburger -->
+    <button class="hamburger" id="hamburger" aria-expanded="false" aria-label="Open menu" title="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <div class="controls">
+    <button id="langBtn" class="lang-btn" aria-pressed="false">FR → EN</button>
   </div>
 </div>
 
-<!-- SECTION: ABOUT (full-bleed background Webb.jpg) -->
+<!-- SECTION: ABOUT (uses Webb.jpg) -->
 <section id="about" class="section" aria-label="About section">
   <img class="bg-img" src="images/Webb.jpg" alt="" aria-hidden="true">
   <div class="overlay" aria-hidden="true"></div>
 
   <div class="container">
-    <!-- centered black box -->
     <div class="about-box" role="region" aria-labelledby="about-heading">
       <div id="about-heading" class="about-title" data-i18n-fr="À propos" data-i18n-en="About">À propos</div>
 
-      <!-- Provided about text (FR + EN), first paragraph removed as requested -->
       <div class="about-desc" data-i18n-fr="Toute la physique de niveau L3/Master (et plus) est étudiée, de la mécanique quantique à la relativité générale, en passant par la physique mathématique. Ce recueil est destiné aux passionnés de physique fondamentale, ceux qui veulent aller au-delà des exercices de TD. 18 exercices sont présentés, et seuls 4 ne sont pas corrigés. Les exercices varient en taille et en difficulté : certains demandent seulement des acquis de L3, d'autres introduisent des notions plus avancées comme la relativité générale." data-i18n-en="All physics at the L3/Master level (and beyond) is covered, from quantum mechanics to general relativity, including mathematical physics. This collection is aimed at enthusiasts of fundamental physics who want more than standard tutorial problems. 18 exercises are presented, and only 4 are unsolved. The exercises vary in length and difficulty: some require only L3 background, others introduce advanced topics such as general relativity.">
         Toute la physique de niveau L3/Master (et plus) est étudiée, de la mécanique quantique à la relativité générale, en passant par la physique mathématique. Ce recueil est destiné aux passionnés de physique fondamentale, ceux qui veulent aller au-delà des exercices de TD. 18 exercices sont présentés, et seuls 4 ne sont pas corrigés. Les exercices varient en taille et en difficulté : certains demandent seulement des acquis de L3, d'autres introduisent des notions plus avancées comme la relativité générale.
       </div>
@@ -169,7 +211,7 @@ html{ scroll-behavior:smooth }
   </div>
 </section>
 
-<!-- SECTION: EXERCISES (white background) -->
+<!-- SECTION: EXERCISES -->
 <section id="exercises" class="ex-section" aria-label="Exercises section">
   <div class="container ex-card">
     <div class="ex-block">
@@ -179,29 +221,29 @@ html{ scroll-behavior:smooth }
 
     <div class="ex-block">
       <div class="pdf-panel" role="region" aria-label="PDF panel">
-        <div class="pdf-thumb" aria-hidden="true">PDF</div>
+        <!-- clickable thumb opens modal preview -->
+        <div class="pdf-thumb" id="pdfThumb" title="Aperçu PDF">
+          <i class="fas fa-file-pdf" style="font-size:28px;color:#0b0c10"></i>
+        </div>
 
         <div class="pdf-meta">
           <h3 data-i18n-fr="Contenu & domaines" data-i18n-en="Contents & topics">Contenu & domaines</h3>
-
           <p data-i18n-fr="Résumé : 18 exercices couvrant des thèmes classiques et avancés — atomes et collisions, mécanique quantique, problèmes relativistes, thermodynamique statistique, électrodynamique, et techniques de physique mathématique. Beaucoup d'exercices sont accompagnés de solutions détaillées et de discussions pédagogiques." data-i18n-en="Summary: 18 exercises covering classical and advanced topics — atomic models and scattering, quantum mechanics, relativistic problems, statistical thermodynamics, electrodynamics, and mathematical physics techniques. Many exercises include detailed solutions and pedagogical discussions.">Résumé : 18 exercices couvrant des thèmes classiques et avancés — atomes et collisions, mécanique quantique, problèmes relativistes, thermodynamique statistique, électrodynamique, et techniques de physique mathématique. Beaucoup d'exercices sont accompagnés de solutions détaillées et de discussions pédagogiques.</p>
 
           <p data-i18n-fr="Pourquoi l'utiliser ? : bonne préparation aux examens, exercices pour approfondir la compréhension et développer l'aptitude à résoudre de nouveaux problèmes." data-i18n-en="Why use it?: good exam preparation, exercises to deepen understanding and develop problem-solving skills for new topics.">Pourquoi l'utiliser ? : bonne préparation aux examens, exercices pour approfondir la compréhension et développer l'aptitude à résoudre de nouveaux problèmes.</p>
 
           <div class="pdf-actions">
-            <!-- FR button visible only in FR -->
+            <!-- PDF buttons (only one visible depending on language) -->
             <a id="pdf-fr" class="btn-pdf lang-fr" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" target="_blank" style="display:inline-block;">
-              <i class="fas fa-file-pdf"></i>&nbsp;<span data-i18n-fr="Télécharger la version FR" data-i18n-en="Download FR version">Télécharger la version FR</span>
+              <i class="fas fa-file-download"></i>&nbsp;<span data-i18n-fr="Télécharger la version FR" data-i18n-en="Download FR version">Télécharger la version FR</span>
             </a>
 
-            <!-- EN button visible only in EN -->
             <a id="pdf-en" class="btn-pdf lang-en" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" target="_blank" style="display:none;">
-              <i class="fas fa-file-pdf"></i>&nbsp;<span data-i18n-fr="Télécharger la version EN" data-i18n-en="Download EN version">Download EN version</span>
+              <i class="fas fa-file-download"></i>&nbsp;<span data-i18n-fr="Télécharger la version EN" data-i18n-en="Download EN version">Download EN version</span>
             </a>
 
-            <a class="btn-ghost" href="https://github.com/ryanartero/Fundamental_Physics_Exercises_FR_EN/releases" target="_blank"><span data-i18n-fr>Voir la release</span><span data-i18n-en style="display:none">View release</span></a>
+            <a class="btn-ghost" href="https://github.com/ryanartero/Fundamental_Physics_Exercises_FR_EN/releases" target="_blank" style="padding:10px 12px;border:1px solid rgba(0,0,0,0.06);background:#fff;color:#0b0c10;border-radius:8px;font-weight:700"><span data-i18n-fr>Voir la release</span><span data-i18n-en style="display:none">View release</span></a>
           </div>
-
         </div>
       </div>
     </div>
@@ -241,15 +283,35 @@ html{ scroll-behavior:smooth }
   <div>&copy; 2025 Ryan Artero</div>
 </footer>
 
+<!-- PDF modal preview -->
+<div id="pdfModal" class="modal" aria-hidden="true" role="dialog" aria-label="PDF preview">
+  <div class="inner" role="document">
+    <button class="close-btn" id="modalClose" aria-label="Close preview">✕</button>
+    <iframe id="pdfFrame" src="" title="PDF preview"></iframe>
+  </div>
+</div>
+
 <script>
-/* i18n + UI behavior */
+/* i18n + UI + mobile menu + pdf preview */
 document.addEventListener('DOMContentLoaded', function(){
   const langBtn = document.getElementById('langBtn');
   const defaultLang = localStorage.getItem('siteLang') || 'fr';
   let lang = defaultLang;
 
+  // elements
+  const tilesRow = document.getElementById('tilesRow');
+  const hamburger = document.getElementById('hamburger');
+
+  const pdfThumb = document.getElementById('pdfThumb');
+  const pdfModal = document.getElementById('pdfModal');
+  const pdfFrame = document.getElementById('pdfFrame');
+  const modalClose = document.getElementById('modalClose');
+
+  // PDF URLs
+  const urlFR = 'https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf';
+  const urlEN = 'https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf';
+
   function updateTexts(l){
-    // elements with both attributes get replaced text
     document.querySelectorAll('[data-i18n-fr]').forEach(el=>{
       const fr = el.getAttribute('data-i18n-fr');
       const en = el.getAttribute('data-i18n-en');
@@ -260,7 +322,6 @@ document.addEventListener('DOMContentLoaded', function(){
         el.style.display = (l === 'fr') ? '' : 'none';
       }
     });
-    // elements only with data-i18n-en (fallback)
     document.querySelectorAll('[data-i18n-en]').forEach(el=>{
       if(!el.hasAttribute('data-i18n-fr')){
         el.style.display = (l === 'en') ? '' : 'none';
@@ -282,12 +343,16 @@ document.addEventListener('DOMContentLoaded', function(){
       langBtn.textContent = (l==='fr') ? 'FR → EN' : 'EN → FR';
       langBtn.setAttribute('aria-pressed', (l === 'en') ? 'true' : 'false');
     }
+    // set pdfFrame src if modal open
+    if(pdfModal.classList.contains('open')){
+      pdfFrame.src = (lang === 'fr') ? urlFR : urlEN;
+    }
   }
 
   applyLang(lang);
   if(langBtn) langBtn.addEventListener('click', ()=> applyLang(lang==='fr' ? 'en' : 'fr'));
 
-  // tiles: scrolling navigation (tiles are the only way to scroll)
+  // tiles nav (desktop) and mobile menu toggle
   document.querySelectorAll('.tile').forEach(tile=>{
     tile.addEventListener('click', ()=>{
       document.querySelectorAll('.tile').forEach(t=>t.classList.remove('active'));
@@ -295,11 +360,40 @@ document.addEventListener('DOMContentLoaded', function(){
       const target = tile.getAttribute('data-target');
       const el = document.querySelector(target);
       if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      // if mobile, close tiles view
+      if(window.innerWidth <= 880 && tilesRow.classList.contains('open')){
+        tilesRow.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded','false');
+      }
     });
   });
   document.getElementById('tile-about').classList.add('active');
 
-  // active tile on scroll (center)
+  // hamburger toggle (mobile)
+  if(hamburger){
+    hamburger.addEventListener('click', ()=>{
+      const isOpen = tilesRow.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      // ensure tiles visible on mobile: toggle display via class
+      if(isOpen){
+        tilesRow.style.display = 'flex';
+        tilesRow.style.flexDirection = 'column';
+        tilesRow.style.gap = '8px';
+        tilesRow.style.marginTop = '8px';
+        tilesRow.style.alignItems = 'center';
+      } else {
+        tilesRow.style.display = '';
+        tilesRow.style.flexDirection = '';
+        tilesRow.style.gap = '';
+        tilesRow.style.marginTop = '';
+        tilesRow.style.alignItems = '';
+      }
+    });
+  }
+
+  // active tile on scroll
   const sects = ['#about','#exercises','#contact'].map(s=>document.querySelector(s));
   window.addEventListener('scroll', ()=>{
     const mid = window.scrollY + window.innerHeight/2;
@@ -317,7 +411,38 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }, {passive:true});
 
-  // subtle parallax for the about section background
+  // pdf preview: thumbnail or download button opens modal with iframe
+  function openPdfPreview(){
+    const src = (lang === 'fr') ? urlFR : urlEN;
+    pdfFrame.src = src;
+    pdfModal.classList.add('open');
+    pdfModal.setAttribute('aria-hidden','false');
+    // lock scroll
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+  function closePdfPreview(){
+    pdfModal.classList.remove('open');
+    pdfModal.setAttribute('aria-hidden','true');
+    pdfFrame.src = '';
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+
+  if(pdfThumb) pdfThumb.addEventListener('click', openPdfPreview);
+  // also attach click to pdf buttons for preview on mobile if desired (but they currently download/open in new tab)
+  // modal close
+  if(modalClose) modalClose.addEventListener('click', closePdfPreview);
+  // click outside to close
+  pdfModal.addEventListener('click', function(e){
+    if(e.target === pdfModal) closePdfPreview();
+  });
+  // ESC to close
+  window.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && pdfModal.classList.contains('open')) closePdfPreview();
+  });
+
+  // subtle parallax for about background
   const about = document.getElementById('about');
   const aboutImg = about ? about.querySelector('.bg-img') : null;
   window.addEventListener('scroll', ()=>{
@@ -326,6 +451,25 @@ document.addEventListener('DOMContentLoaded', function(){
     const offset = Math.max(Math.min(-rect.top * 0.12, 120), -120);
     aboutImg.style.transform = `translateY(${offset}px) scale(1.04)`;
   }, {passive:true});
+
+  // Ensure tiles are visible or hidden correctly on resize
+  window.addEventListener('resize', ()=>{
+    if(window.innerWidth > 880){
+      tilesRow.style.display = '';
+      tilesRow.classList.remove('open');
+      hamburger.classList.remove('open');
+    } else {
+      // small screens start with tiles hidden (unless opened)
+      if(!tilesRow.classList.contains('open')){
+        tilesRow.style.display = 'none';
+      }
+    }
+  });
+  // initial mobile behavior
+  if(window.innerWidth <= 880){
+    tilesRow.style.display = 'none';
+  }
+
 });
 </script>
 
