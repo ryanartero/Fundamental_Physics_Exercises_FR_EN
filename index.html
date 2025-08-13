@@ -7,29 +7,69 @@
   <meta name="description" content="Recueil d'exercices avancés de physique fondamentale pour étudiants L3-M1, en français et en anglais. Théorie, mécanique, électrodynamique, statistiques, solutions détaillées.">
   <meta name="keywords" content="physics, exercices, fundamental physics, education, étudiants, L3, M1, PDF, français, english">
   <meta name="author" content="Ryan Artero">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; line-height:1.6; background:#f9f9f9; color:#333; }
-    header { background:#1E90FF; color:white; padding:20px 0; text-align:center; }
-    h1, h2 { margin: 0 0 10px 0; }
-    h2 { color:#1E90FF; }
-    section { padding: 20px; max-width:900px; margin: auto; background:white; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-    a.button { text-decoration:none; padding:12px 25px; color:white; border-radius:5px; margin-right:10px; display:inline-block; font-weight:bold; }
-    a.en { background:#32CD32; }
-    a.fr { background:#1E90FF; }
-    footer { text-align:center; padding:20px; font-size:0.9em; color:#666; }
-    img.header-img { max-width:150px; margin-bottom:15px; }
-    @media (max-width:600px){ a.button{ display:block; margin-bottom:10px; } }
+    /* Reset */
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body { font-family: 'Roboto', sans-serif; line-height:1.6; background:#f5f6fa; color:#333; scroll-behavior: smooth; }
+
+    /* Header */
+    header { background:#1E90FF; color:white; padding:30px 20px; text-align:center; position:sticky; top:0; z-index:100; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+    header h1 { font-family:'Roboto Slab', serif; font-size:2rem; margin-bottom:10px; }
+    header p { font-size:1rem; }
+
+    /* Navigation */
+    nav { margin-top:15px; }
+    nav a { color:white; text-decoration:none; margin:0 15px; font-weight:700; transition:0.3s; }
+    nav a:hover { text-decoration:underline; }
+
+    /* Sections */
+    section { padding:40px 20px; max-width:900px; margin: 20px auto; background:white; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.08);}
+    section h2 { color:#1E90FF; margin-bottom:15px; font-family:'Roboto Slab', serif; }
+    section p { margin-bottom:15px; }
+
+    /* Buttons */
+    .button {
+      display:inline-block;
+      padding:12px 25px;
+      border-radius:6px;
+      font-weight:bold;
+      text-decoration:none;
+      color:white;
+      transition:0.3s;
+    }
+    .en { background:#32CD32; }
+    .en:hover { background:#28a428; transform:translateY(-2px); }
+    .fr { background:#1E90FF; }
+    .fr:hover { background:#187bcd; transform:translateY(-2px); }
+
+    /* Footer */
+    footer { text-align:center; padding:25px; font-size:0.9em; color:#666; }
+
+    /* Responsive */
+    @media (max-width:600px){ 
+      nav a { display:block; margin:10px 0; }
+      .button { display:block; margin-bottom:10px; }
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <img class="header-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Physics_Symbols.svg/200px-Physics_Symbols.svg.png" alt="Physics">
   <h1>Fundamental Physics Exercises</h1>
   <p>Exercices de Physique Fondamentale | L3 – M1</p>
+  <nav>
+    <a href="#english">English</a>
+    <a href="#french">Français</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
-<section>
+<section id="english">
   <h2>📘 English Version</h2>
   <p>This document is a curated collection of advanced exercises in theoretical physics, designed to provide both conceptual challenges and pedagogical structure. Topics include special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics.</p>
   <p>Each exercise is original and often inspired by historical ideas or modern interpretations. Some come with fully detailed solutions. Ideal for advanced undergraduate (L3) or early graduate (M1) students.</p>
@@ -37,7 +77,7 @@
   <p><strong>License:</strong> Creative Commons BY-NC-ND 4.0</p>
 </section>
 
-<section>
+<section id="french">
   <h2>🇫🇷 Version française</h2>
   <p>Ce document rassemble une sélection originale d’exercices de physique fondamentale, conçus pour combiner rigueur théorique et clarté pédagogique. Les thématiques abordées incluent la relativité restreinte, la mécanique quantique, la physique statistique, l’électrodynamique, ainsi que des aspects de physique mathématique.</p>
   <p>Chaque exercice est soigneusement rédigé, parfois accompagné d’une correction complète. Ce recueil s’adresse aux étudiants de Licence 3 à Master 1.</p>
@@ -45,10 +85,13 @@
   <p><strong>Licence :</strong> Creative Commons BY-NC-ND 4.0</p>
 </section>
 
-<section>
+<section id="contact">
   <h2>💬 Feedback / Contact</h2>
   <p>Comments, suggestions, and feedback from students, teachers, or researchers are very welcome. Les retours pédagogiques sont les bienvenus (enseignants, étudiants, passionnés).</p>
   <p>Email: <a href="mailto:ryanartero2005@gmail.com">ryanartero2005@gmail.com</a></p>
+  <p>
+    <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/" target="_blank" class="button" style="background:#FF4500;">🌐 Visit the Website / Visiter le site</a>
+  </p>
 </section>
 
 <footer>
