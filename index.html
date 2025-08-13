@@ -1,129 +1,93 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fundamental Physics Exercises / Exercices de Physique Fondamentale</title>
-<meta name="description" content="Recueil d'exercices avancés de physique fondamentale pour étudiants L3-M1, en français et en anglais.">
-<meta name="keywords" content="physics, exercices, fundamental physics, education, étudiants, L3, M1, PDF, français, english">
-<meta name="author" content="Ryan Artero">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fiche d'exercices avancés en physique fondamentale - Relativité, Mécanique quantique, Physique statistique, Électrodynamique, Physique mathématique.">
+  <title>Fundamental Physics Exercises / Exercices de Physique Fondamentale</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    /* Reset & global */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
+    body {
+      background: url('https://www.nasa.gov/sites/default/files/thumbnails/image/webbs_first_deep_field_0.jpg') center/cover no-repeat fixed;
+      color: #fff;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: #FFD700; }
+    h1, h2 { margin-bottom: 1rem; }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem; background: rgba(0,0,0,0.7); border-radius: 12px; }
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    /* Sections */
+    section { margin-bottom: 2rem; padding:1rem; }
 
-<!-- Font Awesome pour icônes -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #000;
+      font-weight: bold;
+      padding: 12px 25px;
+      border-radius: 8px;
+      margin: 10px 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
 
-<style>
-/* Reset */
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Roboto', sans-serif; line-height:1.6; color:#fff; background:#000; }
+    /* Feedback */
+    #contact p, #contact a { margin-bottom: 0.5rem; }
 
-/* Background cosmique NASA */
-body::before {
-  content:"";
-  position:fixed; top:0; left:0; width:100%; height:100%;
-  background:url('https://www.nasa.gov/sites/default/files/thumbnails/image/potw2136a.jpg') no-repeat center center/cover;
-  z-index:-2;
-}
-body::after {
-  content:"";
-  position:fixed; top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.75);
-  z-index:-1;
-}
-
-/* Header */
-header { text-align:center; padding:80px 20px; }
-header h1 { font-family:'Roboto Slab', serif; font-size:3rem; font-weight:700; text-shadow: 2px 2px 15px rgba(0,0,0,0.7); }
-header p { font-size:1.2rem; margin-top:10px; color:#ccc; }
-
-/* Navigation */
-nav { margin-top:25px; }
-nav a { color:#FFD700; margin:0 15px; font-weight:700; text-decoration:none; transition:0.3s; }
-nav a:hover { color:#32CD32; }
-
-/* Sections modernes */
-section {
-  background:rgba(20,20,30,0.85);
-  padding:50px 30px;
-  max-width:900px;
-  margin:40px auto;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-section:hover { transform: translateY(-5px); box-shadow:0 15px 40px rgba(0,0,0,0.8); }
-section h2 { font-family:'Roboto Slab', serif; color:#FFD700; margin-bottom:20px; font-size:2rem; }
-section p { margin-bottom:15px; }
-
-/* Buttons stylés */
-.button {
-  display:inline-block;
-  padding:14px 28px;
-  border-radius:10px;
-  font-weight:bold;
-  text-decoration:none;
-  color:white;
-  transition:0.3s;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
-}
-.en { background:linear-gradient(135deg,#32CD32,#00FA9A); }
-.en:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.5); }
-.fr { background:linear-gradient(135deg,#1E90FF,#00BFFF); }
-.fr:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.5); }
-.website { background:linear-gradient(135deg,#FF4500,#FF6347); }
-.website:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.5); }
-
-/* Footer */
-footer { text-align:center; padding:25px; font-size:0.9em; color:#ccc; }
-
-/* Responsive */
-@media(max-width:700px){ 
-  nav a { display:block; margin:10px 0; }
-  .button { display:block; margin-bottom:15px; }
-}
-</style>
+    /* Footer */
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <h1>Fundamental Physics Exercises / Exercices de Physique Fondamentale</h1>
+    <p><strong>Author / Auteur:</strong> Ryan Artero</p>
+    <p><strong>Level / Niveau:</strong> L3 – M1 (Advanced Undergraduate – Beginning Graduate)</p>
 
-<header>
-  <h1>Fundamental Physics Exercises</h1>
-  <p>Exercices de Physique Fondamentale | L3 – M1</p>
-  <nav>
-    <a href="#english"><i class="fas fa-flag-usa"></i> English</a>
-    <a href="#french"><i class="fas fa-flag"></i> Français</a>
-    <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-  </nav>
-</header>
+    <!-- English -->
+    <section id="english">
+      <h2>📘 English Version</h2>
+      <p>This document is a curated collection of advanced exercises in theoretical physics, covering special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics.</p>
+      <a class="btn" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" target="_blank"><i class="fas fa-file-pdf"></i> View PDF</a>
+      <p><strong>License:</strong> Creative Commons BY-NC-ND 4.0</p>
+    </section>
 
-<section id="english">
-  <h2>📘 English Version</h2>
-  <p>This document is a curated collection of advanced exercises in theoretical physics, designed to provide conceptual challenges and pedagogical structure. Topics: special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics.</p>
-  <p>Some exercises come with detailed solutions. Ideal for advanced undergraduate (L3) or early graduate (M1) students.</p>
-  <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" class="button en" target="_blank"><i class="fas fa-file-pdf"></i> Download PDF</a>
-</section>
+    <!-- French -->
+    <section id="french">
+      <h2>🇫🇷 Version Française</h2>
+      <p>Ce document rassemble une sélection originale d’exercices de physique fondamentale, couvrant relativité restreinte, mécanique quantique, physique statistique, électrodynamique et physique mathématique.</p>
+      <a class="btn" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Voir le PDF</a>
+      <p><strong>Licence:</strong> Creative Commons BY-NC-ND 4.0</p>
+    </section>
 
-<section id="french">
-  <h2>🇫🇷 Version française</h2>
-  <p>Ce document rassemble une sélection originale d’exercices de physique fondamentale, combinant rigueur théorique et clarté pédagogique. Thématiques : relativité restreinte, mécanique quantique, physique statistique, électrodynamique, physique mathématique.</p>
-  <p>Certains exercices incluent des corrections détaillées. Public : étudiants L3-M1.</p>
-  <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" class="button fr" target="_blank"><i class="fas fa-file-pdf"></i> Télécharger PDF</a>
-</section>
+    <!-- Contact -->
+    <section id="contact">
+      <h2>💬 Feedback / Contact</h2>
+      <p>Comments, suggestions, and feedback from students, teachers, or researchers are welcome. Les retours pédagogiques sont les bienvenus.</p>
+      <p>Email: <a href="mailto:ryanartero2005@gmail.com"><i class="fas fa-envelope"></i> ryanartero2005@gmail.com</a></p>
+      <p>Instagram: <a href="https://www.instagram.com/r_artero" target="_blank"><i class="fab fa-instagram"></i> @r_artero</a></p>
+      <p>GitHub: <a href="https://github.com/ryanartero" target="_blank"><i class="fab fa-github"></i> ryanartero</a></p>
+    </section>
 
-<section id="contact">
-  <h2>💬 Feedback / Contact</h2>
-  <p>Comments, suggestions, and feedback from students, teachers, or researchers are welcome. Les retours pédagogiques sont les bienvenus.</p>
-  <p>Email: <a href="mailto:ryanartero2005@gmail.com" style="color:#FFD700;"><i class="fas fa-envelope"></i> ryanartero2005@gmail.com</a></p>
-  <p>Instagram: <a href="https://www.instagram.com/r_artero" target="_blank" style="color:#FFD700;"><i class="fab fa-instagram"></i> @r_artero</a></p>
-  <p>GitHub: <a href="https://github.com/ryanartero" target="_blank" style="color:#FFD700;"><i class="fab fa-github"></i> ryanartero</a></p>
-</section>
-
-<footer>
-  &copy; 2025 Ryan Artero | Creative Commons BY-NC-ND 4.0
-</footer>
-
+    <!-- Footer -->
+    <footer>
+      <p>Image: NASA, ESA, CSA, STScI – Webb’s First Deep Field</p>
+      <p>&copy; 2025 Ryan Artero</p>
+    </footer>
+  </div>
 </body>
 </html>
