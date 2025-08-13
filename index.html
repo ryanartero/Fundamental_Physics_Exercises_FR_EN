@@ -9,7 +9,7 @@
 <meta name="author" content="Ryan Artero">
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
 
 <!-- Font Awesome pour icônes -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -19,52 +19,61 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Roboto', sans-serif; line-height:1.6; color:#fff; background:#000; }
 
-/* Background cosmique */
+/* Background cosmique NASA */
 body::before {
   content:"";
   position:fixed; top:0; left:0; width:100%; height:100%;
-  background:url('https://images.unsplash.com/photo-1589118949245-7d38baf380d6?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+  background:url('https://www.nasa.gov/sites/default/files/thumbnails/image/potw2136a.jpg') no-repeat center center/cover;
   z-index:-2;
 }
 body::after {
   content:"";
   position:fixed; top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.75);
   z-index:-1;
 }
 
 /* Header */
 header { text-align:center; padding:80px 20px; }
-header h1 { font-family:'Roboto Slab', serif; font-size:3rem; text-shadow: 2px 2px 10px #000; }
-header p { font-size:1.2rem; margin-top:10px; color:#ddd; }
+header h1 { font-family:'Roboto Slab', serif; font-size:3rem; font-weight:700; text-shadow: 2px 2px 15px rgba(0,0,0,0.7); }
+header p { font-size:1.2rem; margin-top:10px; color:#ccc; }
 
-/* Nav */
+/* Navigation */
 nav { margin-top:25px; }
-nav a { color:#1E90FF; margin:0 15px; font-weight:700; text-decoration:none; transition:0.3s; }
+nav a { color:#FFD700; margin:0 15px; font-weight:700; text-decoration:none; transition:0.3s; }
 nav a:hover { color:#32CD32; }
 
-/* Sections */
-section { background:rgba(0,0,0,0.6); padding:50px 20px; max-width:1000px; margin:40px auto; border-radius:15px; box-shadow:0 0 20px rgba(0,0,0,0.5); transition: transform 0.3s; }
-section:hover { transform: translateY(-5px); }
+/* Sections modernes */
+section {
+  background:rgba(20,20,30,0.85);
+  padding:50px 30px;
+  max-width:900px;
+  margin:40px auto;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+section:hover { transform: translateY(-5px); box-shadow:0 15px 40px rgba(0,0,0,0.8); }
 section h2 { font-family:'Roboto Slab', serif; color:#FFD700; margin-bottom:20px; font-size:2rem; }
 section p { margin-bottom:15px; }
 
-/* Buttons */
+/* Buttons stylés */
 .button {
   display:inline-block;
   padding:14px 28px;
-  border-radius:8px;
+  border-radius:10px;
   font-weight:bold;
   text-decoration:none;
   color:white;
   transition:0.3s;
   box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
-.en { background:linear-gradient(45deg,#32CD32,#00FA9A); }
+.en { background:linear-gradient(135deg,#32CD32,#00FA9A); }
 .en:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.5); }
-.fr { background:linear-gradient(45deg,#1E90FF,#00BFFF); }
+.fr { background:linear-gradient(135deg,#1E90FF,#00BFFF); }
 .fr:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.5); }
-.website { background:linear-gradient(45deg,#FF4500,#FF6347); }
+.website { background:linear-gradient(135deg,#FF4500,#FF6347); }
 .website:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.5); }
 
 /* Footer */
@@ -107,10 +116,9 @@ footer { text-align:center; padding:25px; font-size:0.9em; color:#ccc; }
 <section id="contact">
   <h2>💬 Feedback / Contact</h2>
   <p>Comments, suggestions, and feedback from students, teachers, or researchers are welcome. Les retours pédagogiques sont les bienvenus.</p>
-  <p>Email: <a href="mailto:ryanartero2005@gmail.com" style="color:#FFD700;">ryanartero2005@gmail.com</a></p>
-  <p>
-    <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/" class="button website" target="_blank"><i class="fas fa-globe"></i> Visit the Website / Visiter le site</a>
-  </p>
+  <p>Email: <a href="mailto:ryanartero2005@gmail.com" style="color:#FFD700;"><i class="fas fa-envelope"></i> ryanartero2005@gmail.com</a></p>
+  <p>Instagram: <a href="https://www.instagram.com/r_artero" target="_blank" style="color:#FFD700;"><i class="fab fa-instagram"></i> @r_artero</a></p>
+  <p>GitHub: <a href="https://github.com/ryanartero" target="_blank" style="color:#FFD700;"><i class="fab fa-github"></i> ryanartero</a></p>
 </section>
 
 <footer>
