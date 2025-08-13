@@ -13,6 +13,12 @@ This document is a curated collection of advanced exercises in theoretical physi
 
 Each exercise is original and often inspired by historical ideas or modern interpretations. Some come with fully detailed solutions. The collection is ideal for students in advanced undergraduate (L3) or early graduate (M1) programs.
 
+<p>
+  <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/" target="_blank" style="text-decoration:none; padding:12px 25px; background-color:#FF4500; color:white; border-radius:5px; font-weight:bold;">
+     🌐 Visit the Website
+  </a>
+</p>
+
 ### 📎 PDF
 
 <p>
@@ -38,6 +44,12 @@ This work is licensed under **Creative Commons BY-NC-ND 4.0**:
 Ce document rassemble une sélection originale d’exercices de physique fondamentale, conçus pour combiner rigueur théorique et clarté pédagogique. Les thématiques abordées incluent la relativité restreinte, la mécanique quantique, la physique statistique, l’électrodynamique, ainsi que des aspects de physique mathématique.
 
 Chaque exercice est soigneusement rédigé, parfois accompagné d’une correction complète. Ce recueil s’adresse aux étudiants de Licence 3 à Master 1.
+
+<p>
+  <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/" target="_blank" style="text-decoration:none; padding:12px 25px; background-color:#FF4500; color:white; border-radius:5px; font-weight:bold;">
+     🌐 Visiter le site
+  </a>
+</p>
 
 ### 📎 PDF
 
