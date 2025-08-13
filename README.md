@@ -16,7 +16,7 @@ Each exercise is original and often inspired by historical ideas or modern inter
 ### 📎 PDF
 
 <p>
-  <a href="EN_EPF.pdf" target="_blank" style="text-decoration:none; padding:10px 20px; background-color:#32CD32; color:white; border-radius:5px; margin-right:10px; display:inline-block;">
+  <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" target="_blank" style="text-decoration:none; padding:10px 20px; background-color:#32CD32; color:white; border-radius:5px; display:inline-block;">
      Download EN
   </a>
 </p>
@@ -42,7 +42,7 @@ Chaque exercice est soigneusement rédigé, parfois accompagné d’une correcti
 ### 📎 PDF
 
 <p>
-  <a href="FR_EPF.pdf" target="_blank" style="text-decoration:none; padding:10px 20px; background-color:#1E90FF; color:white; border-radius:5px; display:inline-block;">
+  <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" target="_blank" style="text-decoration:none; padding:10px 20px; background-color:#1E90FF; color:white; border-radius:5px; display:inline-block;">
      Télécharger FR
   </a>
 </p>
