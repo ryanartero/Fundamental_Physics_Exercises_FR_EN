@@ -267,69 +267,57 @@
 </footer>
 
 <script>
-  // Simple i18n toggle
-  (function(){
-    const btn = document.getElementById('langBtn');
-    const langTag = document.getElementById('langTag');
-    let lang = 'fr'; // default
-    function setLang(l){
-      lang = l;
-      // toggle button label
-      btn.textContent = (lang === 'fr') ? 'FR → EN' : 'EN → FR';
-      langTag.textContent = (lang === 'fr') ? 'FR' : 'US';
-      // update all elements with data-i18n-fr / data-i18n-en
-      document.querySelectorAll('[data-i18n-fr]').forEach(el=>{
-        el.style.display = (lang==='fr') ? '' : 'none';
-      });
-      document.querySelectorAll('[data-i18n-en]').forEach(el=>{
-        if(el.dataset.i18nEn === undefined) el.dataset.i18nEn = el.getAttribute('data-i18n-en');
-        el.style.display = (lang==='en') ? '' : 'none';
-      });
-      // also switch primary visible texts if originals were not duplicated
-      document.querySelectorAll('[data-i18n-fr]').forEach(el=>{
-        const en = el.parentElement.querySelector('[data-i18n-en]');
-        if(!en && el.dataset.i18nEn) {
-          // nothing
-        }
-      });
-    }
+/* Language toggle - remplace l'ancien IIFE "Simple i18n toggle" */
+document.addEventListener('DOMContentLoaded', function () {
+  const btn = document.getElementById('langBtn');
+  const langTag = document.getElementById('langTag');
+  // restore last choice or default to French
+  let lang = localStorage.getItem('siteLang') || 'fr';
 
-    // prepare: ensure all FR shown by default, EN hidden
-    document.querySelectorAll('[data-i18n-en]').forEach(el=> el.style.display = 'none');
-    document.querySelectorAll('[data-i18n-fr]').forEach(el=> el.style.display = '');
+  // all nodes declared for FR/EN translations
+  const nodesFr = Array.from(document.querySelectorAll('[data-i18n-fr]'));
+  const nodesEn = Array.from(document.querySelectorAll('[data-i18n-en]'));
 
-    btn.addEventListener('click', ()=> setLang(lang==='fr' ? 'en':'fr'));
-  })();
+  function applyLang(l) {
+    lang = l;
+    localStorage.setItem('siteLang', lang);
 
-  // IntersectionObserver for glass fade-in
-  (function(){
-    const glasses = document.querySelectorAll('.glass');
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) e.target.classList.add('visible');
-      });
-    }, {threshold:0.12});
-    glasses.forEach(g=> obs.observe(g));
-  })();
+    // update UI for toggle + tag
+    btn.classList.toggle('active', lang === 'fr');
+    btn.textContent = (lang === 'fr') ? 'FR → EN' : 'EN → FR';
+    if (langTag) langTag.textContent = (lang === 'fr') ? 'FR' : 'US';
 
-  // Parallax subtle effect: moves each background image slightly on scroll
-  (function(){
-    const sections = document.querySelectorAll('.section');
-    window.addEventListener('scroll', ()=>{
-      const scrollY = window.scrollY;
-      sections.forEach((sec, idx) => {
-        const img = sec.querySelector('.bg-img');
-        if(!img) return;
-        // compute offset relative to section position for smoother parallax
-        const rect = sec.getBoundingClientRect();
-        const center = rect.top + rect.height/2 - window.innerHeight/2;
-        const offset = Math.max(Math.min(-center * 0.08, 60), -60);
-        img.style.transform = `translateY(${offset}px) scale(1.02)`;
-      });
-    }, {passive:true});
-  })();
+    // Handle elements that have attributes on the same element:
+    // if an element has both data-i18n-fr and data-i18n-en, replace its textContent.
+    nodesFr.forEach(el => {
+      const frText = el.getAttribute('data-i18n-fr');
+      const enText = el.getAttribute('data-i18n-en');
+      if (enText !== null) {
+        // same element stores both translations
+        el.textContent = (lang === 'fr') ? frText : enText;
+        el.style.display = '';
+      } else {
+        // element only for FR: show/hide
+        el.style.display = (lang === 'fr') ? '' : 'none';
+      }
+    });
 
+    // Handle elements that only have data-i18n-en (and no data-i18n-fr)
+    nodesEn.forEach(el => {
+      if (el.hasAttribute('data-i18n-fr')) return; // already handled above
+      el.style.display = (lang === 'en') ? '' : 'none';
+    });
+  }
+
+  // init: hide EN where appropriate, show FR by default
+  // (applyLang will set everything correctly)
+  applyLang(lang);
+
+  // toggle on click
+  if (btn) btn.addEventListener('click', () => applyLang(lang === 'fr' ? 'en' : 'fr'));
+});
 </script>
+
 
 </body>
 </html>
