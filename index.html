@@ -15,7 +15,7 @@
   --white: #ffffff;
   --black: #000000;
   --accent: #2e4db0;
-  --card-pad: 36px;
+  --gap: 20px;
 }
 
 /* Reset & base */
@@ -32,9 +32,7 @@ a{color:inherit; text-decoration:none}
 }
 .site-title{
   font-size:30px; font-weight:700; letter-spacing:0.6px;
-  margin:0; color:#fff;
-  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
-  text-align:center;
+  margin:0; color:#fff; text-shadow: 0 6px 18px rgba(0,0,0,0.6); text-align:center;
 }
 .site-sub{ color:var(--muted); font-size:13px; margin-top:6px; text-align:center }
 
@@ -59,31 +57,38 @@ a{color:inherit; text-decoration:none}
 .lang-btn:hover{ transform:translateY(-2px) }
 
 /* --- FULL BLEED SECTIONS --- */
-.section{ position:relative; width:100%; min-height:calc(100vh - 120px); display:flex; align-items:center; justify-content:center; overflow:hidden; padding:40px 0; }
+.section{ position:relative; width:100%; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:48px 0; }
+.section + .section{ padding-top:36px; } /* extra spacing between sections */
 .bg-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.02); transition: transform .6s ease; filter: saturate(1.02) contrast(1.03); }
 .overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)); z-index:2; }
 
-/* --- CONTENT CONTAINERS --- */
+/* container used by sections */
 .container{ position:relative; z-index:6; width:min(1100px,94%); margin:0 auto; display:flex; justify-content:center; align-items:center; }
 
 /* ABOUT: centered black box (solid black) */
 .about-box{
-  max-width:900px; text-align:center; color:#fff;
-  background:#000; /* solid black as requested */
-  padding:42px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
+  width:100%; max-width:900px; text-align:center; color:#fff;
+  background:#000; padding:42px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
   box-shadow: 0 18px 48px rgba(2,6,23,0.6);
 }
 .about-title{ font-size:26px; font-weight:700; margin-bottom:10px; color:#fff; text-shadow:0 6px 20px rgba(0,0,0,0.6); }
 .about-desc{ color:var(--muted); font-size:15px; margin-bottom:14px; line-height:1.55; text-align:center }
 
 /* EXERCISES: white panel, minimal */
-.ex-section{ background:#fff; color:#0b0c10; padding:72px 0; display:block; }
-.ex-card{ width:min(900px,100%); margin:0 auto; }
-.ex-title{ font-size:22px; font-weight:700; color:#0b0c10; margin-bottom:12px; text-align:left }
-.ex-lead{ color:#344054; margin-bottom:22px; line-height:1.6; text-align:left }
+.ex-section{ background:#fff; color:#0b0c10; padding:64px 0; display:block; }
+.ex-card{ width:min(920px,100%); margin:0 auto; display:block; }
+.ex-title{ font-size:22px; font-weight:700; color:#0b0c10; margin-bottom:16px; text-align:left }
+.ex-lead{ color:#344054; margin-bottom:20px; line-height:1.6; text-align:left }
 
-/* PDF panel minimal */
-.pdf-panel{ background:#fff; border:1px solid #e6e9ef; padding:18px; border-radius:10px; display:flex; gap:18px; align-items:flex-start; box-shadow: 0 8px 28px rgba(16,24,40,0.06) }
+/* Give clear spacing between blocks in exercises */
+.ex-block{ margin-bottom:22px; }
+
+/* PDF panel minimal; desktop: horizontal; mobile: square */
+.pdf-panel{
+  background:#fff; border:1px solid #e6e9ef; padding:18px; border-radius:10px;
+  display:flex; gap:18px; align-items:flex-start; box-shadow: 0 8px 28px rgba(16,24,40,0.06);
+  min-height:140px;
+}
 .pdf-thumb{ width:120px; height:120px; background:#f8fafc; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#0b0c10; font-weight:800; font-size:20px }
 .pdf-meta{ flex:1; }
 .pdf-meta h3{ margin:0 0 8px 0; font-size:16px }
@@ -98,7 +103,7 @@ a{color:inherit; text-decoration:none}
 .btn-pdf:hover{ transform:translateY(-3px); box-shadow:0 12px 40px rgba(30,40,80,0.36); }
 
 /* CONTACT */
-.contact-wrap{ max-width:900px; margin:0 auto; padding:36px; color:var(--muted); text-align:left }
+.contact-wrap{ width:min(900px,100%); margin:0 auto; padding:36px; color:var(--muted); text-align:left }
 .contact-wrap p{ margin-bottom:12px; line-height:1.6 }
 .contact-links{ display:flex; gap:12px; flex-wrap:wrap }
 .link-chip{ padding:10px 14px; border-radius:10px; border:1px solid rgba(0,0,0,0.06); background:#0b0c10; color:#fff; font-weight:700 }
@@ -109,11 +114,16 @@ footer.credits{ background:#000; color:var(--muted); text-align:center; padding:
 /* responsiveness */
 @media(max-width:880px){
   .tiles-row{ flex-direction:column; gap:8px }
-  .pdf-panel{ flex-direction:column; }
-  .pdf-thumb{ width:100%; height:160px }
+  .pdf-panel{ flex-direction:column; padding:12px; border-radius:12px; min-height:360px; aspect-ratio:1/1; }
+  .pdf-thumb{ width:100%; height:40%; border-radius:8px; font-size:18px }
+  .pdf-meta{ height:60%; overflow:auto; padding-top:8px }
   .about-box{ padding:24px }
   .site-title{ font-size:22px }
+  .ex-title{ text-align:center }
+  .ex-lead{ text-align:center }
 }
+
+/* small visual polish */
 html{ scroll-behavior:smooth }
 </style>
 </head>
@@ -137,35 +147,23 @@ html{ scroll-behavior:smooth }
   </div>
 </div>
 
-<!-- SECTION: ABOUT (full-bleed background Webb_2) -->
+<!-- SECTION: ABOUT (full-bleed background Webb.jpg) -->
 <section id="about" class="section" aria-label="About section">
-  <img class="bg-img" src="images/Webb_2.jpg" alt="" aria-hidden="true">
+  <img class="bg-img" src="images/Webb.jpg" alt="" aria-hidden="true">
   <div class="overlay" aria-hidden="true"></div>
 
   <div class="container">
-    <!-- centered black box, non-clickable tiles inside -->
+    <!-- centered black box -->
     <div class="about-box" role="region" aria-labelledby="about-heading">
-      <div id="about-heading" class="about-title" data-i18n-fr="À propos de l'auteur" data-i18n-en="About the author">À propos de l'auteur</div>
+      <div id="about-heading" class="about-title" data-i18n-fr="À propos" data-i18n-en="About">À propos</div>
 
-      <!-- Provided about text (FR + EN) -->
-      <div class="about-desc" data-i18n-fr="Je suis Ryan Artero, étudiant en M1 Physique Fondamentale à l'Université de la Sorbonne, Paris. Je suis évidemment passionné de physique, mais à n'importe quelle échelle. En sortant des cours, j'en profitais pour utiliser les notions que je venais d'apprendre pour en développer des nouvelles. «À partir de ce qu'on sait déjà, jusqu'où peut-on aller ?» C'est ainsi que j'ai entrepris d'écrire petit à petit, exercice par exercice, une fiche d'exercices corrigés de 150 pages." data-i18n-en="I'm Ryan Artero, a Master's student in Fundamental Physics at Sorbonne University, Paris. I'm passionate about physics at any scale. After classes I would often apply newly learned concepts to develop new ideas. 'Starting from what we already know, how far can we go?' That's how I gradually began writing, exercise by exercise, a 150-page collection of solved problems.">
-        Je suis Ryan Artero, étudiant en M1 Physique Fondamentale à l'Université de la Sorbonne, Paris. Je suis évidemment passionné de physique, mais à n'importe quelle échelle. En sortant des cours, j'en profitais pour utiliser les notions que je venais d'apprendre pour en développer des nouvelles. «À partir de ce qu'on sait déjà, jusqu'où peut-on aller ?» C'est ainsi que j'ai entrepris d'écrire petit à petit, exercice par exercice, une fiche d'exercices corrigés de 150 pages.
-      </div>
-
+      <!-- Provided about text (FR + EN), first paragraph removed as requested -->
       <div class="about-desc" data-i18n-fr="Toute la physique de niveau L3/Master (et plus) est étudiée, de la mécanique quantique à la relativité générale, en passant par la physique mathématique. Ce recueil est destiné aux passionnés de physique fondamentale, ceux qui veulent aller au-delà des exercices de TD. 18 exercices sont présentés, et seuls 4 ne sont pas corrigés. Les exercices varient en taille et en difficulté : certains demandent seulement des acquis de L3, d'autres introduisent des notions plus avancées comme la relativité générale." data-i18n-en="All physics at the L3/Master level (and beyond) is covered, from quantum mechanics to general relativity, including mathematical physics. This collection is aimed at enthusiasts of fundamental physics who want more than standard tutorial problems. 18 exercises are presented, and only 4 are unsolved. The exercises vary in length and difficulty: some require only L3 background, others introduce advanced topics such as general relativity.">
         Toute la physique de niveau L3/Master (et plus) est étudiée, de la mécanique quantique à la relativité générale, en passant par la physique mathématique. Ce recueil est destiné aux passionnés de physique fondamentale, ceux qui veulent aller au-delà des exercices de TD. 18 exercices sont présentés, et seuls 4 ne sont pas corrigés. Les exercices varient en taille et en difficulté : certains demandent seulement des acquis de L3, d'autres introduisent des notions plus avancées comme la relativité générale.
       </div>
 
       <div class="about-desc" data-i18n-fr="Vous êtes libres de choisir les exercices selon votre parcours. N'hésitez pas à me signaler des coquilles, des erreurs de correction ou à proposer de nouveaux exercices et corrections. Le recueil et le site sont disponibles en anglais." data-i18n-en="You are free to choose exercises according to your own background. Please feel free to report typos, solution errors, or propose new exercises and corrections. The collection and the site are also available in English.">
         Vous êtes libres de choisir les exercices selon votre parcours. N'hésitez pas à me signaler des coquilles, des erreurs de correction ou à proposer de nouveaux exercices et corrections. Le recueil et le site sont disponibles en anglais.
-      </div>
-
-      <div style="height:14px"></div>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px">
-        <!-- inert chips (do NOT scroll) -->
-        <span class="link-chip" aria-hidden="true"><span data-i18n-fr>À propos</span><span data-i18n-en style="display:none">About</span></span>
-        <span class="link-chip" aria-hidden="true"><span data-i18n-fr>Exercices</span><span data-i18n-en style="display:none">Exercises</span></span>
-        <span class="link-chip" aria-hidden="true"><span data-i18n-fr>Contact</span><span data-i18n-en style="display:none">Contact</span></span>
       </div>
     </div>
   </div>
@@ -174,34 +172,45 @@ html{ scroll-behavior:smooth }
 <!-- SECTION: EXERCISES (white background) -->
 <section id="exercises" class="ex-section" aria-label="Exercises section">
   <div class="container ex-card">
-    <div class="ex-title" data-i18n-fr="Exercices de Physique Fondamentale" data-i18n-en="Fundamental Physics Exercises">Exercices de Physique Fondamentale</div>
-    <div class="ex-lead" data-i18n-fr="Présentation : ce recueil couvre relativité restreinte, mécanique quantique, physique statistique, électrodynamique et physique mathématique. Il contient exercices et solutions, adaptés au niveau L3–M1." data-i18n-en="Overview: this collection covers special relativity, quantum mechanics, statistical physics, electrodynamics and mathematical physics. It includes exercises and solutions, suitable for L3–M1 level.">Présentation : ce recueil couvre relativité restreinte, mécanique quantique, physique statistique, électrodynamique et physique mathématique. Il contient exercices et solutions, adaptés au niveau L3–M1.</div>
+    <div class="ex-block">
+      <div class="ex-title" data-i18n-fr="Exercices de Physique Fondamentale" data-i18n-en="Fundamental Physics Exercises">Exercices de Physique Fondamentale</div>
+      <div class="ex-lead" data-i18n-fr="Présentation : ce recueil couvre relativité restreinte, mécanique quantique, physique statistique, électrodynamique et physique mathématique. Il contient exercices et solutions, adaptés au niveau L3–M1." data-i18n-en="Overview: this collection covers special relativity, quantum mechanics, statistical physics, electrodynamics and mathematical physics. It includes exercises and solutions, suitable for L3–M1 level.">Présentation : ce recueil couvre relativité restreinte, mécanique quantique, physique statistique, électrodynamique et physique mathématique. Il contient exercices et solutions, adaptés au niveau L3–M1.</div>
+    </div>
 
-    <div class="pdf-panel" role="region" aria-label="PDF panel">
-      <div class="pdf-thumb" aria-hidden="true">PDF</div>
-      <div class="pdf-meta">
-        <h3 data-i18n-fr="Contenu & domaines" data-i18n-en="Contents & topics">Contenu & domaines</h3>
+    <div class="ex-block">
+      <div class="pdf-panel" role="region" aria-label="PDF panel">
+        <div class="pdf-thumb" aria-hidden="true">PDF</div>
 
-        <p data-i18n-fr="Résumé : 18 exercices couvrant des thèmes classiques et avancés — atomes et collisions, mécanique quantique, problèmes relativistes, thermodynamique statistique, électrodynamique, et techniques de physique mathématique. Beaucoup d'exercices sont accompagnés de solutions détaillées et de discussions pédagogiques." data-i18n-en="Summary: 18 exercises covering classical and advanced topics — atomic models and scattering, quantum mechanics, relativistic problems, statistical thermodynamics, electrodynamics, and mathematical physics techniques. Many exercises include detailed solutions and pedagogical discussions.">Résumé : 18 exercices couvrant des thèmes classiques et avancés — atomes et collisions, mécanique quantique, problèmes relativistes, thermodynamique statistique, électrodynamique, et techniques de physique mathématique. Beaucoup d'exercices sont accompagnés de solutions détaillées et de discussions pédagogiques.</p>
+        <div class="pdf-meta">
+          <h3 data-i18n-fr="Contenu & domaines" data-i18n-en="Contents & topics">Contenu & domaines</h3>
 
-        <p data-i18n-fr="Pourquoi l'utiliser ? : bonne préparation aux examens, exercices pour approfondir la compréhension et développer l'aptitude à résoudre de nouveaux problèmes." data-i18n-en="Why use it?: good exam preparation, exercises to deepen understanding and develop problem-solving skills for new topics.">Pourquoi l'utiliser ? : bonne préparation aux examens, exercices pour approfondir la compréhension et développer l'aptitude à résoudre de nouveaux problèmes.</p>
+          <p data-i18n-fr="Résumé : 18 exercices couvrant des thèmes classiques et avancés — atomes et collisions, mécanique quantique, problèmes relativistes, thermodynamique statistique, électrodynamique, et techniques de physique mathématique. Beaucoup d'exercices sont accompagnés de solutions détaillées et de discussions pédagogiques." data-i18n-en="Summary: 18 exercises covering classical and advanced topics — atomic models and scattering, quantum mechanics, relativistic problems, statistical thermodynamics, electrodynamics, and mathematical physics techniques. Many exercises include detailed solutions and pedagogical discussions.">Résumé : 18 exercices couvrant des thèmes classiques et avancés — atomes et collisions, mécanique quantique, problèmes relativistes, thermodynamique statistique, électrodynamique, et techniques de physique mathématique. Beaucoup d'exercices sont accompagnés de solutions détaillées et de discussions pédagogiques.</p>
 
-        <div class="pdf-actions">
-          <!-- FR button visible only in FR -->
-          <a id="pdf-fr" class="btn-pdf lang-fr" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" target="_blank" style="display:inline-block;">
-            <i class="fas fa-file-pdf"></i>&nbsp;<span data-i18n-fr="Télécharger la version FR" data-i18n-en="Download FR version">Télécharger la version FR</span>
-          </a>
+          <p data-i18n-fr="Pourquoi l'utiliser ? : bonne préparation aux examens, exercices pour approfondir la compréhension et développer l'aptitude à résoudre de nouveaux problèmes." data-i18n-en="Why use it?: good exam preparation, exercises to deepen understanding and develop problem-solving skills for new topics.">Pourquoi l'utiliser ? : bonne préparation aux examens, exercices pour approfondir la compréhension et développer l'aptitude à résoudre de nouveaux problèmes.</p>
 
-          <!-- EN button visible only in EN -->
-          <a id="pdf-en" class="btn-pdf lang-en" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" target="_blank" style="display:none;">
-            <i class="fas fa-file-pdf"></i>&nbsp;<span data-i18n-fr="Télécharger la version EN" data-i18n-en="Download EN version">Download EN version</span>
-          </a>
+          <div class="pdf-actions">
+            <!-- FR button visible only in FR -->
+            <a id="pdf-fr" class="btn-pdf lang-fr" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" target="_blank" style="display:inline-block;">
+              <i class="fas fa-file-pdf"></i>&nbsp;<span data-i18n-fr="Télécharger la version FR" data-i18n-en="Download FR version">Télécharger la version FR</span>
+            </a>
 
-          <a class="btn-ghost" href="https://github.com/ryanartero/Fundamental_Physics_Exercises_FR_EN/releases" target="_blank"><span data-i18n-fr>Voir la release</span><span data-i18n-en style="display:none">View release</span></a>
+            <!-- EN button visible only in EN -->
+            <a id="pdf-en" class="btn-pdf lang-en" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" target="_blank" style="display:none;">
+              <i class="fas fa-file-pdf"></i>&nbsp;<span data-i18n-fr="Télécharger la version EN" data-i18n-en="Download EN version">Download EN version</span>
+            </a>
+
+            <a class="btn-ghost" href="https://github.com/ryanartero/Fundamental_Physics_Exercises_FR_EN/releases" target="_blank"><span data-i18n-fr>Voir la release</span><span data-i18n-en style="display:none">View release</span></a>
+          </div>
+
         </div>
-
       </div>
     </div>
+
+    <div class="ex-block">
+      <div class="ex-title" data-i18n-fr="Liste des exercices (exemples)" data-i18n-en="List of exercises (examples)">Liste des exercices (exemples)</div>
+      <div class="ex-lead" data-i18n-fr="Exemples d'énoncés inclus : atome de Bohr ; diffusion de Rutherford ; rayonnement du corps noir ; fonctions d'onde et potentiels ; hamiltoniens relativistes ; condensats de Bose-Einstein ; problèmes de mécanique analytique." data-i18n-en="Sample included problems: Bohr atom; Rutherford scattering; blackbody radiation; wavefunctions and potentials; relativistic Hamiltonians; Bose–Einstein condensates; analytical mechanics problems.">Exemples d'énoncés inclus : atome de Bohr ; diffusion de Rutherford ; rayonnement du corps noir ; fonctions d'onde et potentiels ; hamiltoniens relativistes ; condensats de Bose-Einstein ; problèmes de mécanique analytique.</div>
+    </div>
+
   </div>
 </section>
 
@@ -240,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function(){
   let lang = defaultLang;
 
   function updateTexts(l){
-    // elements with data-i18n-fr and data-i18n-en on the same element
+    // elements with both attributes get replaced text
     document.querySelectorAll('[data-i18n-fr]').forEach(el=>{
       const fr = el.getAttribute('data-i18n-fr');
       const en = el.getAttribute('data-i18n-en');
@@ -248,11 +257,10 @@ document.addEventListener('DOMContentLoaded', function(){
         el.textContent = (l === 'fr') ? fr : en;
         el.style.display = '';
       } else {
-        // element only in FR -> show/hide
         el.style.display = (l === 'fr') ? '' : 'none';
       }
     });
-    // show-only-EN elements
+    // elements only with data-i18n-en (fallback)
     document.querySelectorAll('[data-i18n-en]').forEach(el=>{
       if(!el.hasAttribute('data-i18n-fr')){
         el.style.display = (l === 'en') ? '' : 'none';
