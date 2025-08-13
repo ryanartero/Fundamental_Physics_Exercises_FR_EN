@@ -1,93 +1,138 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fiche d'exercices avancés en physique fondamentale - Relativité, Mécanique quantique, Physique statistique, Électrodynamique, Physique mathématique.">
-  <title>Fundamental Physics Exercises / Exercices de Physique Fondamentale</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <style>
-    /* Reset & global */
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
-    body {
-      background: url('https://www.nasa.gov/sites/default/files/thumbnails/image/webbs_first_deep_field_0.jpg') center/cover no-repeat fixed;
-      color: #fff;
-      line-height: 1.6;
-    }
-    a { text-decoration: none; color: #FFD700; }
-    h1, h2 { margin-bottom: 1rem; }
-    .container { max-width: 900px; margin: 0 auto; padding: 2rem; background: rgba(0,0,0,0.7); border-radius: 12px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Fiche d'exercices avancés en physique fondamentale - Relativité, Mécanique quantique, Physique statistique, Électrodynamique, Physique mathématique.">
+<title>Fundamental Physics Exercises / Exercices de Physique Fondamentale</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<style>
+  /* Reset */
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
 
-    /* Sections */
-    section { margin-bottom: 2rem; padding:1rem; }
+  /* Body et fond */
+  body {
+    min-height:100vh;
+    background: #0b0c10 url('https://www.nasa.gov/sites/default/files/thumbnails/image/webbs_first_deep_field_0.jpg') center/cover no-repeat fixed;
+    color: #fff;
+    overflow-x: hidden;
+  }
 
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      color: #000;
-      font-weight: bold;
-      padding: 12px 25px;
-      border-radius: 8px;
-      margin: 10px 0;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    }
+  /* Overlay sombre */
+  body::before {
+    content:"";
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(11,12,16,0.7);
+    z-index:-1;
+  }
 
-    /* Feedback */
-    #contact p, #contact a { margin-bottom: 0.5rem; }
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
 
-    /* Footer */
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #ccc;
-    }
-  </style>
+  h1, h2 { margin-bottom:1rem; font-weight:700; }
+  p { margin-bottom:1rem; }
+
+  /* Glassmorphism sections */
+  section {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 1s ease;
+  }
+  section.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Buttons stylés */
+  .btn {
+    display:inline-block;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color:#000;
+    font-weight:bold;
+    padding:12px 25px;
+    border-radius:12px;
+    margin:10px 0;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255,215,0,0.6);
+  }
+
+  /* Contact */
+  #contact a { color:#FFD700; display:inline-block; margin-bottom:0.5rem; }
+
+  /* Footer */
+  footer {
+    text-align:center;
+    font-size:0.8rem;
+    color:#ccc;
+    margin-top:3rem;
+  }
+
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>Fundamental Physics Exercises / Exercices de Physique Fondamentale</h1>
-    <p><strong>Author / Auteur:</strong> Ryan Artero</p>
-    <p><strong>Level / Niveau:</strong> L3 – M1 (Advanced Undergraduate – Beginning Graduate)</p>
 
-    <!-- English -->
-    <section id="english">
-      <h2>📘 English Version</h2>
-      <p>This document is a curated collection of advanced exercises in theoretical physics, covering special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics.</p>
-      <a class="btn" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" target="_blank"><i class="fas fa-file-pdf"></i> View PDF</a>
-      <p><strong>License:</strong> Creative Commons BY-NC-ND 4.0</p>
-    </section>
+<div class="container">
+  <h1>Fundamental Physics Exercises / Exercices de Physique Fondamentale</h1>
+  <p><strong>Author / Auteur:</strong> Ryan Artero</p>
+  <p><strong>Level / Niveau:</strong> L3 – M1 (Advanced Undergraduate – Beginning Graduate)</p>
 
-    <!-- French -->
-    <section id="french">
-      <h2>🇫🇷 Version Française</h2>
-      <p>Ce document rassemble une sélection originale d’exercices de physique fondamentale, couvrant relativité restreinte, mécanique quantique, physique statistique, électrodynamique et physique mathématique.</p>
-      <a class="btn" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Voir le PDF</a>
-      <p><strong>Licence:</strong> Creative Commons BY-NC-ND 4.0</p>
-    </section>
+  <!-- English -->
+  <section id="english">
+    <h2>📘 English Version</h2>
+    <p>This document is a curated collection of advanced exercises in theoretical physics, covering special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics.</p>
+    <a class="btn" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" target="_blank"><i class="fas fa-file-pdf"></i> View PDF</a>
+    <p><strong>License:</strong> Creative Commons BY-NC-ND 4.0</p>
+  </section>
 
-    <!-- Contact -->
-    <section id="contact">
-      <h2>💬 Feedback / Contact</h2>
-      <p>Comments, suggestions, and feedback from students, teachers, or researchers are welcome. Les retours pédagogiques sont les bienvenus.</p>
-      <p>Email: <a href="mailto:ryanartero2005@gmail.com"><i class="fas fa-envelope"></i> ryanartero2005@gmail.com</a></p>
-      <p>Instagram: <a href="https://www.instagram.com/r_artero" target="_blank"><i class="fab fa-instagram"></i> @r_artero</a></p>
-      <p>GitHub: <a href="https://github.com/ryanartero" target="_blank"><i class="fab fa-github"></i> ryanartero</a></p>
-    </section>
+  <!-- French -->
+  <section id="french">
+    <h2>🇫🇷 Version Française</h2>
+    <p>Ce document rassemble une sélection originale d’exercices de physique fondamentale, couvrant relativité restreinte, mécanique quantique, physique statistique, électrodynamique et physique mathématique.</p>
+    <a class="btn" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Voir le PDF</a>
+    <p><strong>Licence:</strong> Creative Commons BY-NC-ND 4.0</p>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-      <p>Image: NASA, ESA, CSA, STScI – Webb’s First Deep Field</p>
-      <p>&copy; 2025 Ryan Artero</p>
-    </footer>
-  </div>
+  <!-- Contact -->
+  <section id="contact">
+    <h2>💬 Feedback / Contact</h2>
+    <p>Comments, suggestions, and feedback from students, teachers, or researchers are welcome. Les retours pédagogiques sont les bienvenus.</p>
+    <p>Email: <a href="mailto:ryanartero2005@gmail.com"><i class="fas fa-envelope"></i> ryanartero2005@gmail.com</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/r_artero" target="_blank"><i class="fab fa-instagram"></i> @r_artero</a></p>
+    <p>GitHub: <a href="https://github.com/ryanartero" target="_blank"><i class="fab fa-github"></i> ryanartero</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Image: NASA, ESA, CSA, STScI – Webb’s First Deep Field</p>
+    <p>&copy; 2025 Ryan Artero</p>
+  </footer>
+</div>
+
+<script>
+  // Effet scroll pour apparaître les sections
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold:0.1});
+
+  sections.forEach(section => observer.observe(section));
+</script>
 </body>
 </html>
