@@ -1,151 +1,334 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Fiche d'exercices avancés en physique fondamentale - Relativité, Mécanique quantique, Physique statistique, Électrodynamique, Physique mathématique.">
-<title>Fundamental Physics Exercises / Exercices de Physique Fondamentale</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<style>
-  /* Reset */
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Fundamental Physics Exercises — Ryan Artero</title>
+<meta name="description" content="Exercices de physique fondamentale (L3-M1) — PDF FR/EN. Author: Ryan Artero." />
 
-  body {
-    overflow-x:hidden;
-    color:#fff;
-    background:#0b0c10;
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<style>
+  :root{
+    --bg-overlay: rgba(6,8,12,0.65);
+    --card-bg: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.08);
+    --accent-1: linear-gradient(135deg,#4b6cb7,#182848); /* blue->deep */
+    --accent-2: linear-gradient(135deg,#5b8ef1,#7b3ff0); /* violet */
+    --gold: #ffd86b;
+    --muted: #bfc6d0;
   }
 
-  section {
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:#06070a;
+    color:#eaf0ff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
+
+  /* Topbar */
+  .topbar{
+    position:fixed;
+    top:18px;
+    left:18px;
+    right:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:80;
+    pointer-events:auto;
+  }
+  .brand{
+    display:flex;
+    gap:14px;
+    align-items:center;
+  }
+  .brand .logo{
+    width:46px; height:46px; border-radius:8px;
+    background:linear-gradient(135deg,#0f1724, #232a3a);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; color:var(--gold); box-shadow:0 6px 18px rgba(0,0,0,0.6);
+  }
+  .brand .title{
+    font-weight:700; font-size:16px; letter-spacing:0.2px;
+  }
+  /* Lang toggle */
+  .controls{display:flex; gap:10px; align-items:center}
+  .lang-toggle{
+    background:transparent; border:1px solid rgba(255,255,255,0.06);
+    color:var(--muted); padding:8px 12px; border-radius:10px; cursor:pointer;
+    font-weight:600;
+  }
+  .lang-toggle.active { color:#fff; box-shadow:0 6px 18px rgba(15,23,42,0.5); border-color: rgba(255,255,255,0.12); }
+
+  /* Full-bleed section with image element for parallax */
+  .section{
     position:relative;
     width:100%;
     min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:4rem 2rem;
-    background-attachment: fixed;
-    background-position: center top;
-    background-size: cover;
+    display:flex; align-items:center; justify-content:center;
     overflow:hidden;
   }
+  .bg-img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover;
+    transform: translateY(0px) scale(1.03);
+    transition: transform 0.6s ease-out;
+    will-change: transform;
+    filter: saturate(1.05) contrast(1.02);
+  }
+  .overlay{
+    position:absolute; inset:0; background:var(--bg-overlay); z-index:2;
+  }
 
-  /* Glassmorphism container */
+  /* Glass card (center content) */
   .glass {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-    padding: 3rem;
-    max-width:900px;
+    position:relative; z-index:6; max-width:980px; width:calc(100% - 48px);
+    padding:28px 36px; border-radius:16px;
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px) saturate(120%);
+    box-shadow: 0 12px 40px rgba(2,6,23,0.6);
+    transform: translateY(24px); opacity:0;
+    transition: transform 0.8s cubic-bezier(.2,.9,.2,1), opacity 0.6s ease;
+    text-align:left;
+  }
+  .glass.visible { transform: translateY(0); opacity:1; }
+
+  h1{ font-size:26px; margin:0 0 6px 0; color:#fff; letter-spacing:0.2px; }
+  .subtitle{ color:var(--muted); font-size:14px; margin-bottom:16px; }
+
+  /* layout columns inside card */
+  .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:22px; align-items:start; }
+  @media(max-width:860px){ .cols{grid-template-columns:1fr} }
+
+  /* PDF card */
+  .pdf-card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.04);
+    display:flex; gap:14px; align-items:center;
+  }
+  .thumb{
+    width:82px; height:82px; border-radius:8px; overflow:hidden; flex:0 0 82px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .meta { flex:1; }
+  .meta h3{ margin:0; font-size:15px; color:#fff; }
+  .meta p{ margin:6px 0 0 0; color:var(--muted); font-size:13px; }
+
+  .actions{ display:flex; gap:10px; align-items:center; margin-top:12px; }
+
+  /* Buttons refined */
+  .btn-ghost {
+    padding:10px 18px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);
+    background:transparent; color:#fff; font-weight:600; cursor:pointer;
+    transition: all .25s;
+  }
+  .btn-ghost:hover{ transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+  .btn-primary {
+    padding:10px 18px; border-radius:10px; font-weight:700; color:#06102a;
+    background: var(--accent-1); border:none; cursor:pointer;
+    transition: transform .22s, box-shadow .22s;
+  }
+  .btn-primary:hover{ transform: translateY(-4px); box-shadow: 0 12px 40px rgba(30,40,80,0.6); }
+
+  /* language small tag */
+  .lang-tag { font-size:12px; color:var(--muted); padding:4px 8px; border-radius:8px; border:1px solid rgba(255,255,255,0.03); background:rgba(255,255,255,0.02) }
+
+  /* About text style */
+  .about p{ color:#dbe7ff; margin-bottom:10px; font-size:15px; }
+
+  /* footer */
+  footer{
+    border-top: 1px solid rgba(0,0,0,0.9);
+    background:#000;
+    color:#9aa6b2;
+    padding:28px 14px;
     text-align:center;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    transform: translateY(50px);
-    opacity:0;
-    transition: all 1s ease;
+    font-size:13px;
   }
+  footer .credits{ color:#8f99a7; font-size:12px }
 
-  .glass.visible {
-    transform: translateY(0);
-    opacity:1;
-  }
-
-  h1, h2 { font-weight:700; margin-bottom:1rem; }
-  p { margin-bottom:1rem; line-height:1.5; }
-
-  /* Buttons */
-  .btn {
-    display:inline-block;
-    padding:12px 25px;
-    margin:10px 10px 10px 0;
-    border:2px solid #FFD700;
-    border-radius:12px;
-    background: rgba(255,255,255,0.05);
-    color:#FFD700;
-    font-weight:700;
-    text-decoration:none;
-    transition:0.3s;
-  }
-
-  .btn:hover {
-    background: rgba(255,255,255,0.15);
-    box-shadow: 0 0 20px #FFD700;
-    transform: translateY(-5px);
-  }
-
-  /* Contact links */
-  #contact a { color:#FFD700; display:inline-block; margin:5px 0; text-decoration:none; }
-  #contact a:hover { text-decoration:underline; }
-
-  /* Footer */
-  footer { text-align:center; font-size:0.8rem; color:#ccc; padding:2rem 0; }
-
-  /* Responsive */
-  @media(max-width:768px){
-    .glass { padding:2rem; }
-  }
+  /* small utilities */
+  .muted{ color:var(--muted); font-size:13px }
+  a.inline-link{ color:var(--gold); text-decoration:none; font-weight:600; }
 
 </style>
 </head>
 <body>
 
-<!-- Section PDF -->
-<section style="background-image: url('images/Webb.jpg');">
-  <div class="glass">
-    <h1>Fundamental Physics Exercises / Exercices de Physique Fondamentale</h1>
-    <p><strong>Author / Auteur:</strong> Ryan Artero</p>
-    <p><strong>Level / Niveau:</strong> L3 – M1 (Advanced Undergraduate – Beginning Graduate)</p>
+<!-- topbar -->
+<div class="topbar">
+  <div class="brand">
+    <div class="logo">FP</div>
+    <div>
+      <div class="title">Fundamental Physics Exercises</div>
+      <div class="muted" style="font-size:12px">Ryan Artero — L3 / M1</div>
+    </div>
+  </div>
 
-    <h2>📘 English Version</h2>
-    <p>This document is a curated collection of advanced exercises in theoretical physics, covering special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics.</p>
-    <a class="btn" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" target="_blank"><i class="fas fa-file-pdf"></i> View PDF</a>
+  <div class="controls" aria-hidden="false">
+    <button id="langBtn" class="lang-toggle" title="Switch language">FR → EN</button>
+  </div>
+</div>
 
-    <h2>🇫🇷 Version Française</h2>
-    <p>Ce document rassemble une sélection originale d’exercices de physique fondamentale, couvrant relativité restreinte, mécanique quantique, physique statistique, électrodynamique et physique mathématique.</p>
-    <a class="btn" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Voir le PDF</a>
+<!-- Section 1 : About (uses Webb_2.jpg) -->
+<section id="aboutSection" class="section" style="background-image:url('images/Webb_2.jpg');">
+  <img class="bg-img" src="images/Webb_2.jpg" alt="" aria-hidden="true" />
+  <div class="overlay" aria-hidden="true"></div>
 
-    <p><strong>License / Licence:</strong> Creative Commons BY-NC-ND 4.0</p>
+  <div class="glass" id="aboutCard" role="region" aria-labelledby="aboutTitle">
+    <h1 id="aboutTitle" data-i18n-fr="À propos" data-i18n-en="About">À propos</h1>
+    <div class="subtitle" data-i18n-fr="Étudiant, passionné de physique. Partage d'exercices avancés." data-i18n-en="Student & physics enthusiast. Sharing advanced exercises.">Étudiant, passionné de physique. Partage d'exercices avancés.</div>
+
+    <div class="about">
+      <p data-i18n-fr="Bonjour — Je m'appelle Ryan Artero. Ce site rassemble des exercices de physique fondamentale (L3–M1)." data-i18n-en="Hi — I'm Ryan Artero. This site collects fundamental physics exercises (L3–M1).">
+        Bonjour — Je m'appelle Ryan Artero. Ce site rassemble des exercices de physique fondamentale (L3–M1).
+      </p>
+      <p data-i18n-fr="Les thèmes incluent : relativité restreinte, mécanique quantique, physique statistique, électrodynamique, physique mathématique." data-i18n-en="Topics include: special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics.">
+        Les thèmes incluent : relativité restreinte, mécanique quantique, physique statistique, électrodynamique, physique mathématique.
+      </p>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;">
+        <a class="btn-ghost" href="mailto:ryanartero2005@gmail.com"><i class="fas fa-envelope"></i> <span data-i18n-fr>Contact</span><span data-i18n-en style="display:none">Contact</span></a>
+        <a class="btn-ghost" href="https://www.instagram.com/r_artero" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a class="btn-ghost" href="https://github.com/ryanartero" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Section À propos / Contact -->
-<section style="background-image: url('images/Webb_2.jpg');">
-  <div class="glass">
-    <h2>💬 About / À propos</h2>
-    <p>Hi, I’m Ryan Artero, a student passionate about physics and education. This site is dedicated to sharing high-quality physics exercises for advanced undergraduate and early graduate students.</p>
-    <p>Salut, je suis Ryan Artero, étudiant passionné de physique et d’enseignement. Ce site est dédié à partager des exercices de physique avancée pour étudiants de L3 et M1.</p>
+<!-- Section 2 : PDFs (uses Webb.jpg) -->
+<section id="pdfSection" class="section" style="background-image:url('images/Webb.jpg');">
+  <img class="bg-img" src="images/Webb.jpg" alt="" aria-hidden="true" />
+  <div class="overlay" aria-hidden="true"></div>
 
-    <h2>Contact / Feedback</h2>
-    <p>Email: <a href="mailto:ryanartero2005@gmail.com"><i class="fas fa-envelope"></i> ryanartero2005@gmail.com</a></p>
-    <p>Instagram: <a href="https://www.instagram.com/r_artero" target="_blank"><i class="fab fa-instagram"></i> @r_artero</a></p>
-    <p>GitHub: <a href="https://github.com/ryanartero" target="_blank"><i class="fab fa-github"></i> ryanartero</a></p>
+  <div class="glass" id="pdfCard" role="region" aria-labelledby="pdfTitle">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div>
+        <h2 id="pdfTitle" data-i18n-fr="Exercices (PDF)" data-i18n-en="Exercises (PDF)">Exercices (PDF)</h2>
+        <div class="muted" data-i18n-fr="Téléchargez les versions française et anglaise" data-i18n-en="Download French and English versions">Téléchargez les versions française et anglaise</div>
+      </div>
+      <div class="lang-tag" id="langTag">FR</div>
+    </div>
+
+    <div style="height:18px"></div>
+
+    <div class="cols">
+      <!-- French PDF -->
+      <div class="pdf-card" aria-label="French PDF">
+        <div class="thumb"><img src="images/Webb.jpg" alt="thumb FR" /></div>
+        <div class="meta">
+          <h3 data-i18n-fr="Version Française" data-i18n-en="French Version">Version Française</h3>
+          <p data-i18n-fr="Recueil d'exercices - niveau L3/M1" data-i18n-en="Exercise collection - L3/M1 level">Recueil d'exercices - niveau L3/M1</p>
+          <div class="actions">
+            <a class="btn-primary" id="btnFR" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" target="_blank"><i class="fas fa-file-pdf"></i> <span data-i18n-fr>Télécharger</span><span data-i18n-en style="display:none">Download</span></a>
+            <a class="btn-ghost" href="https://github.com/ryanartero/Fundamental_Physics_Exercises_FR_EN/releases" target="_blank">Release</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- English PDF (US/GB tag) -->
+      <div class="pdf-card" aria-label="English PDF">
+        <div class="thumb"><img src="images/Webb_2.jpg" alt="thumb EN" /></div>
+        <div class="meta">
+          <h3 data-i18n-fr="Version Anglaise" data-i18n-en="English Version">Version Anglaise</h3>
+          <p data-i18n-fr="English translation - advanced exercises" data-i18n-en="English translation - advanced exercises">English translation - advanced exercises</p>
+          <div class="actions">
+            <a class="btn-primary" id="btnEN" href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" target="_blank"><i class="fas fa-file-pdf"></i> <span data-i18n-fr>Télécharger</span><span data-i18n-en style="display:none">Download</span></a>
+            <a class="btn-ghost" href="https://github.com/ryanartero/Fundamental_Physics_Exercises_FR_EN/releases" target="_blank">Release</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:8px"></div>
+    <div class="muted" style="margin-top:12px"><strong>Licence / License:</strong> Creative Commons BY-NC-ND 4.0</div>
   </div>
 </section>
 
 <footer>
-  <p>Images: NASA, ESA, CSA, STScI – Webb’s Deep Field</p>
-  <p>&copy; 2025 Ryan Artero</p>
+  <div style="max-width:1100px;margin:0 auto;padding:6px 14px;">
+    <div class="credits">Images: NASA, ESA, CSA, STScI — Webb’s First Deep Field. Used for educational, non-commercial purposes.</div>
+    <div style="height:8px"></div>
+    <div>&copy; 2025 Ryan Artero</div>
+  </div>
 </footer>
 
 <script>
-  // Intersection Observer pour faire apparaître les sections
-  const sections = document.querySelectorAll('.glass');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-      }
-    });
-  }, {threshold:0.1});
-  sections.forEach(section => observer.observe(section));
+  // Simple i18n toggle
+  (function(){
+    const btn = document.getElementById('langBtn');
+    const langTag = document.getElementById('langTag');
+    let lang = 'fr'; // default
+    function setLang(l){
+      lang = l;
+      // toggle button label
+      btn.textContent = (lang === 'fr') ? 'FR → EN' : 'EN → FR';
+      langTag.textContent = (lang === 'fr') ? 'FR' : 'US';
+      // update all elements with data-i18n-fr / data-i18n-en
+      document.querySelectorAll('[data-i18n-fr]').forEach(el=>{
+        el.style.display = (lang==='fr') ? '' : 'none';
+      });
+      document.querySelectorAll('[data-i18n-en]').forEach(el=>{
+        if(el.dataset.i18nEn === undefined) el.dataset.i18nEn = el.getAttribute('data-i18n-en');
+        el.style.display = (lang==='en') ? '' : 'none';
+      });
+      // also switch primary visible texts if originals were not duplicated
+      document.querySelectorAll('[data-i18n-fr]').forEach(el=>{
+        const en = el.parentElement.querySelector('[data-i18n-en]');
+        if(!en && el.dataset.i18nEn) {
+          // nothing
+        }
+      });
+    }
 
-  // Effet parallax pour chaque section
-  window.addEventListener('scroll', function() {
-    const scrollY = window.scrollY;
-    document.querySelectorAll('section').forEach(sec => {
-      sec.style.backgroundPositionY = -(scrollY * 0.2) + 'px';
-    });
-  });
+    // prepare: ensure all FR shown by default, EN hidden
+    document.querySelectorAll('[data-i18n-en]').forEach(el=> el.style.display = 'none');
+    document.querySelectorAll('[data-i18n-fr]').forEach(el=> el.style.display = '');
+
+    btn.addEventListener('click', ()=> setLang(lang==='fr' ? 'en':'fr'));
+  })();
+
+  // IntersectionObserver for glass fade-in
+  (function(){
+    const glasses = document.querySelectorAll('.glass');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, {threshold:0.12});
+    glasses.forEach(g=> obs.observe(g));
+  })();
+
+  // Parallax subtle effect: moves each background image slightly on scroll
+  (function(){
+    const sections = document.querySelectorAll('.section');
+    window.addEventListener('scroll', ()=>{
+      const scrollY = window.scrollY;
+      sections.forEach((sec, idx) => {
+        const img = sec.querySelector('.bg-img');
+        if(!img) return;
+        // compute offset relative to section position for smoother parallax
+        const rect = sec.getBoundingClientRect();
+        const center = rect.top + rect.height/2 - window.innerHeight/2;
+        const offset = Math.max(Math.min(-center * 0.08, 60), -60);
+        img.style.transform = `translateY(${offset}px) scale(1.02)`;
+      });
+    }, {passive:true});
+  })();
+
 </script>
 
 </body>
