@@ -1,96 +1,115 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fundamental Physics Exercises / Exercices de Physique Fondamentale</title>
-  <meta name="description" content="Recueil d'exercices avancés de physique fondamentale pour étudiants L3-M1, en français et en anglais. Théorie, mécanique, électrodynamique, statistiques, solutions détaillées.">
-  <meta name="keywords" content="physics, exercices, fundamental physics, education, étudiants, L3, M1, PDF, français, english">
-  <meta name="author" content="Ryan Artero">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundamental Physics Exercises / Exercices de Physique Fondamentale</title>
+<meta name="description" content="Recueil d'exercices avancés de physique fondamentale pour étudiants L3-M1, en français et en anglais.">
+<meta name="keywords" content="physics, exercices, fundamental physics, education, étudiants, L3, M1, PDF, français, english">
+<meta name="author" content="Ryan Artero">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 
-  <style>
-    /* Reset */
-    * { margin:0; padding:0; box-sizing:border-box; }
+<!-- Font Awesome pour icônes -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-    body { font-family: 'Roboto', sans-serif; line-height:1.6; background:#f5f6fa; color:#333; scroll-behavior: smooth; }
+<style>
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Roboto', sans-serif; line-height:1.6; color:#fff; background:#000; }
 
-    /* Header */
-    header { background:#1E90FF; color:white; padding:30px 20px; text-align:center; position:sticky; top:0; z-index:100; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-    header h1 { font-family:'Roboto Slab', serif; font-size:2rem; margin-bottom:10px; }
-    header p { font-size:1rem; }
+/* Background cosmique */
+body::before {
+  content:"";
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:url('https://images.unsplash.com/photo-1589118949245-7d38baf380d6?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+  z-index:-2;
+}
+body::after {
+  content:"";
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.6);
+  z-index:-1;
+}
 
-    /* Navigation */
-    nav { margin-top:15px; }
-    nav a { color:white; text-decoration:none; margin:0 15px; font-weight:700; transition:0.3s; }
-    nav a:hover { text-decoration:underline; }
+/* Header */
+header { text-align:center; padding:80px 20px; }
+header h1 { font-family:'Roboto Slab', serif; font-size:3rem; text-shadow: 2px 2px 10px #000; }
+header p { font-size:1.2rem; margin-top:10px; color:#ddd; }
 
-    /* Sections */
-    section { padding:40px 20px; max-width:900px; margin: 20px auto; background:white; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.08);}
-    section h2 { color:#1E90FF; margin-bottom:15px; font-family:'Roboto Slab', serif; }
-    section p { margin-bottom:15px; }
+/* Nav */
+nav { margin-top:25px; }
+nav a { color:#1E90FF; margin:0 15px; font-weight:700; text-decoration:none; transition:0.3s; }
+nav a:hover { color:#32CD32; }
 
-    /* Buttons */
-    .button {
-      display:inline-block;
-      padding:12px 25px;
-      border-radius:6px;
-      font-weight:bold;
-      text-decoration:none;
-      color:white;
-      transition:0.3s;
-    }
-    .en { background:#32CD32; }
-    .en:hover { background:#28a428; transform:translateY(-2px); }
-    .fr { background:#1E90FF; }
-    .fr:hover { background:#187bcd; transform:translateY(-2px); }
+/* Sections */
+section { background:rgba(0,0,0,0.6); padding:50px 20px; max-width:1000px; margin:40px auto; border-radius:15px; box-shadow:0 0 20px rgba(0,0,0,0.5); transition: transform 0.3s; }
+section:hover { transform: translateY(-5px); }
+section h2 { font-family:'Roboto Slab', serif; color:#FFD700; margin-bottom:20px; font-size:2rem; }
+section p { margin-bottom:15px; }
 
-    /* Footer */
-    footer { text-align:center; padding:25px; font-size:0.9em; color:#666; }
+/* Buttons */
+.button {
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:8px;
+  font-weight:bold;
+  text-decoration:none;
+  color:white;
+  transition:0.3s;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+.en { background:linear-gradient(45deg,#32CD32,#00FA9A); }
+.en:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.5); }
+.fr { background:linear-gradient(45deg,#1E90FF,#00BFFF); }
+.fr:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.5); }
+.website { background:linear-gradient(45deg,#FF4500,#FF6347); }
+.website:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.5); }
 
-    /* Responsive */
-    @media (max-width:600px){ 
-      nav a { display:block; margin:10px 0; }
-      .button { display:block; margin-bottom:10px; }
-    }
-  </style>
+/* Footer */
+footer { text-align:center; padding:25px; font-size:0.9em; color:#ccc; }
+
+/* Responsive */
+@media(max-width:700px){ 
+  nav a { display:block; margin:10px 0; }
+  .button { display:block; margin-bottom:15px; }
+}
+</style>
 </head>
+
 <body>
 
 <header>
   <h1>Fundamental Physics Exercises</h1>
   <p>Exercices de Physique Fondamentale | L3 – M1</p>
   <nav>
-    <a href="#english">English</a>
-    <a href="#french">Français</a>
-    <a href="#contact">Contact</a>
+    <a href="#english"><i class="fas fa-flag-usa"></i> English</a>
+    <a href="#french"><i class="fas fa-flag"></i> Français</a>
+    <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
   </nav>
 </header>
 
 <section id="english">
   <h2>📘 English Version</h2>
-  <p>This document is a curated collection of advanced exercises in theoretical physics, designed to provide both conceptual challenges and pedagogical structure. Topics include special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics.</p>
-  <p>Each exercise is original and often inspired by historical ideas or modern interpretations. Some come with fully detailed solutions. Ideal for advanced undergraduate (L3) or early graduate (M1) students.</p>
-  <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" class="button en" target="_blank">Download PDF</a>
-  <p><strong>License:</strong> Creative Commons BY-NC-ND 4.0</p>
+  <p>This document is a curated collection of advanced exercises in theoretical physics, designed to provide conceptual challenges and pedagogical structure. Topics: special relativity, quantum mechanics, statistical physics, electrodynamics, and mathematical physics.</p>
+  <p>Some exercises come with detailed solutions. Ideal for advanced undergraduate (L3) or early graduate (M1) students.</p>
+  <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf" class="button en" target="_blank"><i class="fas fa-file-pdf"></i> Download PDF</a>
 </section>
 
 <section id="french">
   <h2>🇫🇷 Version française</h2>
-  <p>Ce document rassemble une sélection originale d’exercices de physique fondamentale, conçus pour combiner rigueur théorique et clarté pédagogique. Les thématiques abordées incluent la relativité restreinte, la mécanique quantique, la physique statistique, l’électrodynamique, ainsi que des aspects de physique mathématique.</p>
-  <p>Chaque exercice est soigneusement rédigé, parfois accompagné d’une correction complète. Ce recueil s’adresse aux étudiants de Licence 3 à Master 1.</p>
-  <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" class="button fr" target="_blank">Télécharger PDF</a>
-  <p><strong>Licence :</strong> Creative Commons BY-NC-ND 4.0</p>
+  <p>Ce document rassemble une sélection originale d’exercices de physique fondamentale, combinant rigueur théorique et clarté pédagogique. Thématiques : relativité restreinte, mécanique quantique, physique statistique, électrodynamique, physique mathématique.</p>
+  <p>Certains exercices incluent des corrections détaillées. Public : étudiants L3-M1.</p>
+  <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf" class="button fr" target="_blank"><i class="fas fa-file-pdf"></i> Télécharger PDF</a>
 </section>
 
 <section id="contact">
   <h2>💬 Feedback / Contact</h2>
-  <p>Comments, suggestions, and feedback from students, teachers, or researchers are very welcome. Les retours pédagogiques sont les bienvenus (enseignants, étudiants, passionnés).</p>
-  <p>Email: <a href="mailto:ryanartero2005@gmail.com">ryanartero2005@gmail.com</a></p>
+  <p>Comments, suggestions, and feedback from students, teachers, or researchers are welcome. Les retours pédagogiques sont les bienvenus.</p>
+  <p>Email: <a href="mailto:ryanartero2005@gmail.com" style="color:#FFD700;">ryanartero2005@gmail.com</a></p>
   <p>
-    <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/" target="_blank" class="button" style="background:#FF4500;">🌐 Visit the Website / Visiter le site</a>
+    <a href="https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/" class="button website" target="_blank"><i class="fas fa-globe"></i> Visit the Website / Visiter le site</a>
   </p>
 </section>
 
