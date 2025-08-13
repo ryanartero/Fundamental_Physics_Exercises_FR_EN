@@ -15,13 +15,18 @@ Each exercise is original and often inspired by historical ideas or modern inter
 
 ### 📎 PDF
 
-👉 [EN_EPF.pdf](https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf)
+<p>
+  <a href="EN_EPF.pdf" target="_blank" style="text-decoration:none; padding:10px 20px; background-color:#32CD32; color:white; border-radius:5px; margin-right:10px; display:inline-block;">
+     Download EN
+  </a>
+</p>
 
 ### ⚠️ License and Conditions
 
 This work is licensed under **Creative Commons BY-NC-ND 4.0**:
-- You may **read**, **share**, and **distribute** the PDF freely.
-- You may **not modify**, **reuse**, or **sell** this material.
+
+- You may **read**, **share**, and **distribute** the PDF freely.  
+- You may **not modify**, **reuse**, or **sell** this material.  
 - The LaTeX source is not published to prevent unauthorized reuse.
 
 ---
@@ -36,20 +41,25 @@ Chaque exercice est soigneusement rédigé, parfois accompagné d’une correcti
 
 ### 📎 PDF
 
-👉 [FR_EPF.pdf](https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf)
+<p>
+  <a href="FR_EPF.pdf" target="_blank" style="text-decoration:none; padding:10px 20px; background-color:#1E90FF; color:white; border-radius:5px; display:inline-block;">
+     Télécharger FR
+  </a>
+</p>
 
 ### ⚠️ Licence et conditions
 
 Ce travail est sous licence **Creative Commons BY-NC-ND 4.0** :
-- Vous pouvez **lire**, **partager** et **diffuser** librement le PDF.
-- Il est **interdit de le modifier, le réutiliser ou le vendre**.
+
+- Vous pouvez **lire**, **partager** et **diffuser** librement le PDF.  
+- Il est **interdit de le modifier, le réutiliser ou le vendre**.  
 - Le fichier source LaTeX n’est pas publié pour protéger la diffusion de l’auteur.
 
 ---
 
 ## 💬 Feedback
 
-Comments, suggestions and feedback from students, teachers, or researchers are very welcome.  
+Comments, suggestions, and feedback from students, teachers, or researchers are very welcome.  
 Les retours pédagogiques sont les bienvenus (enseignants, étudiants, passionnés).
 
 📧 Contact : [ryanartero2005@gmail.com](mailto:ryanartero2005@gmail.com)
