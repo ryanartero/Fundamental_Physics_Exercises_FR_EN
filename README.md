@@ -13,11 +13,9 @@ This document is a curated collection of advanced exercises in theoretical physi
 
 Each exercise is original and often inspired by historical ideas or modern interpretations. Some come with fully detailed solutions. The collection is ideal for students in advanced undergraduate (L3) or early graduate (M1) programs.
 
-### 📎 Download
+### 📎 PDF
 
-👉 [EN_Exercises_of_Fundamental_Physics.pdf](./EN_EPF.pdf)
-
-> ℹ️ Open the PDF in a proper reader (e.g., Adobe, Okular) to activate internal links.
+👉 [EN_EPF.pdf](https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf)
 
 ### ⚠️ License and Conditions
 
@@ -36,11 +34,9 @@ Ce document rassemble une sélection originale d’exercices de physique fondame
 
 Chaque exercice est soigneusement rédigé, parfois accompagné d’une correction complète. Ce recueil s’adresse aux étudiants de Licence 3 à Master 1.
 
-### 📎 Téléchargement
+### 📎 PDF
 
-👉 [FR_Exercices_de_Physique_Fondamentale.pdf](./FR_EPF.pdf)
-
-> ℹ️ Ouvrir le PDF avec un lecteur classique (Adobe, Okular) pour activer les liens internes.
+👉 [FR_EPF.pdf](https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf)
 
 ### ⚠️ Licence et conditions
 
