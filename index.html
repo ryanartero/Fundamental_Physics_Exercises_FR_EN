@@ -9,15 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#06070a; --muted:#8f99a7; --white:#ffffff; --black:#000000; --accent:#2e4db0;
-  --thumb-size-desktop:120px;
-  --thumb-size-mobile-perc:40%;
-  --eye-size-desktop:26px; /* reduced eye size on desktop */
-  --eye-size-mobile:18px;
+  --bg:#06070a;
+  --muted:#8f99a7;
+  --white:#ffffff;
+  --black:#000000;
+  --accent:#2e4db0;
+
+  --thumb-size-desktop:120px;      /* desktop thumbnail square size */
+  --thumb-height-mobile:220px;     /* mobile thumbnail rectangle height */
+  --eye-size-desktop:22px;         /* eye icon size desktop */
+  --eye-size-mobile:16px;          /* eye icon size mobile */
   --thumb-blur:6px;
 }
 
-/* Reset and base */
+/* Reset & base */
 *{box-sizing:border-box}
 html,body{height:100%; margin:0; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial; background:var(--bg); color:var(--white); -webkit-font-smoothing:antialiased}
 a{color:inherit; text-decoration:none}
@@ -74,24 +79,34 @@ a{color:inherit; text-decoration:none}
 /* PDF panel */
 .pdf-panel{ background:#fff; border:1px solid #e6e9ef; padding:18px; border-radius:10px; display:flex; gap:18px; align-items:flex-start; box-shadow:0 8px 28px rgba(16,24,40,0.06); min-height:140px; position:relative; }
 .pdf-thumb{
-  width:var(--thumb-size-desktop); height:var(--thumb-size-desktop); background:#f8fafc; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#0b0c10; font-weight:800; font-size:20px; cursor:pointer; border:1px solid #e3e6ea; position:relative; overflow:hidden;
+  width:var(--thumb-size-desktop);
+  height:var(--thumb-size-desktop);
+  background:#f8fafc;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#0b0c10;
+  font-weight:800;
+  font-size:20px;
+  cursor:pointer;
+  border:1px solid #e3e6ea;
+  position:relative;
+  overflow:hidden;
   flex:0 0 var(--thumb-size-desktop);
 }
 /* blurred background layer inside thumbnail */
 .pdf-thumb .thumb-bg{
-  position:absolute; inset:0; background-position:center; background-size:cover; filter: blur(var(--thumb-blur)); transform: scale(1.06); opacity:0.95;
+  position:absolute; inset:0; background-position:center; background-size:cover; filter: blur(var(--thumb-blur)); transform: scale(1.06); opacity:0.98;
 }
-/* subtle dark overlay to keep icons readable */
-.pdf-thumb .thumb-overlay{
-  position:absolute; inset:0; background: rgba(255,255,255,0.06);
-}
-.pdf-thumb .eye-wrap{
-  position:relative; z-index:6; display:flex; align-items:center; justify-content:center; pointer-events:none;
-}
-/* eye svg sizing */
+/* subtle overlay */
+.pdf-thumb .thumb-overlay{ position:absolute; inset:0; background: rgba(255,255,255,0.06); }
+
+/* eye wrapper + svg sizes */
+.pdf-thumb .eye-wrap{ position:relative; z-index:6; display:flex; align-items:center; justify-content:center; pointer-events:none; }
 .pdf-thumb svg.eye-icon{ width:var(--eye-size-desktop); height:var(--eye-size-desktop); display:block; }
 
-/* small eye label for mobile */
+/* mobile label */
 .pdf-thumb .eye-label{ display:none; position:absolute; bottom:6px; left:8px; right:8px; text-align:center; z-index:6; font-size:12px; color:#0b0c10; }
 
 /* meta */
@@ -101,8 +116,22 @@ a{color:inherit; text-decoration:none}
 .pdf-actions{ display:flex; gap:12px; flex-wrap:wrap; align-items:center }
 
 /* buttons */
-.btn-pdf{ background: linear-gradient(180deg,#1f3ea0,#27408f); color:#fff; border:none; padding:10px 16px; border-radius:8px; font-weight:700; cursor:pointer; box-shadow:0 8px 28px rgba(30,40,80,0.28); }
-.btn-pdf:hover{ transform:translateY(-3px); box-shadow:0 12px 40px rgba(30,40,80,0.36); }
+.btn-pdf{
+  background: linear-gradient(180deg,#1f3ea0,#27408f);
+  color:#fff;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 8px 28px rgba(30,40,80,0.28);
+  transition: transform .18s ease, box-shadow .18s ease;
+  display:inline-block;
+}
+.btn-pdf:hover{ transform:translateY(-3px); box-shadow:0 16px 44px rgba(30,40,80,0.36); }
+
+/* small "ghost" action */
+.btn-ghost{ padding:10px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:#fff;color:#0b0c10;font-weight:700 }
 
 /* CONTACT */
 .contact-wrap{ width:min(900px,100%); margin:0 auto; padding:36px; color:var(--muted); text-align:left }
@@ -115,13 +144,12 @@ a{color:inherit; text-decoration:none}
 .modal.open{ display:flex; }
 .modal .inner{ width:min(1100px,94%); height:min(80vh,900px); background:#fff; border-radius:10px; overflow:hidden; position:relative; box-shadow:0 30px 90px rgba(2,6,23,0.8); }
 .modal iframe{ width:100%; height:100%; border:0; display:block; }
-.modal .close-btn{ position:absolute; top:12px; right:12px; background:rgba(0,0,0,0.6); color:#fff; border:0; padding:8px 10px; border-radius:8px; cursor:pointer; }
+.modal .close-btn{ position:absolute; top:12px; right:12px; background:rgba(0,0,0,0.6); color:#fff; border:0; padding:8px 10px; border-radius:8px; cursor:pointer; z-index:50; }
+/* open in new tab button */
+.modal .open-btn{ position:absolute; top:12px; right:80px; background:rgba(255,255,255,0.95); color:#0b0c10; border:0; padding:8px 10px; border-radius:8px; cursor:pointer; font-weight:700; z-index:50; box-shadow:0 8px 20px rgba(2,6,23,0.3); }
 
 /* RESPONSIVE */
 @media(max-width:880px){
-  :root{
-    --thumb-size-desktop: calc(var(--thumb-size-desktop) * 0.9);
-  }
   .title-band{ padding:14px 14px; }
   .lang-btn{ padding:6px 8px; font-size:14px; }
   .tiles-row{ display:none; }
@@ -129,11 +157,17 @@ a{color:inherit; text-decoration:none}
   .hamburger{ display:inline-block; }
   .section{ padding:28px 12px; }
   .container{ width:94%; padding:0 6px; }
-  .pdf-panel{ flex-direction:column; min-height:360px; aspect-ratio:1/1; padding:12px; }
-  .pdf-thumb{ width:var(--thumb-size-mobile-perc); height:var(--thumb-size-mobile-perc); border-radius:8px; font-size:18px }
+
+  /* mobile: thumbnail becomes rectangular (full width) and pdf-panel gets stronger shadow for separation */
+  .pdf-panel{ flex-direction:column; min-height:360px; padding:12px; box-shadow: 0 18px 40px rgba(2,6,23,0.24); border-radius:12px; }
+  .pdf-thumb{ width:100%; height:var(--thumb-height-mobile); flex:0 0 auto; border-radius:10px; }
   .pdf-thumb svg.eye-icon{ width:var(--eye-size-mobile); height:var(--eye-size-mobile); }
   .pdf-thumb .eye-label{ display:block; }
-  .pdf-meta{ height:60%; overflow:auto; padding-top:8px }
+  .pdf-meta{ height:auto; overflow:auto; padding-top:8px }
+
+  /* improve spacing under download button on mobile for fluidity */
+  .pdf-actions .btn-pdf{ width:100%; display:block; text-align:center; box-shadow:0 10px 28px rgba(30,40,80,0.2); margin-bottom:8px; }
+  .pdf-actions .btn-ghost{ width:100%; text-align:center; display:block; margin-bottom:6px; }
   .site-title{ font-size:20px; }
   .about-box{ padding:20px }
   .ex-title, .ex-lead { text-align:center }
@@ -163,7 +197,7 @@ html{ scroll-behavior:smooth }
       <div class="tile" data-target="#contact" id="tile-ct"><span data-i18n-fr="Contact" data-i18n-en="Contact">Contact</span></div>
     </div>
 
-    <!-- mobile hamburger (SVG inline to guarantee visibility) -->
+    <!-- mobile hamburger (SVG inline ensures visibility) -->
     <button class="hamburger" id="hamburger" aria-expanded="false" aria-label="Menu" title="Menu">
       <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect y="0" width="22" height="2" rx="1" fill="white"></rect>
@@ -213,10 +247,14 @@ html{ scroll-behavior:smooth }
           <div class="thumb-overlay"></div>
 
           <div class="eye-wrap" aria-hidden="true">
-            <!-- eye icon SVG (reduced size) -->
-            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" fill="#0b0c10"></path>
-              <circle cx="12" cy="12" r="3.2" fill="#0b0c10"></circle>
+            <!-- eye icon SVG with pupil + small highlight -->
+            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- eye outline -->
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" fill="#0b0c10"/>
+              <!-- pupil (dark) -->
+              <circle cx="12" cy="12" r="3.2" fill="#020203"/>
+              <!-- small white highlight (pupil reflection) -->
+              <circle cx="13.1" cy="10.9" r="0.6" fill="#ffffff" opacity="0.9"/>
             </svg>
           </div>
 
@@ -240,7 +278,7 @@ html{ scroll-behavior:smooth }
               <span data-i18n-fr style="display:none"> Télécharger la version EN</span><span data-i18n-en> Download EN version</span>
             </a>
 
-            <a class="btn-ghost" href="https://github.com/ryanartero/Fundamental_Physics_Exercises_FR_EN/releases" target="_blank" rel="noopener" style="padding:10px 12px;border:1px solid rgba(0,0,0,0.06);background:#fff;color:#0b0c10;border-radius:8px;font-weight:700">
+            <a class="btn-ghost" href="https://github.com/ryanartero/Fundamental_Physics_Exercises_FR_EN/releases" target="_blank" rel="noopener">
               <span data-i18n-fr>Voir la release</span><span data-i18n-en style="display:none">View release</span>
             </a>
           </div>
@@ -267,19 +305,16 @@ html{ scroll-behavior:smooth }
 
       <div class="contact-links">
         <a class="link-chip" href="mailto:ryanartero2005@gmail.com">
-          <!-- envelope svg -->
           <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#fff" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
           <span> ryanartero2005@gmail.com</span>
         </a>
 
         <a class="link-chip" href="https://www.instagram.com/r_artero" target="_blank" rel="noopener">
-          <!-- camera svg -->
           <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#fff" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.5A4.5 4.5 0 1 0 16.5 13 4.5 4.5 0 0 0 12 8.5zM18.5 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
           <span> @r_artero</span>
         </a>
 
         <a class="link-chip" href="https://github.com/ryanartero" target="_blank" rel="noopener">
-          <!-- github svg -->
           <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#fff" d="M12 .5A12 12 0 0 0 0 12.5c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6V20c-3.3.7-4-1.6-4-1.6-.6-1.6-1.4-2-1.4-2-1.2-.8.1-.8.1-.8 1.3.1 2 1.3 2 1.3 1.1 1.8 3 1.3 3.7 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.4-2.4 1.2-3.3-.1-.3-.5-1.5.1-3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C19.8 5.2 20.8 5.5 20.8 5.5c.6 1.5.2 2.7.1 3 .8.9 1.2 2 1.2 3.3 0 4.5-2.7 5.5-5.3 5.8.4.3.8 1 .8 2v3.2c0 .3.2.7.8.6A12 12 0 0 0 24 12.5 12 12 0 0 0 12 .5z"/></svg>
           <span> github.com/ryanartero</span>
         </a>
@@ -302,16 +337,12 @@ html{ scroll-behavior:smooth }
 <div id="pdfModal" class="modal" aria-hidden="true" role="dialog" aria-label="PDF preview">
   <div class="inner" role="document">
     <button class="close-btn" id="modalClose" aria-label="Close preview">✕</button>
+    <button class="open-btn" id="openNewTab" data-i18n-fr="Ouvrir dans un nouvel onglet" data-i18n-en="Open in new tab">Ouvrir dans un nouvel onglet</button>
     <iframe id="pdfFrame" src="" title="PDF preview"></iframe>
   </div>
 </div>
 
 <script>
-/* i18n + UI + mobile hamburger + pdf preview
-   - thumb background image set according to language:
-     images/FR_EPF_page1.jpg or images/EN_EPF_page1.jpg
-   - fallback uses images/Webb.jpg if page1 images missing (browser shows 404 but layout ok)
-*/
 document.addEventListener('DOMContentLoaded', function(){
   const langBtn = document.getElementById('langBtn');
   let lang = localStorage.getItem('siteLang') || 'fr';
@@ -324,6 +355,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const pdfModal = document.getElementById('pdfModal');
   const pdfFrame = document.getElementById('pdfFrame');
   const modalClose = document.getElementById('modalClose');
+  const openNewTab = document.getElementById('openNewTab');
 
   const urlFR = 'https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/FR_EPF.pdf';
   const urlEN = 'https://ryanartero.github.io/Fundamental_Physics_Exercises_FR_EN/EN_EPF.pdf';
@@ -332,10 +364,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const fallbackThumb = 'images/Webb.jpg';
 
   function setThumbBackground(l){
-    // prefer page1 images; fallback to Webb.jpg
     const candidate = (l === 'fr') ? thumbFR : thumbEN;
-    // set background-image to candidate; if missing, image request fails but browser will still show fallback via CSS -- so we set both using layered backgrounds
-    // Use layered backgrounds to try candidate then fallback
     thumbBg.style.backgroundImage = `url("${candidate}"), url("${fallbackThumb}")`;
     thumbBg.style.backgroundRepeat = 'no-repeat, no-repeat';
     thumbBg.style.backgroundSize = 'cover, cover';
@@ -375,6 +404,12 @@ document.addEventListener('DOMContentLoaded', function(){
       langBtn.setAttribute('aria-pressed', (l === 'en') ? 'true' : 'false');
     }
     setThumbBackground(l);
+    // update modal open button label (i18n)
+    if(openNewTab){
+      const fr = openNewTab.getAttribute('data-i18n-fr');
+      const en = openNewTab.getAttribute('data-i18n-en');
+      openNewTab.textContent = (l === 'fr') ? fr : en;
+    }
     if(pdfModal.classList.contains('open')){
       pdfFrame.src = (lang === 'fr') ? urlFR : urlEN;
     }
@@ -400,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   document.getElementById('tile-about').classList.add('active');
 
-  // hamburger toggle
+  // hamburger
   if(hamburger){
     hamburger.addEventListener('click', ()=>{
       const isOpen = tilesRow.classList.toggle('open');
@@ -450,6 +485,10 @@ document.addEventListener('DOMContentLoaded', function(){
     pdfThumb.addEventListener('keypress', (e)=>{ if(e.key === 'Enter' || e.key === ' ') openPdfPreview(); });
   }
   if(modalClose) modalClose.addEventListener('click', closePdfPreview);
+  if(openNewTab) openNewTab.addEventListener('click', ()=>{
+    const src = (lang === 'fr') ? urlFR : urlEN;
+    window.open(src, '_blank', 'noopener');
+  });
   pdfModal.addEventListener('click', function(e){ if(e.target === pdfModal) closePdfPreview(); });
   window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && pdfModal.classList.contains('open')) closePdfPreview(); });
 
@@ -463,6 +502,9 @@ document.addEventListener('DOMContentLoaded', function(){
     aboutImg.style.transform = `translateY(${offset}px) scale(1.04)`;
   }, {passive:true});
 
+  // initial thumb background
+  setThumbBackground(lang);
+
   // ensure tiles visibility on resize
   window.addEventListener('resize', ()=>{
     if(window.innerWidth > 880){
@@ -470,9 +512,6 @@ document.addEventListener('DOMContentLoaded', function(){
       hamburger.classList.remove('open');
     }
   });
-
-  // initial thumb background
-  setThumbBackground(lang);
 });
 </script>
 </body>
