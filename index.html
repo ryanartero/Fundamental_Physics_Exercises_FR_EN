@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Fiche d'exercices avancés en physique fondamentale - Relativité, Mécanique quantique, Physique statistique, Électrodynamique, Physique mathématique.">
 <title>Fundamental Physics Exercises / Exercices de Physique Fondamentale</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <style>
   /* Reset */
@@ -14,12 +14,11 @@
   /* Body et fond */
   body {
     min-height:100vh;
-    background: #0b0c10 url('https://www.nasa.gov/sites/default/files/thumbnails/image/webbs_first_deep_field_0.jpg') center/cover no-repeat fixed;
+    background: #0b0c10 url('images/Webb.jpg') center/cover no-repeat fixed;
     color: #fff;
     overflow-x: hidden;
   }
 
-  /* Overlay sombre */
   body::before {
     content:"";
     position:fixed; top:0; left:0; width:100%; height:100%;
@@ -30,53 +29,57 @@
   .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 3rem 2rem;
   }
 
-  h1, h2 { margin-bottom:1rem; font-weight:700; }
-  p { margin-bottom:1rem; }
+  h1, h2 { margin-bottom:1rem; font-weight:700; letter-spacing: 0.5px; }
+  p { margin-bottom:1rem; line-height:1.6; color:#ddd; }
 
   /* Glassmorphism sections */
   section {
     background: rgba(255,255,255,0.05);
-    border-radius: 15px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     transform: translateY(50px);
     opacity: 0;
     transition: all 1s ease;
+    border: 1px solid rgba(255,255,255,0.15);
   }
   section.visible {
     transform: translateY(0);
     opacity: 1;
   }
 
-  /* Buttons stylés */
+  /* Boutons élégants */
   .btn {
     display:inline-block;
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    color:#000;
-    font-weight:bold;
-    padding:12px 25px;
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    color:#fff;
+    font-weight:500;
+    padding:14px 28px;
     border-radius:12px;
-    margin:10px 0;
-    transition: transform 0.3s, box-shadow 0.3s;
+    margin:12px 0;
+    text-decoration:none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   }
   .btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(255,215,0,0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
   }
 
   /* Contact */
-  #contact a { color:#FFD700; display:inline-block; margin-bottom:0.5rem; }
+  #contact a { color:#4b6cb7; display:inline-block; margin-bottom:0.5rem; transition: color 0.3s; }
+  #contact a:hover { color:#182848; }
 
   /* Footer */
   footer {
     text-align:center;
     font-size:0.8rem;
-    color:#ccc;
+    color:#aaa;
     margin-top:3rem;
   }
 
@@ -122,7 +125,7 @@
 </div>
 
 <script>
-  // Effet scroll pour apparaître les sections
+  // Effet scroll pour faire apparaître les sections
   const sections = document.querySelectorAll('section');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -131,7 +134,6 @@
       }
     });
   }, {threshold:0.1});
-
   sections.forEach(section => observer.observe(section));
 </script>
 </body>
