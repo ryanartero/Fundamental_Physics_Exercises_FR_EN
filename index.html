@@ -11,15 +11,18 @@
 :root{
   --bg:#06070a;
   --muted:#8f99a7;
-  --muted-footer:#6f7780;   /* more incrusted, less contrast */
+  --muted-footer:#6f7780;
   --white:#ffffff;
   --black:#000000;
   --accent:#2e4db0;
 
-  --thumb-size-desktop:120px;      /* desktop thumbnail square size */
-  --thumb-height-mobile:220px;     /* mobile thumbnail rectangle height */
-  --eye-size-desktop:24px;         /* eye icon size desktop (slightly increased) */
-  --eye-size-mobile:22px;          /* eye icon size mobile (bigger now) */
+  --thumb-size-desktop:120px;
+  --thumb-height-mobile:220px;
+
+  /* Increased eye sizes per request */
+  --eye-size-desktop:36px;   /* significantly larger on desktop */
+  --eye-size-mobile:30px;    /* significantly larger on mobile */
+
   --thumb-blur:6px;
   --container-max:1100px;
 }
@@ -106,11 +109,11 @@ a{color:inherit; text-decoration:none}
 
 /* eye wrapper + svg sizes */
 .pdf-thumb .eye-wrap{ position:relative; z-index:6; display:flex; align-items:center; justify-content:center; pointer-events:none; }
-/* svg sizing controlled by variables */
+/* svg sizing controlled by variables (now larger) */
 .pdf-thumb svg.eye-icon{ width:var(--eye-size-desktop); height:var(--eye-size-desktop); display:block; }
 
 /* mobile label positioning and centering */
-.pdf-thumb .eye-label{ display:none; position:absolute; bottom:12px; left:50%; transform:translateX(-50%); z-index:6; font-size:13px; color:#0b0c10; background: rgba(255,255,255,0.85); padding:4px 8px; border-radius:6px; }
+.pdf-thumb .eye-label{ display:none; position:absolute; bottom:12px; left:50%; transform:translateX(-50%); z-index:6; font-size:13px; color:#0b0c10; background: rgba(255,255,255,0.90); padding:4px 8px; border-radius:6px; }
 
 /* meta */
 .pdf-meta{ flex:1; }
@@ -175,6 +178,7 @@ footer.credits{
   /* mobile: thumbnail becomes rectangular (full width) and pdf-panel gets stronger shadow for separation */
   .pdf-panel{ flex-direction:column; min-height:360px; padding:12px; box-shadow: 0 18px 40px rgba(2,6,23,0.24); border-radius:12px; }
   .pdf-thumb{ width:100%; height:var(--thumb-height-mobile); flex:0 0 auto; border-radius:10px; }
+  /* eye bigger on mobile via var */
   .pdf-thumb svg.eye-icon{ width:var(--eye-size-mobile); height:var(--eye-size-mobile); }
   .pdf-thumb .eye-label{ display:block; }
   .pdf-meta{ height:auto; overflow:auto; padding-top:8px }
@@ -261,16 +265,16 @@ html{ scroll-behavior:smooth }
           <div class="thumb-overlay"></div>
 
           <div class="eye-wrap" aria-hidden="true">
-            <!-- updated eye: white sclera + dark pupil + highlight -->
+            <!-- inverted-colors eye: dark outer + white pupil (bigger and visible on light/dark) -->
             <svg class="eye-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-              <!-- white sclera (larger) -->
-              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" fill="#ffffff" opacity="0.98"/>
-              <!-- thin subtle stroke to keep nice shape -->
-              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" fill="none" stroke="#e6e9ee" stroke-width="0.6" opacity="0.9"/>
-              <!-- dark pupil -->
-              <circle cx="12" cy="12" r="3.2" fill="#05070a"/>
-              <!-- small white highlight for life -->
-              <circle cx="13.1" cy="10.9" r="0.6" fill="#ffffff" opacity="0.95"/>
+              <!-- dark outer (replaces previous white sclera) -->
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" fill="#05060a"/>
+              <!-- white pupil -->
+              <circle cx="12" cy="12" r="3.2" fill="#ffffff"/>
+              <!-- small dark inner dot (actual pupil center) -->
+              <circle cx="12" cy="12" r="1.2" fill="#020203"/>
+              <!-- subtle highlight on white pupil -->
+              <circle cx="13.1" cy="10.9" r="0.45" fill="#ffffff" opacity="0.95"/>
             </svg>
           </div>
 
@@ -420,7 +424,6 @@ document.addEventListener('DOMContentLoaded', function(){
       langBtn.setAttribute('aria-pressed', (l === 'en') ? 'true' : 'false');
     }
     setThumbBackground(l);
-    // update modal open button label (i18n)
     if(openNewTab){
       const fr = openNewTab.getAttribute('data-i18n-fr');
       const en = openNewTab.getAttribute('data-i18n-en');
